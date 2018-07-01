@@ -1,0 +1,11 @@
+gameid = Labyrinthus
+backend = sqlite3
+creative_mode = true
+enable_damage = false
+server_announce = true
+load_mod_picture = false
+load_mod_mobs = false
+load_mod_worldedit_commands = false
+load_mod_mila = false
+load_mod_worldedit = false
+player_backend = files
