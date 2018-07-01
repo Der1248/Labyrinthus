@@ -136,10 +136,12 @@ if minetest.settings:get_bool("enable_lavacooling") ~= false then
 		label = "Lava cooling",
 		nodenames = {"default:lava_source", "default:lava_flowing"},
 		neighbors = {"group:cools_lava", "group:water"},
-		interval = 1,
+		interval = 2,
 		chance = 2,
 		catch_up = false,
-		action = default.cool_lava,
+		action = function(...)
+			default.cool_lava(...)
+		end,
 	})
 end
 
@@ -222,7 +224,9 @@ minetest.register_abm({
 	neighbors = {"group:sand"},
 	interval = 12,
 	chance = 83,
-	action = default.grow_cactus
+	action = function(...)
+		default.grow_cactus(...)
+	end
 })
 
 minetest.register_abm({
@@ -231,7 +235,9 @@ minetest.register_abm({
 	neighbors = {"default:dirt", "default:dirt_with_grass"},
 	interval = 14,
 	chance = 71,
-	action = default.grow_papyrus
+	action = function(...)
+		default.grow_papyrus(...)
+	end
 })
 
 
@@ -291,7 +297,7 @@ function default.register_fence(name, def)
 		groups = {},
 	}
 	for k, v in pairs(default_fields) do
-		if not def[k] then
+		if def[k] == nil then
 			def[k] = v
 		end
 	end
@@ -313,7 +319,7 @@ end
 -- Prevent decay of placed leaves
 
 default.after_place_leaves = function(pos, placer, itemstack, pointed_thing)
-	if placer and not placer:get_player_control().sneak then
+	if placer and placer:is_player() and not placer:get_player_control().sneak then
 		local node = minetest.get_node(pos)
 		node.param2 = 1
 		minetest.set_node(pos, node)

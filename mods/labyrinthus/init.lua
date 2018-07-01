@@ -17,7 +17,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  0.4.16",
+		text = "For Minetest 	  :  0.4.17",
 	})  
 	player:hud_add({
 		hud_elem_type = "text",
@@ -25,7 +25,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.0.1",
+		text = "Game Version	 :  2.0.3",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -427,7 +427,9 @@ minetest.register_globalstep(function(dtime)
         end
 	end
 end)
-
+minetest.register_on_joinplayer(function(player)
+    player:set_inventory_formspec("")
+end)
 minetest.register_globalstep(function(dtime)
     local players = minetest.get_connected_players()
     for _,player in ipairs(players) do
@@ -3639,6 +3641,10 @@ minetest.register_node("labyrinthus:new",{
 	description = "New",
     paramtype = "light",
 	light_source = 5,
+    alpha = 0,
+	sunlight_propagates = true,
+	use_texture_alpha = true,
+	is_ground_content = true,
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         minetest.show_formspec(player:get_player_name(), "tu" , tu.get_formspec(player))
@@ -3659,6 +3665,10 @@ minetest.register_node("labyrinthus:new_w1",{
 	description = "New",
     paramtype = "light",
 	light_source = 5,
+    alpha = 0,
+	sunlight_propagates = true,
+	use_texture_alpha = true,
+	is_ground_content = true,
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()
@@ -3691,6 +3701,10 @@ minetest.register_node("labyrinthus:new_w2",{
 	description = "New",
     paramtype = "light",
 	light_source = 5,
+    alpha = 0,
+	sunlight_propagates = true,
+	use_texture_alpha = true,
+	is_ground_content = true,
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()
@@ -3717,6 +3731,10 @@ minetest.register_node("labyrinthus:new_w3",{
 	description = "New",
     paramtype = "light",
 	light_source = 5,
+    alpha = 0,
+	sunlight_propagates = true,
+	use_texture_alpha = true,
+	is_ground_content = true,
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()

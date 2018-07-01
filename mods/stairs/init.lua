@@ -22,21 +22,23 @@ local function rotate_and_place(itemstack, placer, pointed_thing)
 	local p1 = pointed_thing.above
 	local param2 = 0
 
-	local placer_pos = placer:getpos()
-	if placer_pos then
-		param2 = minetest.dir_to_facedir(vector.subtract(p1, placer_pos))
-	end
+	if placer then
+		local placer_pos = placer:getpos()
+		if placer_pos then
+			param2 = minetest.dir_to_facedir(vector.subtract(p1, placer_pos))
+		end
 
-	local finepos = minetest.pointed_thing_to_face_pos(placer, pointed_thing)
-	local fpos = finepos.y % 1
+		local finepos = minetest.pointed_thing_to_face_pos(placer, pointed_thing)
+		local fpos = finepos.y % 1
 
-	if p0.y - 1 == p1.y or (fpos > 0 and fpos < 0.5)
-			or (fpos < -0.5 and fpos > -0.999999999) then
-		param2 = param2 + 20
-		if param2 == 21 then
-			param2 = 23
-		elseif param2 == 23 then
-			param2 = 21
+		if p0.y - 1 == p1.y or (fpos > 0 and fpos < 0.5)
+				or (fpos < -0.5 and fpos > -0.999999999) then
+			param2 = param2 + 20
+			if param2 == 21 then
+				param2 = 23
+			elseif param2 == 23 then
+				param2 = 21
+			end
 		end
 	end
 	return minetest.item_place(itemstack, placer, pointed_thing, param2)
@@ -46,16 +48,29 @@ end
 -- Node will be called stairs:stair_<subname>
 
 function stairs.register_stair(subname, recipeitem, groups, images, description, sounds)
-	groups.stair = 1
+	local stair_images = {}
+	for i, image in ipairs(images) do
+		if type(image) == "string" then
+			stair_images[i] = {
+				name = image,
+				backface_culling = true,
+			}
+		elseif image.backface_culling == nil then -- override using any other value
+			stair_images[i] = table.copy(image)
+			stair_images[i].backface_culling = true
+		end
+	end
+	local new_groups = table.copy(groups)
+	new_groups.stair = 1
 	minetest.register_node(":stairs:stair_" .. subname, {
 		description = description,
 		drawtype = "mesh",
 		mesh = "stairs_stair.obj",
-		tiles = images,
+		tiles = stair_images,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = false,
-		groups = groups,
+		groups = new_groups,
 		sounds = sounds,
 		selection_box = {
 			type = "fixed",
@@ -89,16 +104,7 @@ function stairs.register_stair(subname, recipeitem, groups, images, description,
 	end
 
 	if recipeitem then
-		minetest.register_craft({
-			output = 'stairs:stair_' .. subname .. ' 8',
-			recipe = {
-				{recipeitem, "", ""},
-				{recipeitem, recipeitem, ""},
-				{recipeitem, recipeitem, recipeitem},
-			},
-		})
-
-		-- Flipped recipe for the silly minecrafters
+		-- Recipe matches appearence in inventory
 		minetest.register_craft({
 			output = 'stairs:stair_' .. subname .. ' 8',
 			recipe = {
@@ -132,7 +138,8 @@ local slab_trans_dir = {[0] = 8, 0, 2, 1, 3, 4}
 -- Node will be called stairs:slab_<subname>
 
 function stairs.register_slab(subname, recipeitem, groups, images, description, sounds)
-	groups.slab = 1
+	local new_groups = table.copy(groups)
+	new_groups.slab = 1
 	minetest.register_node(":stairs:slab_" .. subname, {
 		description = description,
 		drawtype = "nodebox",
@@ -140,7 +147,7 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = false,
-		groups = groups,
+		groups = new_groups,
 		sounds = sounds,
 		node_box = {
 			type = "fixed",
@@ -149,8 +156,9 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
 		on_place = function(itemstack, placer, pointed_thing)
 			local under = minetest.get_node(pointed_thing.under)
 			local wield_item = itemstack:get_name()
+			local player_name = placer and placer:get_player_name() or ""
 			local creative_enabled = (creative and creative.is_enabled_for
-					and creative.is_enabled_for(placer:get_player_name()))
+					and creative.is_enabled_for(player_name))
 
 			if under and under.name:find("stairs:slab_") then
 				-- place slab using under node orientation
@@ -166,9 +174,8 @@ function stairs.register_slab(subname, recipeitem, groups, images, description, 
 					if not recipeitem then
 						return itemstack
 					end
-					local player_name = placer:get_player_name()
 					if minetest.is_protected(pointed_thing.under, player_name) and not
-							minetest.check_player_privs(placer, "protection_bypass") then
+							minetest.check_player_privs(player_name, "protection_bypass") then
 						minetest.record_protection_violation(pointed_thing.under,
 							player_name)
 						return
@@ -536,16 +543,6 @@ stairs.register_stair_and_slab(
 	"Brick Stair",
 	"Brick Slab",
 	default.node_sound_stone_defaults()
-)
-
-stairs.register_stair_and_slab(
-	"straw",
-	"farming:straw",
-	{snappy = 3, flammable = 4},
-	{"farming_straw.png"},
-	"Straw Stair",
-	"Straw Slab",
-	default.node_sound_leaves_defaults()
 )
 
 stairs.register_stair_and_slab(
