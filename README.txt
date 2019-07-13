@@ -20,3 +20,5 @@ Every code written by me is LGPLv2.1
 
 Notes:
 meselamp in default mod changed
+creative mod deleted
+sfinv mod deleted
