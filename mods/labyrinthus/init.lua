@@ -18,7 +18,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.1.x",
+		text = "For Minetest 	  :  5.2.0",
 	})  
 	player:hud_add({
 		hud_elem_type = "text",
@@ -26,7 +26,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.5.0",
+		text = "Game Version	 :  2.5.1",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -101,6 +101,7 @@ minetest.register_on_joinplayer(function(player)
         alignment = {x=0,y=0},
     })
 end)
+local map_version = 1
 local rrr = 0
 local rrrr = 0
 local timer = 0
@@ -196,184 +197,11 @@ minetest.register_globalstep(function(dtime)
         if ll == 0 and meta:get_string("celected") ~= "" then
 		elseif ll ~= 0 then
 			player:hud_change(hud_levels[player:get_player_name()], 'text', "Level: "..ll.."."..l)
-        else
+        elseif meta:get_string("toplay") ~= "" then
             player:hud_change(hud_levels[player:get_player_name()], 'text', "Level: Own("..meta:get_string("toplay")..")")
+		else
+			player:hud_change(hud_levels[player:get_player_name()], 'text', "Level: /")
         end
-		player_inv:set_size("load", 1)
-		if minetest.get_node({x=19, y=10, z=-88}).name == "labyrinthus:glass" and set == 0 and player_inv:get_stack("load", 1):get_count() < 1 then
-			minetest.chat_send_all("The world is loading... This can take a few seconds")
-			set = 1
-			for j=75,89 do
-				for l=9,30 do
-					for m=0,30 do
-						minetest.set_node({x=l, y=m, z=(-1)*j}, {name="air"})
-					end
-				end
-			end
-		end
-		if minetest.get_node({x=19, y=10, z=-88}).name == "labyrinthus:glass" and set == 1 and player_inv:get_stack("load", 1):get_count() < 1 then
-			set = 2
-			player:setpos({x=19, y=10.5, z=-88})
-			for i = 9, 30 do
-				for j = 0,14 do
-					minetest.set_node({x=i, y=22, z=-89+j}, {name="labyrinthus:meselamp"})
-				end
-			end
-			for i = 9, 30 do
-				for j = 0,14 do
-					for m = 23,150 do
-						minetest.set_node({x=i, y=m, z=-89+j}, {name="air"})
-					end
-				end
-			end
-			minetest.chat_send_all("The world should be loaded, if not start a new world!")
-			player:setpos({x=19, y=10.5, z=-88})
-			player_inv:set_stack("load", 1, "default:dirt")
-		end
-    end
-    if timer2 >= 1 then
-		for j=12,27 do
-			for l=8,19 do
-				minetest.set_node({x=j, y=l, z=-81}, {name="labyrinthus:glass"})
-			end
-		end
-		for j=17,22 do
-			for l=9,13 do
-				minetest.set_node({x=j, y=l, z=-89}, {name="default:mossycobble"})
-			end
-		end
-		for i = 9, 30 do
-            for j = 0,14 do
-                minetest.set_node({x=i, y=7, z=-89+j}, {name="labyrinthus:desert"})
-            end
-        end
-		for i = 9, 30 do
-            for j = 0,5 do
-                minetest.set_node({x=i, y=8, z=-80+j}, {name="labyrinthus:desert"})
-            end
-        end
-		minetest.set_node({x=11, y=8, z=-81}, {name="labyrinthus:desert"})
-		minetest.set_node({x=11, y=8, z=-82}, {name="labyrinthus:desert"})
-		minetest.set_node({x=12, y=8, z=-82}, {name="labyrinthus:desert"})
-		minetest.set_node({x=12, y=8, z=-83}, {name="labyrinthus:desert"})
-		minetest.set_node({x=13, y=8, z=-83}, {name="labyrinthus:desert"})
-		minetest.set_node({x=13, y=8, z=-84}, {name="labyrinthus:desert"})
-		minetest.set_node({x=14, y=8, z=-84}, {name="labyrinthus:desert"})
-		minetest.set_node({x=14, y=8, z=-85}, {name="labyrinthus:desert"})
-		minetest.set_node({x=15, y=8, z=-85}, {name="labyrinthus:desert"})
-		minetest.set_node({x=15, y=8, z=-86}, {name="labyrinthus:desert"})
-		minetest.set_node({x=16, y=8, z=-86}, {name="labyrinthus:desert"})
-		minetest.set_node({x=16, y=8, z=-87}, {name="labyrinthus:desert"})
-		minetest.set_node({x=16, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=17, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=18, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=19, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=20, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=21, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=22, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=23, y=8, z=-88}, {name="labyrinthus:desert"})
-		minetest.set_node({x=23, y=8, z=-87}, {name="labyrinthus:desert"})
-		minetest.set_node({x=23, y=8, z=-86}, {name="labyrinthus:desert"})
-		minetest.set_node({x=24, y=8, z=-86}, {name="labyrinthus:desert"})
-		minetest.set_node({x=24, y=8, z=-85}, {name="labyrinthus:desert"})
-		minetest.set_node({x=25, y=8, z=-85}, {name="labyrinthus:desert"})
-		minetest.set_node({x=25, y=8, z=-84}, {name="labyrinthus:desert"})
-		minetest.set_node({x=26, y=8, z=-84}, {name="labyrinthus:desert"})
-		minetest.set_node({x=26, y=8, z=-83}, {name="labyrinthus:desert"})
-		minetest.set_node({x=27, y=8, z=-83}, {name="labyrinthus:desert"})
-		minetest.set_node({x=27, y=8, z=-82}, {name="labyrinthus:desert"})
-		minetest.set_node({x=28, y=8, z=-82}, {name="labyrinthus:desert"})
-		minetest.set_node({x=28, y=8, z=-81}, {name="labyrinthus:desert"})
-		minetest.set_node({x=19, y=10, z=-88}, {name="labyrinthus:glass"})
-		minetest.set_node({x=19, y=10, z=-86}, {name="air"})
-		minetest.set_node({x=18, y=10, z=-81}, {name="labyrinthus:new"})
-		minetest.set_node({x=19, y=10, z=-81}, {name="labyrinthus:new_w1"})
-		minetest.set_node({x=20, y=10, z=-81}, {name="labyrinthus:new_w2"})
-		minetest.set_node({x=18, y=9, z=-81}, {name="labyrinthus:new_w3"})
-		minetest.set_node({x=19, y=9, z=-81}, {name="labyrinthus:new_w5"})
-		for j=9,21 do
-			minetest.set_node({x=12, y=j, z=-84}, {name="labyrinthus:wall"})
-			minetest.set_node({x=13, y=j, z=-85}, {name="labyrinthus:wall"})
-			minetest.set_node({x=14, y=j, z=-86}, {name="labyrinthus:wall"})
-			minetest.set_node({x=15, y=j, z=-87}, {name="labyrinthus:wall"})
-			minetest.set_node({x=15, y=j, z=-88}, {name="labyrinthus:wall"})
-			minetest.set_node({x=16, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=17, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=18, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=19, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=20, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=21, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=22, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=23, y=j, z=-89}, {name="labyrinthus:wall"})
-			minetest.set_node({x=24, y=j, z=-88}, {name="labyrinthus:wall"})
-			minetest.set_node({x=24, y=j, z=-87}, {name="labyrinthus:wall"})
-			minetest.set_node({x=25, y=j, z=-86}, {name="labyrinthus:wall"})
-			minetest.set_node({x=26, y=j, z=-85}, {name="labyrinthus:wall"})
-			minetest.set_node({x=27, y=j, z=-84}, {name="labyrinthus:wall"})
-			minetest.set_node({x=12, y=j, z=-83}, {name="air"})
-			minetest.set_node({x=11, y=j, z=-83}, {name="labyrinthus:wall"})
-			minetest.set_node({x=11, y=j, z=-82}, {name="air"})
-			minetest.set_node({x=10, y=j, z=-82}, {name="labyrinthus:wall"})
-			minetest.set_node({x=11, y=j, z=-81}, {name="air"})
-			minetest.set_node({x=10, y=j, z=-81}, {name="labyrinthus:wall"})
-			minetest.set_node({x=10, y=j, z=-80}, {name="air"})
-			minetest.set_node({x=9, y=j, z=-80}, {name="labyrinthus:wall"})
-			minetest.set_node({x=10, y=j, z=-79}, {name="air"})
-			minetest.set_node({x=9, y=j, z=-79}, {name="labyrinthus:wall"})
-			if minetest.get_node({x=10, y=j, z=-78}).name == "labyrinthus:wall" then
-				minetest.set_node({x=10, y=j, z=-78}, {name="air"})
-			end
-			minetest.set_node({x=9, y=j, z=-78}, {name="labyrinthus:wall"})
-			if minetest.get_node({x=10, y=j, z=-77}).name == "labyrinthus:wall" then
-				minetest.set_node({x=10, y=j, z=-77}, {name="air"})
-			end
-			minetest.set_node({x=9, y=j, z=-77}, {name="labyrinthus:wall"})
-			if minetest.get_node({x=10, y=j, z=-76}).name == "wool:black" then
-				minetest.set_node({x=10, y=j, z=-76}, {name="air"})
-			end
-			minetest.set_node({x=9, y=j, z=-76}, {name="wool:black"})
-			for i=9,30 do
-				minetest.set_node({x=i, y=j, z=-75}, {name="wool:grey"})
-			end
-			minetest.set_node({x=27, y=j, z=-83}, {name="air"})
-			minetest.set_node({x=28, y=j, z=-83}, {name="labyrinthus:wall"})
-			minetest.set_node({x=28, y=j, z=-82}, {name="air"})
-			minetest.set_node({x=29, y=j, z=-82}, {name="labyrinthus:wall"})
-			minetest.set_node({x=28, y=j, z=-81}, {name="air"})
-			minetest.set_node({x=29, y=j, z=-81}, {name="labyrinthus:wall"})
-			minetest.set_node({x=29, y=j, z=-80}, {name="air"})
-			minetest.set_node({x=30, y=j, z=-80}, {name="labyrinthus:wall"})
-			minetest.set_node({x=29, y=j, z=-79}, {name="air"})
-			minetest.set_node({x=30, y=j, z=-79}, {name="labyrinthus:wall"})
-			if minetest.get_node({x=29, y=j, z=-78}).name == "labyrinthus:wall" then
-				minetest.set_node({x=29, y=j, z=-78}, {name="air"})
-			end
-			minetest.set_node({x=30, y=j, z=-78}, {name="labyrinthus:wall"})
-			if minetest.get_node({x=29, y=j, z=-77}).name == "labyrinthus:wall" then
-				minetest.set_node({x=29, y=j, z=-77}, {name="air"})
-			end
-			minetest.set_node({x=30, y=j, z=-77}, {name="labyrinthus:wall"})
-			if minetest.get_node({x=29, y=j, z=-76}).name == "wool:black" then
-				minetest.set_node({x=29, y=j, z=-76}, {name="air"})
-			end
-			minetest.set_node({x=30, y=j, z=-76}, {name="wool:black"})
-		end
-		for i=11,28 do
-			if minetest.get_node({x=i, y=19, z=-78}).name == "labyrinthus:wall" then
-				minetest.set_node({x=i, y=19, z=-78}, {name="air"})
-			end
-			if minetest.get_node({x=i, y=19, z=-77}).name == "labyrinthus:wall" then
-				minetest.set_node({x=i, y=19, z=-77}, {name="air"})
-			end
-			if minetest.get_node({x=i, y=19, z=-76}).name == "wool:black" then
-				minetest.set_node({x=i, y=19, z=-76}, {name="air"})
-			end
-		end
-		for i=10,29 do
-			minetest.set_node({x=i, y=21, z=-78}, {name="labyrinthus:wall"})
-			minetest.set_node({x=i, y=21, z=-77}, {name="labyrinthus:wall"})
-			minetest.set_node({x=i, y=21, z=-76}, {name="wool:black"})
-		end
         timer2 = 0
         for j=10,29 do
             for l=9,20 do
@@ -1175,7 +1003,7 @@ minetest.register_globalstep(function(dtime)
 			if ll == 0 and meta:get_string("celected") ~= "" then
 			elseif ll ~= 0 then
 				New(player,ll.."_"..l,"n")
-			else
+			elseif meta:get_string("toplay") ~= "" then
 				New(player,""..meta:get_string("toplay"),"o")
 			end
             if ll == 0 then
@@ -1714,8 +1542,10 @@ function update()
         if ll == 0 and meta:get_string("celected") ~= "" then
 		elseif ll ~= 0 then
 			player:hud_change(hud_levels[player:get_player_name()], 'text', "Level: "..ll.."."..l)
-        else
+        elseif meta:get_string("toplay") ~= "" then
             player:hud_change(hud_levels[player:get_player_name()], 'text', "Level: Own("..meta:get_string("toplay")..")")
+		else
+			player:hud_change(hud_levels[player:get_player_name()], 'text', "Level: /")
         end
         local x = player_inv:get_stack("x", 1):get_count()
         local y = player_inv:get_stack("y", 1):get_count()
@@ -1968,6 +1798,56 @@ minetest.register_on_joinplayer(function(player)
         sneak = true,
         sneak_glitch = true
     })
+	local player_inv = player:get_inventory()
+	local x = player_inv:get_stack("x", 1):get_count()
+    local y = player_inv:get_stack("y", 1):get_count()
+    local z = player_inv:get_stack("z", 1):get_count()
+	if file_check(minetest.get_worldpath().."/Map_Version.txt") == true then
+	else
+		minetest.place_schematic({ x = 9, y = 7, z = -89 }, minetest.get_modpath("labyrinthus").."/schematics/sector1.mts","0")
+		minetest.set_node({x=x+10, y=y+8, z=-77}, {name="air"})
+        player_inv:set_stack("x", 1, nil)
+        player_inv:set_stack("y", 1, nil)
+        player_inv:set_stack("z", 1, nil)
+        player_inv:set_stack("time", 1, nil)
+        pon = 0
+        local pos = {x=19, y=10.5, z=-88}
+	    local size = 30
+	    size = math.max(math.floor(size - 8), 0) 
+	    local minp = vector.subtract(pos, size)
+	    local maxp = vector.add(pos, size)
+	    local vm = minetest.get_voxel_manip(minp, maxp)
+	    vm:update_liquids()
+	    vm:write_to_map()
+	    vm:update_map()
+		file = io.open(minetest.get_worldpath().."/Map_Version.txt", "w")
+		file:write(map_version)
+		file:close()
+	end
+	file = io.open(minetest.get_worldpath().."/Map_Version.txt", "r")
+	local map_ver = file:read("*l")
+    file:close()
+	if tonumber(map_ver) < map_version then
+		minetest.place_schematic({ x = 9, y = 7, z = -89 }, minetest.get_modpath("labyrinthus").."/schematics/sector1.mts","0")
+		minetest.set_node({x=x+10, y=y+8, z=-77}, {name="air"})
+        player_inv:set_stack("x", 1, nil)
+        player_inv:set_stack("y", 1, nil)
+        player_inv:set_stack("z", 1, nil)
+        player_inv:set_stack("time", 1, nil)
+        pon = 0
+        local pos = {x=19, y=10.5, z=-88}
+	    local size = 30
+	    size = math.max(math.floor(size - 8), 0) 
+	    local minp = vector.subtract(pos, size)
+	    local maxp = vector.add(pos, size)
+	    local vm = minetest.get_voxel_manip(minp, maxp)
+	    vm:update_liquids()
+	    vm:write_to_map()
+	    vm:update_map()
+		file = io.open(minetest.get_worldpath().."/Map_Version.txt", "w")
+		file:write(map_version)
+		file:close()
+	end
 	if file_check(minetest.get_worldpath().."/level1.txt") == true then
 	else
 		file = io.open(minetest.get_worldpath().."/level1.txt", "w")

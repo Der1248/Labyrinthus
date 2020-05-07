@@ -1,6 +1,5 @@
 local digtime = 42
 local caps = {times = {digtime, digtime, digtime}, uses = 0, maxlevel = 256}
-
 minetest.register_item(":", {
 	type = "none",
 	wield_image = "wieldhand.png",
