@@ -18,7 +18,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.2.0",
+		text = "For Minetest 	  :  5.3.0",
 	})  
 	player:hud_add({
 		hud_elem_type = "text",
@@ -26,7 +26,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.6.0",
+		text = "Game Version	 :  2.6.1",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -495,7 +495,7 @@ create.get_formspec = function(player, pos)
 	formspec = "size[5,3]"
         .."label[0,0.5;own_level_]"
 		.."label[4.6,0.5;.txt]"
-		.."field[1.1,0.85;4,0.5;input2;;]"
+		.."field[1.3,0.85;3.8,0.5;input2;;]"
 		.."button[1.5,1;2,1;create2;Set Name]"
 	return formspec		
 end
@@ -856,7 +856,7 @@ import.get_formspec = function(player, pos)
 	formspec = "size[5,3]"
         .."label[0,0.5;own_level_]"
 		.."label[4.6,0.5;.txt]"
-		.."field[1.1,0.85;4,0.5;input1;;]"
+		.."field[1.3,0.85;3.8,0.5;input2;;]"
 		.."button[1.5,1;2,1;import2;Import]"
 	return formspec		
 end
@@ -2882,24 +2882,29 @@ function move(player,player_inv,x,y,z,key,s,ll,bones,level2,fire,time,e1m1,e1m2,
 			end
 		end
 	elseif minetest.get_node(e1m2).name == "labyrinthus:bow" then
+		local bow_shot = 0
 		local cyan = player_inv:get_stack("c", 1):get_count()
 		if cyan > 0 then
 			if dir1 == "up" then
 				local bow_r = "up"
 				local bow_x = x+10
 				local bow_y = y+10
-				while Is_Node(bow_x,bow_y,"bow") do
+				while Is_Node(bow_x,bow_y,"bow") and bow_shot < 20 do
 					if minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "labyrinthus:stone_with_no_white1" then
 						minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:stone_with_white2"})
 					end
 					if minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "labyrinthus:bow_right" then
 						bow_r = "right"
+						bow_shot = bow_shot+1
 					elseif minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "labyrinthus:bow_left" then
 						bow_r = "left"
+						bow_shot = bow_shot+1
 					elseif minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "labyrinthus:bow_up" then
 						bow_r = "up"
+						bow_shot = bow_shot+1
 					elseif minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "labyrinthus:bow_down" then
 						bow_r = "down"
+						bow_shot = bow_shot+1
 					end
 					if bow_r == "up" then
 						bow_y = bow_y+1
@@ -2926,6 +2931,9 @@ function move(player,player_inv,x,y,z,key,s,ll,bones,level2,fire,time,e1m1,e1m2,
 					end
 				end
 				player_inv:set_stack("c", 1, "default:dirt "..(cyan-1))
+			end
+			if bow_shot == 20 then
+				minetest.chat_send_all("Oh no! Nyan Cat shot in a circle with the bow.")
 			end
 		end
 	elseif minetest.get_node(e1m2).name == "labyrinthus:rainbow2" and dir1 ~= "up" then
@@ -4128,7 +4136,7 @@ function move(player,player_inv,x,y,z,key,s,ll,bones,level2,fire,time,e1m1,e1m2,
             player_inv:set_stack("y", 1, nil)
             player_inv:set_stack("z", 1, nil)
             minetest.set_node({x=x+10, y=y+8, z=-77}, {name="air"})
-            minetest.chat_send_all("Oh no!! You killed the Nyancat!!")
+            minetest.chat_send_all("Oh no! Nyan Cat was killed!")
         else
             minetest.chat_send_all("That hurt!")
         end
@@ -6160,7 +6168,7 @@ w27.get_formspec = function(player, pos)
         formspec = formspec.."button[1.5,6;1,1;wbf;<]"
         formspec = formspec..lvbut(150,24,level2)
         if tonumber(level2) > 174 then
-            formspec = formspec.."label[0,5.8;play world 1, 2 and 4]"
+            formspec = formspec.."label[0,5.7;play world 1, 2 and 4]"
         end
 	return formspec		
 end
@@ -6235,7 +6243,7 @@ w34.get_formspec = function(player, pos)
         formspec = formspec.."button[1.5,6;1,1;wcc;<]"
         formspec = formspec..lvbut(75,11,level2)
         if tonumber(level2) > 86 then
-            formspec = formspec.."label[0,4;play world 1, 2 and 3]"
+            formspec = formspec.."label[0,3.7;play world 1, 2 and 3]"
         end
 	return formspec		
 end
@@ -6291,7 +6299,7 @@ w53.get_formspec = function(player, pos)
 		formspec = formspec.."button[1.5,6;1,1;wdb;<]"
         formspec = formspec..lvbut(50,25,level5)
         if tonumber(level5) > 75 then
-            formspec = formspec.."label[0,6;more comming soon]"
+            formspec = formspec.."label[0,5.7;more comming soon]"
         end
 	return formspec		
 end
@@ -6308,7 +6316,7 @@ tu.get_formspec = function(player, pos)
         .."label[0,0;World Level:     "..(tonumber(level2)-1).."/18]"
         formspec = formspec..lvbut(0,18,level2)
         if tonumber(level2) > 18 then
-            formspec = formspec.."label[0,5;play world 2, 3 and 4]"
+            formspec = formspec.."label[0,4.7;play world 2, 3 and 4]"
         end
 	return formspec		
 end
@@ -6416,9 +6424,9 @@ minetest.register_node("labyrinthus:new_w3",{
         local player_inv = player:get_inventory()
         local page = player_inv:get_stack("page3", 1):get_count()+1
         if page == 1 then
-            minetest.show_formspec(player:get_player_name(), "w51" , w31.get_formspec(player))
+            minetest.show_formspec(player:get_player_name(), "w31" , w31.get_formspec(player))
         elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w52" , w32.get_formspec(player))
+            minetest.show_formspec(player:get_player_name(), "w32" , w32.get_formspec(player))
         elseif page == 3 then
             minetest.show_formspec(player:get_player_name(), "w33" , w33.get_formspec(player))
         elseif page == 4 then
