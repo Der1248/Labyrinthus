@@ -26,7 +26,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.6.1",
+		text = "Game Version	 :  2.7.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -547,7 +547,7 @@ create2.get_formspec = function(player, pos)
 	if player == nil then
         return
     end
-	formspec = "size[20.5,9]"
+	formspec = "size[20.5,11]"
 	for i=0,20 do
 		for j=0,12 do
 			if i == 0 and j ~= 0 then
@@ -628,10 +628,18 @@ create2.get_formspec = function(player, pos)
 					img = "default_sand.png^labyrinthus_green_cross.png"
 				elseif ind == "F" then
 					img = "default_sand.png^labyrinthus_blue_cross.png"
+				elseif ind == "I" then
+					img = "default_sand.png^labyrinthus_green.png"
+				elseif ind == "J" then
+					img = "default_water.png^labyrinthus_water_wood_with_green.png"
+				elseif ind == "K" then
+					img = "default_sand.png^labyrinthus_stone_for_green.png"
 				elseif ind == "U" then
 					img = "default_water.png^labyrinthus_water_stone.png"
 				elseif ind == "Y" then
 					img = "default_wood.png"
+				elseif ind == ";" then
+					img = "labyrinthus_ice3.png^labyrinthus_green.png"
 				end
 				formspec = formspec.."image_button["..(0.5+i*0.45)..","..(0.5+j*0.5)..";0.6,0.6;"..img..";na"..letter(i)..letter(j)..";]"
 			end
@@ -716,136 +724,124 @@ create2.get_formspec = function(player, pos)
 			end
 		end
 	end
-	formspec = formspec.."button[8,8;2,1;save;Save]"
-	formspec = formspec.."button[10,8;2,1;back;Back]"
-	return formspec		
-end
-
-
-local node1 = {}
-node1.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[7,5]"
-	.."image_button["..(0.5+0*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png;saaa;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+0*0.5)..";0.6,0.6;nyancat_rainbow.png;saab;]"
-	.."image_button["..(0.5+2*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_rainbow2.png;saac;]"
-	.."image_button["..(0.5+3*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_box.png;saad;]"
-	.."image_button["..(0.5+4*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_red1.png;saae;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_green1.png;saaf;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_blue1.png;saag;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red_col.png;saah;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_green_col.png;saai;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_blue_col.png;saaj;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red_cross.png;saak;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_green_cross.png;saal;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_sand.png^labyrinthus_blue_cross.png;saam;]"
+	local meta = player:get_meta()
+	formspec = formspec
+	.."background["..(0.572+(meta:get_string("new_node1x")+3)*0.45)..","..(0.53+(meta:get_string("new_node1y")+13)*0.5)..";0.47,0.557;labyrinthus_edge.png]"
+	.."background["..(10.572+(meta:get_string("new_node2x")+3)*0.45)..","..(0.53+(meta:get_string("new_node2y")+13)*0.5)..";0.47,0.557;labyrinthus_edge.png]"
+	.."image_button["..(0.5+4*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png;saaa;]"
+	.."image_button["..(0.5+5*0.45)..","..(0.5+14*0.5)..";0.6,0.6;nyancat_rainbow.png;saab;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_rainbow2.png;saac;]"
+	.."image_button["..(0.5+7*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_box.png;saad;]"
+	.."image_button["..(0.5+8*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_red1.png;saae;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_green1.png;saaf;]"
+	.."image_button["..(0.5+10*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_blue1.png;saag;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red_col.png;saah;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_green_col.png;saai;]"
+	.."image_button["..(0.5+13*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_blue_col.png;saaj;]"
+	.."image_button["..(0.5+14*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red_cross.png;saak;]"
+	.."image_button["..(0.5+15*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_green_cross.png;saal;]"
+	.."image_button["..(0.5+16*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png^labyrinthus_blue_cross.png;saam;]"
+	formspec = formspec
+	.."image_button["..(0.5+4*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_button.png;saba;]"
+	.."image_button["..(0.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_key.png;sabb;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_tp.png;sabc;]"
+	--.."image_button["..(0.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;;sabd;]"
+	--.."image_button["..(0.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;;sabe;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_ball.png;sabf;]"
+	.."image_button["..(0.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_boom.png;sabg;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_0.png;sabh;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_eye.png;sabi;]"
+	.."image_button["..(0.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;bones_front.png;sabj;]"
+	.."image_button["..(0.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_button1.png;sabk;]"
+	--.."image_button["..(0.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;;sabl;]"
+	.."image_button["..(0.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red.png;sabm;]"
+	formspec = formspec
+	.."image_button["..(0.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round1.png;saca;]"
+	.."image_button["..(0.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round3.png;sacb;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round2.png;sacc;]"
+	.."image_button["..(0.5+7*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round4.png;sacd;]"
+	.."image_button["..(0.5+8*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_moon.png;sace;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_sun.png;sacf;]"
+	.."image_button["..(0.5+10*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_time30.png;sacg;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_water.png;sach;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ice3.png;saci;]"
+	.."image_button["..(0.5+13*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ice2.png;sacj;]"
+	.."image_button["..(0.5+14*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_ice.png;sack;]"
+	.."image_button["..(0.5+15*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_wood.png;sacl;]"
+	--.."image_button["..(0.5+16*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sacm;]"
+	formspec = formspec
+	--.."image_button["..(0.5+4*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sada;]"
+	--.."image_button["..(0.5+5*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadb;]"
+	--.."image_button["..(0.5+6*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadc;]"
+	--.."image_button["..(0.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadd;]"
+	--.."image_button["..(0.5+8*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sade;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_sand.png^labyrinthus_green.png;sadf;]"
+	--.."image_button["..(0.5+10*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadg;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_wood_with_green.png;sadh;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_green.png;sadi;]"
+	.."image_button["..(0.5+13*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_sand.png^labyrinthus_stone_for_green.png;sadj;]"
+	--.."image_button["..(0.5+14*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadk;]"
+	--.."image_button["..(0.5+15*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadl;]"
+	--.."image_button["..(0.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadm;]"
+	formspec = formspec
+	.."image_button["..(0.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_wood.png;saea;]"
+	--.."image_button["..(0.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saeb;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_stone.png;saec;]"
+	--.."image_button["..(0.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saed;]"
+	--.."image_button["..(0.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saee;]"
+	--.."image_button["..(0.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_sand.png^labyrinthus_white.png;saef;]"
+	--.."image_button["..(0.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_white.png;saeg;]"
+	--.."image_button["..(0.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saeh;]"
+	--.."image_button["..(0.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saei;]"
+	--.."image_button["..(0.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saej;]"
+	--.."image_button["..(0.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saek;]"
+	--.."image_button["..(0.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sael;]"
+	--.."image_button["..(0.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saem;]"
+	formspec = formspec
+	.."image_button["..(10.5+4*0.45)..","..(0.5+14*0.5)..";0.6,0.6;;sbaa;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+14*0.5)..";0.6,0.6;nyancat_front.png;sbab;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_stone.png;sbac;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_apple.png;sbad;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_junglewood.png;sbae;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_red.png;sbaf;]"
+	.."image_button["..(10.5+10*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_green.png;sbag;]"
+	.."image_button["..(10.5+11*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_blue.png;sbah;]"
+	.."image_button["..(10.5+12*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_pyramid_red.png;sbai;]"
+	.."image_button["..(10.5+13*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_pyramid_green.png;sbaj;]"
+	.."image_button["..(10.5+14*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_pyramid_blue.png;sbak;]"
+	.."image_button["..(10.5+15*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_button_2.png;sbal;]"
+	.."image_button["..(10.5+16*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_button_3.png;sbam;]"
+	formspec = formspec
+	.."image_button["..(10.5+4*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_stone.png^labyrinthus_key2.png;sbba;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_meselamp.png;sbbb;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_diamond_block.png;sbbc;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_pup_front.png;sbbd;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_cobble.png;sbbe;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;tnt_side.png;sbbf;]"
+	.."image_button["..(10.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_4.png;sbbg;]"
+	.."image_button["..(10.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_3.png;sbbh;]"
+	.."image_button["..(10.5+12*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2.png;sbbi;]"
+	.."image_button["..(10.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_1.png;sbbj;]"
+	.."image_button["..(10.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_eye.png;sbbk;]"
+	--.."image_button["..(10.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;;sbbl;]"
+	.."image_button["..(10.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_red.png;sbbm;]"
+	formspec = formspec
+	.."image_button["..(10.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_blue.png;sbca;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_yellow.png;sbcb;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part1.png;sbcc;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part2.png;sbcd;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part3.png;sbce;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part4.png;sbcf;]"
+	--.."image_button["..(10.5+10*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sbcg;]"
+	--.."image_button["..(10.5+11*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sbch;]"
+	--.."image_button["..(10.5+12*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sbci;]"
+	--.."image_button["..(10.5+13*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sbcj;]"
+	--.."image_button["..(10.5+14*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sbck;]"
+	.."image_button["..(10.5+15*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ball_water.png;sbcl;]"
+	--.."image_button["..(10.5+16*0.45)..","..(0.5+16*0.5)..";0.6,0.6;;sbcm;]"
 	
-	.."image_button["..(0.5+0*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_button.png;saba;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_key.png;sabb;]"
-	.."image_button["..(0.5+2*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_tp.png;sabc;]"
-	--.."image_button["..(0.5+3*0.45)..","..(0.5+1*0.5)..";0.6,0.6;;sabd;]"
-	--.."image_button["..(0.5+4*0.45)..","..(0.5+1*0.5)..";0.6,0.6;;sabe;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_ball.png;sabf;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_boom.png;sabg;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_0.png;sabh;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_eye.png;sabi;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+1*0.5)..";0.6,0.6;bones_front.png;sabj;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_button1.png;sabk;]"
-	--.."image_button["..(0.5+11*0.45)..","..(0.5+1*0.5)..";0.6,0.6;;sabl;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red.png;sabm;]"
-	
-	.."image_button["..(0.5+0*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round1.png;saca;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round3.png;sacb;]"
-	.."image_button["..(0.5+2*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round2.png;sacc;]"
-	.."image_button["..(0.5+3*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round4.png;sacd;]"
-	.."image_button["..(0.5+4*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_moon.png;sace;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_sun.png;sacf;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_sand.png^labyrinthus_time30.png;sacg;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_water.png;sach;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_ice3.png;saci;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_ice2.png;sacj;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_ice.png;sack;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_wood.png;sacl;]"
-	--.."image_button["..(0.5+12*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sacm;]"
-	
-	--.."image_button["..(0.5+0*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sada;]"
-	--.."image_button["..(0.5+1*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadb;]"
-	--.."image_button["..(0.5+2*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadc;]"
-	--.."image_button["..(0.5+3*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadd;]"
-	--.."image_button["..(0.5+4*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sade;]"
-	--.."image_button["..(0.5+5*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadf;]"
-	--.."image_button["..(0.5+6*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadg;]"
-	--.."image_button["..(0.5+7*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadh;]"
-	--.."image_button["..(0.5+8*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadi;]"
-	--.."image_button["..(0.5+9*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadj;]"
-	--.."image_button["..(0.5+10*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadk;]"
-	--.."image_button["..(0.5+11*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadl;]"
-	--.."image_button["..(0.5+12*0.45)..","..(0.5+3*0.5)..";0.6,0.6;;sadm;]"
-	
-	--.."image_button["..(0.5+0*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saea;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+4*0.5)..";0.6,0.6;default_wood.png;saeb;]"
-	--.."image_button["..(0.5+2*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saec;]"
-	.."image_button["..(0.5+3*0.45)..","..(0.5+4*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_stone.png;saed;]"
-	--.."image_button["..(0.5+4*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saee;]"
-	--.."image_button["..(0.5+5*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saef;]"
-	--.."image_button["..(0.5+6*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saeg;]"
-	--.."image_button["..(0.5+7*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saeh;]"
-	--.."image_button["..(0.5+8*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saei;]"
-	--.."image_button["..(0.5+9*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saej;]"
-	--.."image_button["..(0.5+10*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saek;]"
-	--.."image_button["..(0.5+11*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;sael;]"
-	--.."image_button["..(0.5+12*0.45)..","..(0.5+4*0.5)..";0.6,0.6;;saem;]"
-	return formspec		
-end
-local node2 = {}
-node2.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[7,5]"
-	.."image_button["..(0.5+0*0.45)..","..(0.5+0*0.5)..";0.6,0.6;;sbaa;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+0*0.5)..";0.6,0.6;nyancat_front.png;sbab;]"
-	.."image_button["..(0.5+2*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_stone.png;sbac;]"
-	.."image_button["..(0.5+3*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_apple.png;sbad;]"
-	.."image_button["..(0.5+4*0.45)..","..(0.5+0*0.5)..";0.6,0.6;default_junglewood.png;sbae;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_ball_red.png;sbaf;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_ball_green.png;sbag;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_ball_blue.png;sbah;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_pyramid_red.png;sbai;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_pyramid_green.png;sbaj;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_pyramid_blue.png;sbak;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_button_2.png;sbal;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+0*0.5)..";0.6,0.6;labyrinthus_button_3.png;sbam;]"
-	
-	.."image_button["..(0.5+0*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_stone.png^labyrinthus_key2.png;sbba;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_meselamp.png;sbbb;]"
-	.."image_button["..(0.5+2*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_diamond_block.png;sbbc;]"
-	.."image_button["..(0.5+3*0.45)..","..(0.5+1*0.5)..";0.6,0.6;labyrinthus_pup_front.png;sbbd;]"
-	.."image_button["..(0.5+4*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_cobble.png;sbbe;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+1*0.5)..";0.6,0.6;tnt_side.png;sbbf;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_4.png;sbbg;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_3.png;sbbh;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2.png;sbbi;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_1.png;sbbj;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_eye.png;sbbk;]"
-	--.."image_button["..(0.5+11*0.45)..","..(0.5+1*0.5)..";0.6,0.6;;sbbl;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+1*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_red.png;sbbm;]"
-	
-	.."image_button["..(0.5+0*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_blue.png;sbca;]"
-	.."image_button["..(0.5+1*0.45)..","..(0.5+2*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_yellow.png;sbcb;]"
-	.."image_button["..(0.5+2*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_part1.png;sbcc;]"
-	.."image_button["..(0.5+3*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_part2.png;sbcd;]"
-	.."image_button["..(0.5+4*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_part3.png;sbce;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_part4.png;sbcf;]"
-	--.."image_button["..(0.5+6*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sbcg;]"
-	--.."image_button["..(0.5+7*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sbch;]"
-	--.."image_button["..(0.5+8*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sbci;]"
-	--.."image_button["..(0.5+9*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sbcj;]"
-	--.."image_button["..(0.5+10*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sbck;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+2*0.5)..";0.6,0.6;labyrinthus_ball_water.png;sbcl;]"
-	--.."image_button["..(0.5+12*0.45)..","..(0.5+2*0.5)..";0.6,0.6;;sbcm;]"
+	formspec = formspec.."button[8,10;2,1;save;Save]"
+	formspec = formspec.."button[10,10;2,1;back;Back]"
 	return formspec		
 end
 local import = {}
@@ -993,6 +989,17 @@ key.get_formspec = function(player, pos)
     end
 	formspec = "size[5,3]"
         .."label[0,0.5;You can only have 40 keys.]"
+		.."button[1.5,1;2,1;create2;Ok]"
+	return formspec		
+end
+
+local green_orb = {}
+green_orb.get_formspec = function(player, pos)
+	if player == nil then
+        return
+    end
+	formspec = "size[5,3]"
+        .."label[0,0.5;You can only have 40 green orbs.]"
 		.."button[1.5,1;2,1;create2;Ok]"
 	return formspec		
 end
@@ -1365,6 +1372,10 @@ function move_data(player)
                 t = t.."Z"
 			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:tp3" then
                 t = t..":"
+			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice_with_green" then
+                t = t..";"
+			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice_with_white" then
+                t = t.."<"
             elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button12" then
                 t = t.."!"
             elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button2" then
@@ -2267,6 +2278,11 @@ minetest.register_node("labyrinthus:white",{
 	tiles = {"default_sand.png^labyrinthus_white.png"},
     groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
+minetest.register_node("labyrinthus:ice_with_white",{
+	description = "Ice with White",
+	tiles = {"labyrinthus_ice3.png^labyrinthus_white.png"},
+    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+})
 minetest.register_node("labyrinthus:stone_for_white",{
 	description = "Stone for white",
 	tiles = {"default_stone.png^labyrinthus_stone_for_white.png"},
@@ -2370,6 +2386,11 @@ minetest.register_node("labyrinthus:green_dirt",{
 minetest.register_node("labyrinthus:water_wood_with_green",{
 	description = "Water with wood and green",
 	tiles = {"default_water.png^labyrinthus_water_wood_with_green.png"},
+    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+})
+minetest.register_node("labyrinthus:ice_with_green",{
+	description = "Ice with Green",
+	tiles = {"labyrinthus_ice3.png^labyrinthus_green.png"},
     groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:sand_for_green",{
@@ -2693,6 +2714,12 @@ function move(player,player_inv,x,y,z,key,s,ll,bones,level2,fire,time,e1m1,e1m2,
         minetest.set_node(e1m1, {name="labyrinthus:button12"})
     end
     if minetest.get_node(e1m1).name == "labyrinthus:ice3" and trfire == true then
+        minetest.set_node(e1m1, {name="labyrinthus:water"})
+    end
+	if minetest.get_node(e1m1).name == "labyrinthus:ice_with_green" and trfire == true then
+        minetest.set_node(e1m1, {name="labyrinthus:water"})
+    end
+	if minetest.get_node(e1m1).name == "labyrinthus:ice_with_white" and trfire == true then
         minetest.set_node(e1m1, {name="labyrinthus:water"})
     end
     if minetest.get_node(e1m1).name == "labyrinthus:ice2" and trfire == true then
@@ -4078,6 +4105,14 @@ function move(player,player_inv,x,y,z,key,s,ll,bones,level2,fire,time,e1m1,e1m2,
 			minetest.set_node(e1m2, {name="labyrinthus:empty_gate_purple"})
 		end
 	end
+	if minetest.get_node({x=x+10, y=y+8, z=-76}).name == "labyrinthus:ice_with_green" and trfire == true then
+		local green = player_inv:get_stack("g", 1):get_count()
+        player_inv:set_stack("g", 1, "default:dirt "..(green+1))
+    end
+	if minetest.get_node({x=x+10, y=y+8, z=-76}).name == "labyrinthus:ice_with_white" and trfire == true then
+		local green = player_inv:get_stack("w", 1):get_count()
+        player_inv:set_stack("w", 1, "default:dirt "..(green+1))
+    end
     if minetest.get_node({x=x+10, y=y+8, z=-76}).name == "default:sand" then
         if bones == 1 then
             minetest.set_node({x=x+10, y=y+8, z=-76}, {name="bones:bones"})
@@ -5242,6 +5277,10 @@ function New2(player)
 					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:white"})
 				elseif string.sub(ar1[j], i, i) == ":" then
 					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:tp3"})
+				elseif string.sub(ar1[j], i, i) == ";" then
+					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_green"})
+				elseif string.sub(ar1[j], i, i) == "<" then
+					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_white"})
                 elseif string.sub(ar1[j], i, i) == "!" then
                     minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button12"})
                 elseif string.sub(ar1[j], i, i) == "$" then
@@ -5617,7 +5656,11 @@ function New(player,page,art)
 				minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:white"})
 			elseif string.sub(ar1[j], i, i) == ":" then
 				minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:tp3"})
-            end
+			elseif string.sub(ar1[j], i, i) == ";" then
+				minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_green"})
+            elseif string.sub(ar1[j], i, i) == "<" then
+				minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_white"})
+			end
         end
     end
     for j = 1, 12 do
@@ -6258,7 +6301,7 @@ w51.get_formspec = function(player, pos)
     lv:close()
     local player_inv = player:get_inventory()
 	formspec = "size[5,6.5]"
-        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/75]"
+        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/85]"
         formspec = formspec..lvbut(0,25,level5)
         if tonumber(level5) > 25 then
             formspec = formspec.."button[2.5,6;1,1;wdb;>]"
@@ -6276,7 +6319,7 @@ w52.get_formspec = function(player, pos)
     lv:close()
     local player_inv = player:get_inventory()
 	formspec = "size[5,6.5]"
-        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/75]"
+        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/85]"
 		formspec = formspec.."button[1.5,6;1,1;wda;<]"
         formspec = formspec..lvbut(25,25,level5)
         if tonumber(level5) > 50 then
@@ -6295,11 +6338,30 @@ w53.get_formspec = function(player, pos)
     lv:close()
     local player_inv = player:get_inventory()
 	formspec = "size[5,6.5]"
-        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/75]"
+        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/85]"
 		formspec = formspec.."button[1.5,6;1,1;wdb;<]"
         formspec = formspec..lvbut(50,25,level5)
         if tonumber(level5) > 75 then
-            formspec = formspec.."label[0,5.7;more comming soon]"
+            formspec = formspec.."button[2.5,6;1,1;wdd;>]"
+        end
+	return formspec		
+end
+local w54 = {}
+w54.get_formspec = function(player, pos)
+	if player == nil then
+        return
+    end
+    local player_inv = player:get_inventory()
+    lv = io.open(minetest.get_worldpath().."/level5.txt", "r")
+	local level5 = lv:read("*l")
+    lv:close()
+    local player_inv = player:get_inventory()
+	formspec = "size[5,6.5]"
+        .."label[0,0;World Level:     "..(tonumber(level5)-1).."/85]"
+		formspec = formspec.."button[1.5,6;1,1;wdc;<]"
+        formspec = formspec..lvbut(75,10,level5)
+        if tonumber(level5) > 85 then
+            formspec = formspec.."label[0,2.7;more comming soon]"
         end
 	return formspec		
 end
@@ -6453,6 +6515,8 @@ minetest.register_node("labyrinthus:new_w5",{
             minetest.show_formspec(player:get_player_name(), "w52" , w52.get_formspec(player))
 		elseif page == 3 then
             minetest.show_formspec(player:get_player_name(), "w53" , w53.get_formspec(player))
+		elseif page == 4 then
+            minetest.show_formspec(player:get_player_name(), "w54" , w54.get_formspec(player))
         end
     end,
 })
@@ -6543,23 +6607,27 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	elseif fields.wdc then
         player_inv:set_stack("page5",  1, "default:dirt 2")
         minetest.show_formspec(player:get_player_name(), "w53" , w53.get_formspec(player))
+	elseif fields.wdd then
+        player_inv:set_stack("page5",  1, "default:dirt 3")
+        minetest.show_formspec(player:get_player_name(), "w54" , w54.get_formspec(player))
 	elseif fields.import then
 		minetest.show_formspec(player:get_player_name(), "import" , import.get_formspec(player))
 	elseif fields.save then
 		local meta = player:get_meta()
 		local s = ""
-		local k = 0
+		local k1 = 0
+		local k2 = 0
 		for j=1,12 do
 			for i=1,20 do
 				if meta:get_string("na"..letter(i)..letter(j)) == "2" or meta:get_string("na"..letter(i)..letter(j)) == "z" then
-					k = k+1
+					k1 = 1
 				end
 				if meta:get_string("nb"..letter(i)..letter(j)) == "nn" then
-					k = k+1
+					k2 = 1
 				end
 			end
 		end
-		if k == 2 then
+		if k1 == 1 and k2 == 1 then
 			for j=1,12 do
 				for i=1,20 do
 					local s1 = meta:get_string("na"..letter(i)..letter(j))
@@ -6629,6 +6697,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			local sx = file:read("*l")
 			local sy = file:read("*l")
 			meta:set_string("nb"..letter(tonumber(sx)+1)..letter(13-tonumber(sy)),"nn")
+			meta:set_string("new_node1x", "1")
+			meta:set_string("new_node1y", "1")
+			meta:set_string("new_node2x", "1")
+			meta:set_string("new_node2y", "1")
 			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 			player:set_inventory_formspec(create2.get_formspec(player))
 		else
@@ -6663,6 +6735,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			minetest.show_formspec(player:get_player_name(), "exists" , exists.get_formspec(player))
 		elseif fields.input2 ~= nil then
 			meta:set_string("new_name", fields.input2)
+			meta:set_string("new_node1x", "1")
+			meta:set_string("new_node1y", "1")
+			meta:set_string("new_node2x", "1")
+			meta:set_string("new_node2y", "1")
 			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 			player:set_inventory_formspec(create2.get_formspec(player))
 		else
@@ -6735,365 +6811,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		else
 			minetest.show_formspec(player:get_player_name(), "import_not_success" , import_not_success.get_formspec(player))
 		end
-	elseif fields.saaa then
-		meta:set_string(meta:get_string("new_node"),"0")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saab then
-		for i=1,20 do
-			for j=1,12 do
-				if meta:get_string("na"..letter(i)..letter(j)) == "2" or meta:get_string("na"..letter(i)..letter(j)) == "z" then
-					meta:set_string("na"..letter(i)..letter(j),"0")
-				end
-			end
-		end
-		meta:set_string(meta:get_string("new_node"),"2")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saac then
-		for i=1,20 do
-			for j=1,12 do
-				if meta:get_string("na"..letter(i)..letter(j)) == "2" or meta:get_string("na"..letter(i)..letter(j)) == "z" then
-					meta:set_string("na"..letter(i)..letter(j),"0")
-				end
-			end
-		end
-		meta:set_string(meta:get_string("new_node"),"z")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saad then
-		meta:set_string(meta:get_string("new_node"),"g")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saae then
-		meta:set_string(meta:get_string("new_node"),"3")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saaf then
-		meta:set_string(meta:get_string("new_node"),"4")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saag then
-		meta:set_string(meta:get_string("new_node"),"6")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saah then
-		meta:set_string(meta:get_string("new_node"),"8")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saai then
-		meta:set_string(meta:get_string("new_node"),"7")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saaj then
-		meta:set_string(meta:get_string("new_node"),"9")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saak then
-		meta:set_string(meta:get_string("new_node"),"D")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saal then
-		meta:set_string(meta:get_string("new_node"),"E")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saam then
-		meta:set_string(meta:get_string("new_node"),"F")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saba then
-		meta:set_string(meta:get_string("new_node"),"5")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabb then
-		local k = 0
-		for j=1,12 do
-			for i=1,20 do
-				if meta:get_string("na"..letter(i)..letter(j)) == "a" then
-					k = k+1
-				end
-			end
-		end
-		if k < 40 then
-			meta:set_string(meta:get_string("new_node"),"a")
-			player:set_inventory_formspec(create2.get_formspec(player))
-			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-		else
-			minetest.show_formspec(player:get_player_name(), "key" , key.get_formspec(player))
-		end
-	elseif fields.sabc then
-		meta:set_string(meta:get_string("new_node"),"b")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabd then
-		meta:set_string(meta:get_string("new_node"),"Q")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabe then
-		meta:set_string(meta:get_string("new_node")," ")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabf then
-		meta:set_string(meta:get_string("new_node"),"c")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabg then
-		meta:set_string(meta:get_string("new_node"),"d")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabh then
-		meta:set_string(meta:get_string("new_node"),"e")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabi then
-		meta:set_string(meta:get_string("new_node"),"f")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabj then
-		meta:set_string(meta:get_string("new_node"),"h")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabk then
-		meta:set_string(meta:get_string("new_node"),"i")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabl then
-		meta:set_string(meta:get_string("new_node"),"j")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sabm then
-		meta:set_string(meta:get_string("new_node"),"o")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.saca then
-		meta:set_string(meta:get_string("new_node"),"x")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacb then
-		meta:set_string(meta:get_string("new_node"),"m")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacc then
-		meta:set_string(meta:get_string("new_node"),"l")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacd then
-		meta:set_string(meta:get_string("new_node"),"w")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sace then
-		meta:set_string(meta:get_string("new_node"),"p")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacf then
-		meta:set_string(meta:get_string("new_node"),"q")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacg then
-		meta:set_string(meta:get_string("new_node"),"s")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sach then
-		meta:set_string(meta:get_string("new_node"),"1")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saci then
-		meta:set_string(meta:get_string("new_node"),"v")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacj then
-		meta:set_string(meta:get_string("new_node"),"u")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sack then
-		meta:set_string(meta:get_string("new_node"),"t")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacl then
-		meta:set_string(meta:get_string("new_node"),"r")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sacm then
-		meta:set_string(meta:get_string("new_node"),"y")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saeb then
-		meta:set_string(meta:get_string("new_node"),"Y")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.saed then
-		meta:set_string(meta:get_string("new_node"),"U")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-		
-		
-		
-		
-	elseif fields.sbaa then
-		meta:set_string(meta:get_string("new_node"),"0")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbab then
-		for i=1,20 do
-			for j=1,12 do
-				if meta:get_string("nb"..letter(i)..letter(j)) == "nn" then
-					meta:set_string("nb"..letter(i)..letter(j),"0")
-				end
-			end
-		end
-		meta:set_string(meta:get_string("new_node"),"nn")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbac then
-		meta:set_string(meta:get_string("new_node"),"2")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbad then
-		meta:set_string(meta:get_string("new_node"),"d")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbae then
-		meta:set_string(meta:get_string("new_node"),"1")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbaf then
-		meta:set_string(meta:get_string("new_node"),"4")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbag then
-		meta:set_string(meta:get_string("new_node"),"5")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbah then
-		meta:set_string(meta:get_string("new_node"),"7")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbai then
-		meta:set_string(meta:get_string("new_node"),"v")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbaj then
-		meta:set_string(meta:get_string("new_node"),"w")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbak then
-		meta:set_string(meta:get_string("new_node"),"x")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbal then
-		meta:set_string(meta:get_string("new_node"),"6")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbam then
-		meta:set_string(meta:get_string("new_node"),"C")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbba then
-		meta:set_string(meta:get_string("new_node"),"8")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbb then
-		meta:set_string(meta:get_string("new_node"),"3")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbc then
-		meta:set_string(meta:get_string("new_node"),"9")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbd then
-		meta:set_string(meta:get_string("new_node"),"a")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbe then
-		meta:set_string(meta:get_string("new_node"),"b")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbbf then
-		meta:set_string(meta:get_string("new_node"),"c")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbbg then
-		meta:set_string(meta:get_string("new_node"),"e")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbbh then
-		meta:set_string(meta:get_string("new_node"),"f")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbi then
-		meta:set_string(meta:get_string("new_node"),"g")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbbj then
-		meta:set_string(meta:get_string("new_node"),"h")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbbk then
-		meta:set_string(meta:get_string("new_node"),"i")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbl then
-		meta:set_string(meta:get_string("new_node"),"m")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbbm then
-		meta:set_string(meta:get_string("new_node"),"j")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-		
-		
-	elseif fields.sbca then
-		meta:set_string(meta:get_string("new_node"),"k")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbcb then
-		meta:set_string(meta:get_string("new_node"),"l")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbcc then
-		meta:set_string(meta:get_string("new_node"),"n")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbcd then
-		meta:set_string(meta:get_string("new_node"),"o")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbce then
-		meta:set_string(meta:get_string("new_node"),"p")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbcf then
-		meta:set_string(meta:get_string("new_node"),"q")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbcg then
-		meta:set_string(meta:get_string("new_node"),"")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbch then
-		meta:set_string(meta:get_string("new_node"),"")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbci then
-		meta:set_string(meta:get_string("new_node"),"")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbcj then
-		meta:set_string(meta:get_string("new_node"),"")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))	
-	elseif fields.sbck then
-		meta:set_string(meta:get_string("new_node"),"")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbcl then
-		meta:set_string(meta:get_string("new_node"),"t")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-	elseif fields.sbcm then
-		meta:set_string(meta:get_string("new_node"),"u")
-		player:set_inventory_formspec(create2.get_formspec(player))
-		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
     elseif fields.esc then
         minetest.show_formspec(player:get_player_name(), "", "")
 	elseif fields.quit then
@@ -7115,12 +6832,334 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			for j=1,12 do
 				local meta = player:get_meta()
 				if fields["na"..letter(i)..letter(j)] then
-					meta:set_string("new_node", "na"..letter(i)..letter(j))
-					minetest.show_formspec(player:get_player_name(), "node1" , node1.get_formspec(player))
+					local n1x = tonumber(meta:get_string("new_node1x"))
+					local n1y = tonumber(meta:get_string("new_node1y"))
+					local node_letter = ""
+					local new_letter = true
+					if n1x == 1 and n1y == 1 then
+						node_letter = "0"
+					elseif n1x == 2 and n1y == 1 then	
+						node_letter = "2"
+						for i=1,20 do
+							for j=1,12 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "2" or meta:get_string("na"..letter(i)..letter(j)) == "z" then
+									meta:set_string("na"..letter(i)..letter(j),"0")
+								end
+							end
+						end
+					elseif n1x == 3 and n1y == 1 then
+						node_letter = "z"
+						for i=1,20 do
+							for j=1,12 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "2" or meta:get_string("na"..letter(i)..letter(j)) == "z" then
+									meta:set_string("na"..letter(i)..letter(j),"0")
+								end
+							end
+						end
+					elseif n1x == 4 and n1y == 1 then	
+						node_letter = "g"
+					elseif n1x == 5 and n1y == 1 then	
+						node_letter = "3"
+					elseif n1x == 6 and n1y == 1 then
+						node_letter = "4"
+					elseif n1x == 7 and n1y == 1 then	
+						node_letter = "6"
+					elseif n1x == 8 and n1y == 1 then	
+						node_letter = "8"
+					elseif n1x == 9 and n1y == 1 then
+						node_letter = "7"
+					elseif n1x == 10 and n1y == 1 then	
+						node_letter = "9"
+					elseif n1x == 11 and n1y == 1 then	
+						node_letter = "D"
+					elseif n1x == 12 and n1y == 1 then	
+						node_letter = "E"
+					elseif n1x == 13 and n1y == 1 then	
+						node_letter = "F"
+					elseif n1x == 1 and n1y == 2 then
+						node_letter = "5"
+					elseif n1x == 2 and n1y == 2 then
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "a" then
+									k = k+1
+								end
+							end
+						end
+						if k < 40 then
+							node_letter = "a"
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							minetest.show_formspec(player:get_player_name(), "key" , key.get_formspec(player))
+						end
+					elseif n1x == 3 and n1y == 2 then
+						node_letter = "b"					
+					elseif n1x == 4 and n1y == 2 then	
+						node_letter = "Q"
+					elseif n1x == 5 and n1y == 2 then	
+						node_letter = ""
+					elseif n1x == 6 and n1y == 2 then
+						node_letter = "c"
+					elseif n1x == 7 and n1y == 2 then	
+						node_letter = "d"
+					elseif n1x == 8 and n1y == 2 then	
+						node_letter = "e"
+					elseif n1x == 9 and n1y == 2 then
+						node_letter = "f"
+					elseif n1x == 10 and n1y == 2 then	
+						node_letter = "h"
+					elseif n1x == 11 and n1y == 2 then	
+						node_letter = "i"
+					elseif n1x == 12 and n1y == 2 then	
+						node_letter = "j"
+					elseif n1x == 13 and n1y == 2 then	
+						node_letter = "o"
+					elseif n1x == 1 and n1y == 3 then
+						node_letter = "x"
+					elseif n1x == 2 and n1y == 3 then	
+						node_letter = "m"
+					elseif n1x == 3 and n1y == 3 then
+						node_letter = "l"					
+					elseif n1x == 4 and n1y == 3 then	
+						node_letter = "w"
+					elseif n1x == 5 and n1y == 3 then	
+						node_letter = "p"
+					elseif n1x == 6 and n1y == 3 then
+						node_letter = "q"
+					elseif n1x == 7 and n1y == 3 then	
+						node_letter = "s"
+					elseif n1x == 8 and n1y == 3 then	
+						node_letter = "1"
+					elseif n1x == 9 and n1y == 3 then
+						node_letter = "v"
+					elseif n1x == 10 and n1y == 3 then	
+						node_letter = "u"
+					elseif n1x == 11 and n1y == 3 then	
+						node_letter = "t"
+					elseif n1x == 12 and n1y == 3 then	
+						node_letter = "r"
+					elseif n1x == 13 and n1y == 3 then	
+						node_letter = "y"
+					elseif n1x == 1 and n1y == 4 then
+						node_letter = ""
+					elseif n1x == 2 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 3 and n1y == 4 then
+						node_letter = ""					
+					elseif n1x == 4 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 5 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 6 and n1y == 4 then
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
+									k = k+1
+								end
+							end
+						end
+						if k < 40 then
+							node_letter = "I"
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							minetest.show_formspec(player:get_player_name(), "green_orb" , green_orb.get_formspec(player))
+						end
+					elseif n1x == 7 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 8 and n1y == 4 then	
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
+									k = k+1
+								end
+							end
+						end
+						if k < 40 then
+							node_letter = "J"
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							minetest.show_formspec(player:get_player_name(), "green_orb" , green_orb.get_formspec(player))
+						end
+					elseif n1x == 9 and n1y == 4 then
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
+									k = k+1
+								end
+							end
+						end
+						if k < 40 then
+							node_letter = ";"
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							minetest.show_formspec(player:get_player_name(), "green_orb" , green_orb.get_formspec(player))
+						end
+					elseif n1x == 10 and n1y == 4 then	
+						node_letter = "K"
+					elseif n1x == 11 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 12 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 13 and n1y == 4 then	
+						node_letter = ""
+					elseif n1x == 1 and n1y == 5 then
+						node_letter = "Y"
+					elseif n1x == 2 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 3 and n1y == 5 then
+						node_letter = "U"					
+					elseif n1x == 4 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 5 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 6 and n1y == 5 then
+						node_letter = "Z"
+					elseif n1x == 7 and n1y == 5 then	
+						node_letter = "<"
+					elseif n1x == 8 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 9 and n1y == 5 then
+						node_letter = ""
+					elseif n1x == 10 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 11 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 12 and n1y == 5 then	
+						node_letter = ""
+					elseif n1x == 13 and n1y == 5 then	
+						node_letter = ""
+					end
+					if new_letter then
+						meta:set_string("na"..letter(i)..letter(j), node_letter)
+						player:set_inventory_formspec(create2.get_formspec(player))
+						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+					end
 				end
 				if fields["nb"..letter(i)..letter(j)] then
-					meta:set_string("new_node", "nb"..letter(i)..letter(j))
-					minetest.show_formspec(player:get_player_name(), "node2" , node2.get_formspec(player))
+					local n2x = tonumber(meta:get_string("new_node2x"))
+					local n2y = tonumber(meta:get_string("new_node2y"))
+					local node_letter = ""
+					local new_letter = true
+					if n2x == 1 and n2y == 1 then
+						node_letter = "0"
+					elseif n2x == 2 and n2y == 1 then	
+						for i=1,20 do
+							for j=1,12 do
+								if meta:get_string("nb"..letter(i)..letter(j)) == "nn" then
+									meta:set_string("nb"..letter(i)..letter(j),"0")
+								end
+							end
+						end
+						node_letter = "nn"
+					elseif n2x == 3 and n2y == 1 then
+						node_letter = "2"
+					elseif n2x == 4 and n2y == 1 then	
+						node_letter = "d"
+					elseif n2x == 5 and n2y == 1 then	
+						node_letter = "1"
+					elseif n2x == 6 and n2y == 1 then
+						node_letter = "4"
+					elseif n2x == 7 and n2y == 1 then	
+						node_letter = "5"
+					elseif n2x == 8 and n2y == 1 then	
+						node_letter = "7"
+					elseif n2x == 9 and n2y == 1 then
+						node_letter = "v"
+					elseif n2x == 10 and n2y == 1 then	
+						node_letter = "w"
+					elseif n2x == 11 and n2y == 1 then	
+						node_letter = "x"
+					elseif n2x == 12 and n2y == 1 then	
+						node_letter = "6"
+					elseif n2x == 13 and n2y == 1 then	
+						node_letter = "C"
+					elseif n2x == 1 and n2y == 2 then
+						node_letter = "8"
+					elseif n2x == 2 and n2y == 2 then
+						node_letter = "3"	
+					elseif n2x == 3 and n2y == 2 then
+						node_letter = "9"					
+					elseif n2x == 4 and n2y == 2 then	
+						node_letter = "a"
+					elseif n2x == 5 and n2y == 2 then	
+						node_letter = "b"
+					elseif n2x == 6 and n2y == 2 then
+						node_letter = "c"
+					elseif n2x == 7 and n2y == 2 then	
+						node_letter = "e"
+					elseif n2x == 8 and n2y == 2 then	
+						node_letter = "f"
+					elseif n2x == 9 and n2y == 2 then
+						node_letter = "g"
+					elseif n2x == 10 and n2y == 2 then	
+						node_letter = "h"
+					elseif n2x == 11 and n2y == 2 then	
+						node_letter = "i"
+					elseif n2x == 12 and n2y == 2 then	
+						node_letter = "m"
+					elseif n2x == 13 and n2y == 2 then	
+						node_letter = "j"
+					elseif n2x == 1 and n2y == 3 then
+						node_letter = "k"
+					elseif n2x == 2 and n2y == 3 then	
+						node_letter = "l"
+					elseif n2x == 3 and n2y == 3 then
+						node_letter = "n"					
+					elseif n2x == 4 and n2y == 3 then	
+						node_letter = "o"
+					elseif n2x == 5 and n2y == 3 then	
+						node_letter = "p"
+					elseif n2x == 6 and n2y == 3 then
+						node_letter = "q"
+					elseif n2x == 7 and n2y == 3 then	
+						node_letter = ""
+					elseif n2x == 8 and n2y == 3 then	
+						node_letter = ""
+					elseif n2x == 9 and n2y == 3 then
+						node_letter = ""
+					elseif n2x == 10 and n2y == 3 then	
+						node_letter = ""
+					elseif n2x == 11 and n2y == 3 then	
+						node_letter = ""
+					elseif n2x == 12 and n2y == 3 then	
+						node_letter = "t"
+					elseif n2x == 13 and n2y == 3 then	
+						node_letter = "u"
+					end
+					if new_letter then
+						meta:set_string("nb"..letter(i)..letter(j), node_letter)
+						player:set_inventory_formspec(create2.get_formspec(player))
+						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+					end
+				end
+			end
+		end
+		for i=1,6 do
+			for j=1,13 do
+				local meta = player:get_meta()
+				if fields["sa"..letter(i)..letter(j)] then
+					meta:set_string("new_node1x", ""..j)
+					meta:set_string("new_node1y", ""..i)
+					player:set_inventory_formspec(create2.get_formspec(player))
+					minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+				end
+				if fields["sb"..letter(i)..letter(j)] then
+					meta:set_string("new_node2x", ""..j)
+					meta:set_string("new_node2y", ""..i)
+					player:set_inventory_formspec(create2.get_formspec(player))
+					minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 				end
 			end
 		end
@@ -7157,7 +7196,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         end
 		
 	end
-	if formname == "w51" or formname == "w52" or formname == "w53" then
+	if formname == "w51" or formname == "w52" or formname == "w53" or formname == "w54" then
         for k, v in pairs(fields) do
             if tonumber(v) ~= nil then
                 New(player,"5_"..v,"n")
