@@ -22,3 +22,4 @@ Notes:
 meselamp in default mod changed
 creative mod deleted
 sfinv mod deleted
+mtg_craftguide mod deleted
