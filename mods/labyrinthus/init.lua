@@ -1,13 +1,5 @@
 local hud_levels = {}
-local hud_1 = {}
-local hud_2 = {}
-local hud_3 = {}
-local hud_4 = {}
-local hud_5 = {}
-local hud_6 = {}
-local hud_7 = {}
-local hud_8 = {}
-local hud_9 = {}
+local hud = {}
 local map_version = 1
 local rrr = 0
 local rrrr = 0
@@ -71,7 +63,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.9.0",
+		text = "Game Version	 :  2.10.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -81,84 +73,189 @@ minetest.register_on_joinplayer(function(player)
 		number = 0xFFFFFF ,
 		text = "Level: /",
 	})
-	hud_9[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-640},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-	hud_8[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-570},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-	hud_7[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-500},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-	hud_6[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-430},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-	hud_5[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-360},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-	hud_4[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-290},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-	hud_3[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-220},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-    hud_2[name] = player:hud_add({
-		hud_elem_type = "image",
-		position = {x=0, y=0.85},
-		offset = {x=70, y=-150},
-		alignment = {x=0, y=0},
-        scale = {x=6, y=6},
-		text = "labyrinthus_glass.png",
-	})
-    hud_1[name] = player:hud_add({
-        hud_elem_type = "image",
-        position = {x=0, y=0.85},
-        offset = {x=70, y=-80},
-        scale = {x=6, y=6},
-        text = "labyrinthus_glass.png",
-        alignment = {x=0,y=0},
-    })
+	for i=1,9 do
+		hud[""..i] = player:hud_add({
+			hud_elem_type = "image",
+			position = {x=0, y=0.85},
+			offset = {x=70, y=-10-(i*70)},
+			alignment = {x=0, y=0},
+			scale = {x=6, y=6},
+			text = "labyrinthus_glass.png",
+		})
+	end
 	player:set_inventory_formspec(main.get_formspec(player))
 	if player:get_player_name() == "singleplayer" then
 	else
 		minetest.kick_player(player:get_player_name(), "you can play labyrinthus only as 'singleplayer'")
 	end
 end)
+
+local node_list1 = {
+	{"0","default:sand",						"default_sand.png"},
+	{"1","labyrinthus:water",					"default_water.png"},
+	{"2","labyrinthus:rainbow",					"nyancat_rainbow.png"},
+	{"3","labyrinthus:red1",					"labyrinthus_red1.png"},
+	{"4","labyrinthus:green1",					"labyrinthus_green1.png"},
+	{"5","labyrinthus:button1",					"default_sand.png^labyrinthus_button.png"},
+	{"6","labyrinthus:blue1",					"labyrinthus_blue1.png"},
+	{"7","labyrinthus:green_col",				"default_sand.png^labyrinthus_green_col.png"},
+	{"8","labyrinthus:red_col",					"default_sand.png^labyrinthus_red_col.png"},
+	{"9","labyrinthus:blue_col",				"default_sand.png^labyrinthus_blue_col.png"},
+	{"a","labyrinthus:key2",					"default_sand.png^labyrinthus_key.png"},
+	{"b","labyrinthus:tp",						"default_sand.png^labyrinthus_tp.png"},
+	{"c","labyrinthus:ball1",					"default_sand.png^labyrinthus_ball.png"},
+	{"d","labyrinthus:boom",					"default_sand.png^labyrinthus_boom.png"},
+	{"e","labyrinthus:00",						"default_sand.png^labyrinthus_0.png"},
+	{"f","labyrinthus:eye1",					"default_sand.png^labyrinthus_eye.png"},
+	{"g","labyrinthus:box",						"default_sand.png^labyrinthus_box.png"},
+	{"h","bones:bones",							"bones_front.png"},
+	{"i","labyrinthus:button11",				"default_sand.png^labyrinthus_button1.png"},
+	{"j","labyrinthus:fire",					"default_sand.png^fire_basic_flame.png"},
+	{"k","labyrinthus:arrow",					"default_sand.png^labyrinthus_arrow.png"},
+	{"l","labyrinthus:round2",					"default_sand.png^labyrinthus_round2.png"},
+	{"m","labyrinthus:round3",					"default_sand.png^labyrinthus_round3.png"},
+	{"n","labyrinthus:arrow2",					"default_sand.png^labyrinthus_arrow2.png"},
+	{"o","labyrinthus:red_sand",				"default_sand.png^labyrinthus_red.png"},
+	{"p","labyrinthus:moon",					"default_sand.png^labyrinthus_moon.png"},
+	{"q","labyrinthus:sun",						"default_sand.png^labyrinthus_sun.png"},
+	{"r","labyrinthus:water_wood",				"default_water.png^labyrinthus_water_wood.png"},
+	{"s","labyrinthus:time30",					"default_sand.png^labyrinthus_time30.png"},
+	{"t","labyrinthus:ice1",					"default_ice.png"},
+	{"u","labyrinthus:ice2",					"labyrinthus_ice2.png"},
+	{"v","labyrinthus:ice3",					"labyrinthus_ice3.png"},
+	{"w","labyrinthus:round4",					"default_sand.png^labyrinthus_round4.png"},
+	{"x","labyrinthus:round1",					"default_sand.png^labyrinthus_round1.png"},
+	{"y","labyrinthus:dirt",					""},
+	{"z","labyrinthus:rainbow2",				"labyrinthus_rainbow2.png"},
+	{"A","labyrinthus:purple",					"default_sand.png^labyrinthus_purple.png"},
+	{"B","labyrinthus:empty_gate",				"default_sand.png^labyrinthus_empty_gate.png"},
+	{"C","labyrinthus:gate_arrows",				"default_sand.png^labyrinthus_gate_arrows.png"},
+	{"D","labyrinthus:red_cross",				"default_sand.png^labyrinthus_red_cross.png"},
+	{"E","labyrinthus:green_cross",				"default_sand.png^labyrinthus_green_cross.png"},
+	{"F","labyrinthus:blue_cross",				"default_sand.png^labyrinthus_blue_cross.png"},
+	{"G","labyrinthus:purple_dirt",				""},
+	{"H","labyrinthus:gate",					"default_sand.png^labyrinthus_gate.png"},
+	{"I","labyrinthus:green",					"default_sand.png^labyrinthus_green.png"},
+	{"J","labyrinthus:water_wood_with_green",	"default_water.png^labyrinthus_water_wood_with_green.png"},
+	{"K","labyrinthus:sand_for_green",			"default_sand.png^labyrinthus_stone_for_green.png"},
+	{"L","labyrinthus:cyan",					""},
+	{"M","labyrinthus:bow",						""},
+	{"N","labyrinthus:arrow4_2",				"default_sand.png^labyrinthus_arrow4_2.png"},
+	{"O","labyrinthus:green_dirt",				""},
+	{"P","labyrinthus:cyan_dirt",				""},
+	{"Q","labyrinthus:tp2",						"default_sand.png^labyrinthus_tp2.png"},
+	{"R","labyrinthus:yellow2",					"default_sand.png^labyrinthus_yellow2.png"},
+	{"S","labyrinthus:yellow_dirt",				""},
+	{"T","labyrinthus:wood_for_yellow",			"default_wood.png^labyrinthus_stone_for_yellow.png"},
+	{"U","labyrinthus:water_stone",				"default_water.png^labyrinthus_water_stone.png"},
+	{"V","labyrinthus:sand_for_green_dirt",		""},
+	{"W","labyrinthus:red3",					"default_sand.png^labyrinthus_red3.png"},
+	{"X","labyrinthus:water_wood_with_red",		"default_water.png^labyrinthus_water_wood_with_red.png"},
+	{"Y","default:wood",						"default_wood.png"},
+	{"Z","labyrinthus:white",					"default_sand.png^labyrinthus_white.png"},
+	{":","labyrinthus:tp3",						"default_sand.png^labyrinthus_tp3.png"},
+	{";","labyrinthus:ice_with_green",			"labyrinthus_ice3.png^labyrinthus_green.png"},
+	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png"},
+	{">","labyrinthus:button_eye",				"default_sand.png^labyrinthus_button_eye.png"},
+	{"|","labyrinthus:water_eye1",				"default_water.png^labyrinthus_water_eye.png"},
+	{".","labyrinthus:water_eye1_with_yellow",	"default_water.png^labyrinthus_yellow2.png"},
+	{",","labyrinthus:water_eye1_with_cyan",	""},
+	{"-","labyrinthus:arrow_path",				"default_sand.png^labyrinthus_arrow_path.png"},
+	{"_","labyrinthus:arrow_path_button",		"default_sand.png^labyrinthus_arrow_path_button.png"},
+	{"#","labyrinthus:ball3",					"default_sand.png^labyrinthus_ball2.png"},
+	{"'","labyrinthus:ice_with_yellow",			"labyrinthus_ice3.png^labyrinthus_yellow2.png"},
+	{"*","labyrinthus:dirt_with_yellow_circle",	""},
+	{"+","labyrinthus:dirt_with_red_circle",	""},
+	{"~","labyrinthus:arrow_path_with_green",	"default_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png"},
+	
+	{"!","labyrinthus:button12",				""},
+	{"$","labyrinthus:button2",					""},
+	{"%","labyrinthus:empty_gate_purple",		""},
+	{"&","labyrinthus:gate",					""},
+	{"/","labyrinthus:button3",					""},
+	{"(","labyrinthus:water_eye2",				""},
+	{")","labyrinthus:water_eye2_with_yellow",	""},
+	{"=","labyrinthus:water_eye2_with_cyan",	""},
+}
+
+local node_list2 = {
+	{"0","air",											""},
+	{"1","default:junglewood",							"default_junglewood.png"},
+	{"2","default:stone",								"default_stone.png"},
+	{"3","labyrinthus:meselamp2",						"default_meselamp.png"},
+	{"4","labyrinthus:red2",							"labyrinthus_ball_red.png"},
+	{"5","labyrinthus:green2",							"labyrinthus_ball_green.png"},
+	{"6","labyrinthus:button2",							"labyrinthus_button_2.png"},
+	{"7","labyrinthus:blue2",							"labyrinthus_ball_blue.png"},
+	{"8","labyrinthus:key1",							"default_stone.png^labyrinthus_key2.png"},
+	{"9","default:diamondblock",						"default_diamond_block.png"},
+	{"a","labyrinthus:pbj_pup",							"labyrinthus_pup_front.png"},
+	{"b","default:cobble",								"default_cobble.png"},
+	{"c","tnt:tnt",										"tnt_side.png"},
+	{"d","default:apple",								"default_apple.png"},
+	{"e","labyrinthus:4",								"default_mese_block.png^labyrinthus_4.png"},
+	{"f","labyrinthus:3",								"default_mese_block.png^labyrinthus_3.png"},
+	{"g","labyrinthus:2",								"default_mese_block.png^labyrinthus_2.png"},
+	{"h","labyrinthus:1",								"default_mese_block.png^labyrinthus_1.png"},
+	{"i","labyrinthus:eye2",							"default_mese_block.png^labyrinthus_eye.png"},
+	{"j","labyrinthus:red",								"default_mese_block.png^labyrinthus_red.png"},
+	{"k","labyrinthus:blue",							"default_mese_block.png^labyrinthus_blue.png"},
+	{"l","labyrinthus:yellow",							"default_mese_block.png^labyrinthus_yellow.png"},
+	{"m","labyrinthus:glass",							"labyrinthus_eye2.png"},
+	{"n","labyrinthus:nyan1",							"labyrinthus_part1.png"},
+	{"o","labyrinthus:nyan2",							"labyrinthus_part2.png"},
+	{"p","labyrinthus:nyan3",							"labyrinthus_part3.png"},
+	{"q","labyrinthus:nyan4",							"labyrinthus_part4.png"},
+	{"r","labyrinthus:arrow3",							"default_mese_block.png^labyrinthus_arrow2.png"},
+	{"s","labyrinthus:leaves",							"labyrinthus_leaves.png"},
+	{"t","labyrinthus:water_ball",						"labyrinthus_ball_water.png"},
+	{"u","labyrinthus:transport_stone",					"default_mese_block.png^labyrinthus_transport_stone.png"},
+	{"v","labyrinthus:red_pyramid",						"labyrinthus_pyramid_red.png"},
+	{"w","labyrinthus:green_pyramid",					"labyrinthus_pyramid_green.png"},
+	{"x","labyrinthus:blue_pyramid",					"labyrinthus_pyramid_blue.png"},
+	{"y","labyrinthus:bow_right",						""},
+	{"z","labyrinthus:bow_left",						""},
+	{"A","labyrinthus:bow_down",						""},
+	{"B","labyrinthus:bow_up",							""},
+	{"C","labyrinthus:button3",							"labyrinthus_button_3.png"},
+	{"D","labyrinthus:yellow_block",					"default_stone.png^labyrinthus_yellow_arrow.png"},
+	{"E","labyrinthus:yellow_red",						"default_stone.png^labyrinthus_yellow_red.png"},
+	{"F","labyrinthus:stone_for_white",					"default_stone.png^labyrinthus_stone_for_white.png"},
+	{"G","labyrinthus:stone_with_no_white1",			""},
+	{"H","labyrinthus:remember1_off",					"default_mese_block.png^labyrinthus_remember1.png"},
+	{"I","labyrinthus:remember2_off",					"default_mese_block.png^labyrinthus_remember2.png"},
+	{"J","labyrinthus:remember3_off",					"default_mese_block.png^labyrinthus_remember3.png"},
+	{"K","labyrinthus:remember4_off",					"default_mese_block.png^labyrinthus_remember4.png"},
+	{"L","labyrinthus:remember5_off",					"default_mese_block.png^labyrinthus_remember5.png"},
+	{"M","labyrinthus:arrow4",							"default_mese_block.png^labyrinthus_arrow4.png"},
+	{"N","labyrinthus:arrow5_yellow",					""},
+	{"O","labyrinthus:arrow5_red",						""},
+	{"P","labyrinthus:key3",							"default_stone.png^labyrinthus_key3.png"},
+	{"Q","labyrinthus:2red",							"default_mese_block.png^labyrinthus_2red.png"},
+	{"R","labyrinthus:2blue",							"default_mese_block.png^labyrinthus_2blue.png"},
+	{"S","labyrinthus:2yellow",							"default_mese_block.png^labyrinthus_2yellow.png"},
+	
+	{"!","nyancat:nyancat",								""},
+	{"$","labyrinthus:button13",						""},
+	{"%","labyrinthus:transport_stone_gate_arrows",		""},
+	{"&","labyrinthus:red_with_no_yellow",				""},
+	{"/","labyrinthus:stone_with_white",				""},
+	{"(","labyrinthus:stone_with_white2",				""},
+	{")","labyrinthus:stone_with_no_white2",			""},
+	{"=","labyrinthus:remember1_on",					""},
+	{"[","labyrinthus:remember2_on",					""},
+	{"]","labyrinthus:remember3_on",					""},
+	{"{","labyrinthus:remember4_on",					""},
+	{"}","labyrinthus:remember5_on",					""},
+	{"?","labyrinthus:remember5_temp",					""},
+}
+function get_item_list(list,index,index_number,number)
+	for index2, value in ipairs(list) do
+        if value[index_number] == index then
+            return list[index2][number]
+        end
+    end
+end
 
 function utf8_char(s,n)
 	local k = 0
@@ -549,47 +646,7 @@ create.get_formspec = function(player, pos)
 	return formspec		
 end
 function letter(i)
-	if i == 1 then
-		return "a"
-	elseif i == 2 then
-		return "b"
-	elseif i == 3 then
-		return "c"
-	elseif i == 4 then
-		return "d"
-	elseif i == 5 then
-		return "e"
-	elseif i == 6 then
-		return "f"
-	elseif i == 7 then
-		return "g"
-	elseif i == 8 then
-		return "h"
-	elseif i == 9 then
-		return "i"
-	elseif i == 10 then
-		return "j"
-	elseif i == 11 then
-		return "k"
-	elseif i == 12 then
-		return "l"
-	elseif i == 13 then
-		return "m"
-	elseif i == 14 then
-		return "n"
-	elseif i == 15 then
-		return "o"
-	elseif i == 16 then
-		return "p"
-	elseif i == 17 then
-		return "q"
-	elseif i == 18 then
-		return "r"
-	elseif i == 19 then
-		return "s"
-	elseif i == 20 then
-		return "t"
-	end
+	return string.char(i+96)
 end
 local create2 = {}
 create2.get_formspec = function(player, pos)
@@ -606,120 +663,7 @@ create2.get_formspec = function(player, pos)
 			elseif j ~= 0 and i ~= 0 then
 				local meta = player:get_meta()
 				local ind = meta:get_string("na"..letter(i)..letter(j))
-				local img = ""
-				if ind == "0" then
-					img = "default_sand.png"
-				elseif ind == "1" then
-					img = "default_water.png"
-				elseif ind == "2" then
-					img = "nyancat_rainbow.png"
-				elseif ind == "3" then
-					img = "labyrinthus_red1.png"
-				elseif ind == "4" then
-					img = "labyrinthus_green1.png"
-				elseif ind == "5" then
-					img = "default_sand.png^labyrinthus_button.png"
-				elseif ind == "6" then
-					img = "labyrinthus_blue1.png"
-				elseif ind == "7" then
-					img = "default_sand.png^labyrinthus_green_col.png"
-				elseif ind == "8" then
-					img = "default_sand.png^labyrinthus_red_col.png"
-				elseif ind == "9" then
-					img = "default_sand.png^labyrinthus_blue_col.png"
-				elseif ind == "a" then
-					img = "default_sand.png^labyrinthus_key.png"
-				elseif ind == "b" then
-					img = "default_sand.png^labyrinthus_tp.png"
-				elseif ind == "c" then
-					img = "default_sand.png^labyrinthus_ball.png"
-				elseif ind == "d" then
-					img = "default_sand.png^labyrinthus_boom.png"
-				elseif ind == "e" then
-					img = "default_sand.png^labyrinthus_0.png"
-				elseif ind == "f" then
-					img = "default_sand.png^labyrinthus_eye.png"
-				elseif ind == "g" then
-					img = "default_sand.png^labyrinthus_box.png"	
-				elseif ind == "h" then
-					img = "bones_front.png"
-				elseif ind == "i" then
-					img = "default_sand.png^labyrinthus_button1.png"
-				elseif ind == "k" then
-					img = "default_sand.png^labyrinthus_arrow.png"
-				elseif ind == "l" then
-					img = "default_sand.png^labyrinthus_round2.png"
-				elseif ind == "m" then
-					img = "default_sand.png^labyrinthus_round3.png"
-				elseif ind == "n" then
-					img = "default_sand.png^labyrinthus_arrow2.png"
-				elseif ind == "o" then
-					img = "default_sand.png^labyrinthus_red.png"
-				elseif ind == "p" then
-					img = "default_sand.png^labyrinthus_moon.png"
-				elseif ind == "q" then
-					img = "default_sand.png^labyrinthus_sun.png"
-				elseif ind == "r" then
-					img = "default_water.png^labyrinthus_water_wood.png"
-				elseif ind == "s" then
-					img = "default_sand.png^labyrinthus_time30.png"
-				elseif ind == "t" then
-					img = "default_ice.png"
-				elseif ind == "u" then
-					img = "labyrinthus_ice2.png"
-				elseif ind == "v" then
-					img = "labyrinthus_ice3.png"
-				elseif ind == "w" then
-					img = "default_sand.png^labyrinthus_round4.png"
-				elseif ind == "x" then
-					img = "default_sand.png^labyrinthus_round1.png"
-				elseif ind == "z" then
-					img = "labyrinthus_rainbow2.png"
-				elseif ind == "A" then
-					img = "default_sand.png^labyrinthus_purple.png"
-				elseif ind == "B" then
-					img = "default_sand.png^labyrinthus_empty_gate.png"
-				elseif ind == "C" then
-					img = "default_sand.png^labyrinthus_gate_arrows.png"
-				elseif ind == "D" then
-					img = "default_sand.png^labyrinthus_red_cross.png"
-				elseif ind == "E" then
-					img = "default_sand.png^labyrinthus_green_cross.png"
-				elseif ind == "F" then
-					img = "default_sand.png^labyrinthus_blue_cross.png"
-				elseif ind == "H" then
-					img = "default_sand.png^labyrinthus_gate.png"
-				elseif ind == "I" then
-					img = "default_sand.png^labyrinthus_green.png"
-				elseif ind == "J" then
-					img = "default_water.png^labyrinthus_water_wood_with_green.png"
-				elseif ind == "K" then
-					img = "default_sand.png^labyrinthus_stone_for_green.png"
-				elseif ind == "N" then
-					img = "default_sand.png^labyrinthus_arrow4_2.png"
-				elseif ind == "Q" then
-					img = "default_sand.png^labyrinthus_tp2.png"
-				elseif ind == "U" then
-					img = "default_water.png^labyrinthus_water_stone.png"
-				elseif ind == "Y" then
-					img = "default_wood.png"
-				elseif ind == "Z" then
-					img = "default_sand.png^labyrinthus_white.png"
-				elseif ind == ";" then
-					img = "labyrinthus_ice3.png^labyrinthus_green.png"
-				elseif ind == "<" then
-					img = "labyrinthus_ice3.png^labyrinthus_white.png"
-				elseif ind == ">" then	
-					img = "default_sand.png^labyrinthus_button_eye.png"
-				elseif ind == "|" then
-					img = "default_water.png^labyrinthus_water_eye.png"	
-				elseif ind == "-" then
-					img = "default_sand.png^labyrinthus_arrow_path.png"	
-				elseif ind == "_" then
-					img = "default_sand.png^labyrinthus_arrow_path_button.png"
-				elseif ind == "#" then
-					img = "default_sand.png^labyrinthus_ball2.png"
-				end
+				local img = get_item_list(node_list1,ind,1,3)
 				formspec = formspec.."image_button["..(0.5+i*0.45)..","..(0.5+j*0.5)..";0.6,0.6;"..img..";na"..letter(i)..letter(j)..";]"
 			end
 		end
@@ -736,97 +680,17 @@ create2.get_formspec = function(player, pos)
 				local img = ""
 				if ind == "nn" then
 					img = "nyancat_front.png"
-				elseif ind == "0" then
-					img = ""
-				elseif ind == "1" then
-					img = "default_junglewood.png"
-				elseif ind == "2" then
-					img = "default_stone.png"
-				elseif ind == "3" then
-					img = "default_meselamp.png"
-				elseif ind == "4" then
-					img = "labyrinthus_ball_red.png"
-				elseif ind == "5" then
-					img = "labyrinthus_ball_green.png"
-				elseif ind == "6" then
-					img = "labyrinthus_button_2.png"
-				elseif ind == "7" then
-					img = "labyrinthus_ball_blue.png"
-				elseif ind == "8" then
-					img = "default_stone.png^labyrinthus_key2.png"
-				elseif ind == "9" then
-					img = "default_diamond_block.png"
-				elseif ind == "a" then
-					img = "labyrinthus_pup_front.png"
-				elseif ind == "b" then
-					img = "default_cobble.png"
-				elseif ind == "c" then
-					img = "tnt_side.png"
-				elseif ind == "d" then
-					img = "default_apple.png"
-				elseif ind == "e" then
-					img = "default_mese_block.png^labyrinthus_4.png"
-				elseif ind == "f" then
-					img = "default_mese_block.png^labyrinthus_3.png"
-				elseif ind == "g" then
-					img = "default_mese_block.png^labyrinthus_2.png"
-				elseif ind == "h" then
-					img = "default_mese_block.png^labyrinthus_1.png"
-				elseif ind == "i" then
-					img = "default_mese_block.png^labyrinthus_eye.png"
-				elseif ind == "j" then
-					img = "default_mese_block.png^labyrinthus_red.png"
-				elseif ind == "k" then
-					img = "default_mese_block.png^labyrinthus_blue.png"
-				elseif ind == "l" then
-					img = "default_mese_block.png^labyrinthus_yellow.png"	
-				elseif ind == "m" then
-					img = "labyrinthus_eye2.png"
-				elseif ind == "n" then
-					img = "labyrinthus_part1.png"
-				elseif ind == "o" then
-					img = "labyrinthus_part2.png"
-				elseif ind == "p" then
-					img = "labyrinthus_part3.png"
-				elseif ind == "q" then
-					img = "labyrinthus_part4.png"
-				elseif ind == "r" then
-					img = "default_mese_block.png^labyrinthus_arrow2.png"
-				elseif ind == "s" then	
-					img = "labyrinthus_leaves.png"
-				elseif ind == "t" then
-					img = "labyrinthus_ball_water.png"
-				elseif ind == "u" then
-					img = "default_mese_block.png^labyrinthus_transport_stone.png"
-				elseif ind == "v" then
-					img = "labyrinthus_pyramid_red.png"
-				elseif ind == "w" then
-					img = "labyrinthus_pyramid_green.png"
-				elseif ind == "x" then
-					img = "labyrinthus_pyramid_blue.png"
-				elseif ind == "C" then
-					img = "labyrinthus_button_3.png"	
-				elseif ind == "F" then
-					img = "default_stone.png^labyrinthus_stone_for_white.png"	
-				elseif ind == "H" then
-					img = "default_mese_block.png^labyrinthus_remember1.png"	
-				elseif ind == "I" then
-					img = "default_mese_block.png^labyrinthus_remember2.png"
-				elseif ind == "J" then
-					img = "default_mese_block.png^labyrinthus_remember3.png"
-				elseif ind == "K" then
-					img = "default_mese_block.png^labyrinthus_remember4.png"
-				elseif ind == "L" then
-					img = "default_mese_block.png^labyrinthus_remember5.png"
-				elseif ind == "M" then
-					img = "default_mese_block.png^labyrinthus_arrow4.png"
+				else
+					img = get_item_list(node_list2,ind,1,3)
 				end
 				formspec = formspec.."image_button["..(10+0.5+i*0.45)..","..(0.5+j*0.5)..";0.6,0.6;"..img..";nb"..letter(i)..letter(j)..";]"
 			end
 		end
 	end
 	local meta = player:get_meta()
+	local message = meta:get_string("error_message")
 	formspec = formspec
+	.."label[8.3,7.5;"..message.."]"
 	.."background["..(0.572+(meta:get_string("new_node1x")+3)*0.45)..","..(0.53+(meta:get_string("new_node1y")+13)*0.5)..";0.47,0.557;labyrinthus_edge.png]"
 	.."background["..(10.572+(meta:get_string("new_node2x")+3)*0.45)..","..(0.53+(meta:get_string("new_node2y")+13)*0.5)..";0.47,0.557;labyrinthus_edge.png]"
 	.."image_button["..(0.5+4*0.45)..","..(0.5+14*0.5)..";0.6,0.6;default_sand.png;saaa;]"
@@ -847,7 +711,7 @@ create2.get_formspec = function(player, pos)
 	.."image_button["..(0.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_key.png;sabb;]"
 	.."image_button["..(0.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_tp.png;sabc;]"
 	.."image_button["..(0.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_tp2.png;sabd;]"
-	--.."image_button["..(0.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;;sabe;]"
+	.."image_button["..(0.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_tp3.png;sabe;]"
 	.."image_button["..(0.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_ball2.png;sabf;]"
 	.."image_button["..(0.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_ball.png;sabg;]"
 	.."image_button["..(0.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_boom.png;sabh;]"
@@ -855,7 +719,7 @@ create2.get_formspec = function(player, pos)
 	.."image_button["..(0.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_eye.png;sabj;]"
 	.."image_button["..(0.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;bones_front.png;sabk;]"
 	.."image_button["..(0.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^labyrinthus_button1.png;sabl;]"
-	--.."image_button["..(0.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;;sabm;]"
+	.."image_button["..(0.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_sand.png^fire_basic_flame.png;sabm;]"
 	formspec = formspec
 	.."image_button["..(0.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red.png;saca;]"
 	.."image_button["..(0.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_sand.png^labyrinthus_round1.png;sacb;]"
@@ -883,31 +747,31 @@ create2.get_formspec = function(player, pos)
 	--.."image_button["..(0.5+13*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadj;]"
 	.."image_button["..(0.5+14*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_wood_with_green.png;sadk;]"
 	.."image_button["..(0.5+15*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_green.png;sadl;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_sand.png^labyrinthus_stone_for_green.png;sadm;]"
+	.."image_button["..(0.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png;sadm;]"
 	formspec = formspec
-	--.."image_button["..(0.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saea;]"
+	.."image_button["..(0.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_sand.png^labyrinthus_stone_for_green.png;saea;]"
 	--.."image_button["..(0.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saeb;]"
-	--.."image_button["..(0.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saec;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_sand.png^labyrinthus_yellow2.png;saec;]"
 	--.."image_button["..(0.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saed;]"
-	--.."image_button["..(0.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saee;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_wood.png;saef;]"
-	--.."image_button["..(0.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saeg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_stone.png;saeh;]"
-	--.."image_button["..(0.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saei;]"
-	--.."image_button["..(0.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saej;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_sand.png^labyrinthus_white.png;saek;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_white.png;sael;]"
-	--.."image_button["..(0.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;saem;]"
+	.."image_button["..(0.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_yellow2.png;saee;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_water.png^labyrinthus_yellow2.png;saef;]"
+	.."image_button["..(0.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_wood.png;saeg;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_wood.png^labyrinthus_stone_for_yellow.png;saeh;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_stone.png;saei;]"
+	.."image_button["..(0.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_sand.png^labyrinthus_red3.png;saej;]"
+	.."image_button["..(0.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_water.png^labyrinthus_water_wood_with_red.png;saek;]"
+	.."image_button["..(0.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_sand.png^labyrinthus_white.png;sael;]"
+	.."image_button["..(0.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_white.png;saem;]"
 	formspec = formspec
 	--.."image_button["..(0.5+4*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safa;]"
 	--.."image_button["..(0.5+5*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safb;]"
 	--.."image_button["..(0.5+6*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow_path.png;safd;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow_path_button.png;safe;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow4_2.png;saff;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow.png;safg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow2.png;safh;]"
-	--.."image_button["..(0.5+12*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safi;]"
+	--.."image_button["..(0.5+7*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safd;]"
+	.."image_button["..(0.5+8*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow_path.png;safe;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow_path_button.png;saff;]"
+	.."image_button["..(0.5+10*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow4_2.png;safg;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow.png;safh;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+19*0.5)..";0.6,0.6;default_sand.png^labyrinthus_arrow2.png;safi;]"
 	--.."image_button["..(0.5+13*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safj;]"
 	--.."image_button["..(0.5+14*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safk;]"
 	--.."image_button["..(0.5+15*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safl;]"
@@ -930,52 +794,68 @@ create2.get_formspec = function(player, pos)
 	.."image_button["..(10.5+16*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_button_3.png;sbam;]"
 	formspec = formspec
 	.."image_button["..(10.5+4*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_stone.png^labyrinthus_key2.png;sbba;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_meselamp.png;sbbb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_diamond_block.png;sbbc;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_pup_front.png;sbbd;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_cobble.png;sbbe;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;tnt_side.png;sbbf;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_4.png;sbbg;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_3.png;sbbh;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2.png;sbbi;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_1.png;sbbj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_eye.png;sbbk;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_eye2.png;sbbl;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_red.png;sbbm;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_stone.png^labyrinthus_key3.png;sbbb;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_meselamp.png;sbbc;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_diamond_block.png;sbbd;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_pup_front.png;sbbe;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_cobble.png;sbbf;]"
+	.."image_button["..(10.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;tnt_side.png;sbbg;]"
+	.."image_button["..(10.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_4.png;sbbh;]"
+	.."image_button["..(10.5+12*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_3.png;sbbi;]"
+	.."image_button["..(10.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2.png;sbbj;]"
+	.."image_button["..(10.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_1.png;sbbk;]"
+	.."image_button["..(10.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_eye.png;sbbl;]"
+	.."image_button["..(10.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_eye2.png;sbbm;]"
 	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_blue.png;sbca;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_yellow.png;sbcb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part1.png;sbcc;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part2.png;sbcd;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part3.png;sbce;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part4.png;sbcf;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember1.png;sbcg;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember2.png;sbch;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember3.png;sbci;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember4.png;sbcj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember5.png;sbck;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ball_water.png;sbcl;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_transport_stone.png;sbcm;]"
+	.."image_button["..(10.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_red.png;sbca;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_blue.png;sbcb;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_yellow.png;sbcc;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2red.png;sbcd;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2blue.png;sbce;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_2yellow.png;sbcf;]"
+	.."image_button["..(10.5+10*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part1.png;sbcg;]"
+	.."image_button["..(10.5+11*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part2.png;sbch;]"
+	.."image_button["..(10.5+12*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part3.png;sbci;]"
+	.."image_button["..(10.5+13*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part4.png;sbcj;]"
+	.."image_button["..(10.5+14*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember1.png;sbck;]"
+	.."image_button["..(10.5+15*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember2.png;sbcl;]"
+	.."image_button["..(10.5+16*0.45)..","..(0.5+16*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember3.png;sbcm;]"
 	
 	formspec = formspec
-	--.."image_button["..(10.5+4*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbda;]"
-	--.."image_button["..(10.5+5*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_stone.png^labyrinthus_stone_for_white.png;sbdc;]"
-	--.."image_button["..(10.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdd;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_leaves.png;sbde;]"
-	--.."image_button["..(10.5+9*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdf;]"
-	--.."image_button["..(10.5+10*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdg;]"
+	.."image_button["..(10.5+4*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember4.png;sbda;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_remember5.png;sbdb;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_ball_water.png;sbdc;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_transport_stone.png;sbdd;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_stone.png^labyrinthus_yellow_arrow.png;sbde;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_stone.png^labyrinthus_yellow_red.png;sbdf;]"
+	.."image_button["..(10.5+10*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_stone.png^labyrinthus_stone_for_white.png;sbdg;]"
 	--.."image_button["..(10.5+11*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdh;]"
-	--.."image_button["..(10.5+12*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdi;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_arrow4.png;sbdj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+17*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_arrow2.png;sbdk;]"
+	.."image_button["..(10.5+12*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_leaves.png;sbdi;]"
+	--.."image_button["..(10.5+13*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdj;]"
+	--.."image_button["..(10.5+14*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdk;]"
 	--.."image_button["..(10.5+15*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdl;]"
 	--.."image_button["..(10.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sbdm;]"
+	
+	formspec = formspec
+	.."image_button["..(10.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_arrow4.png;sbea;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;default_mese_block.png^labyrinthus_arrow2.png;sbeb;]"
+	--.."image_button["..(10.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbec;]"
+	--.."image_button["..(10.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbed;]"
+	--.."image_button["..(10.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbee;]"
+	--.."image_button["..(10.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbef;]"
+	--.."image_button["..(10.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbeg;]"
+	--.."image_button["..(10.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbeh;]"
+	--.."image_button["..(10.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbei;]"
+	--.."image_button["..(10.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbej;]"
+	--.."image_button["..(10.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbek;]"
+	--.."image_button["..(10.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbel;]"
+	--.."image_button["..(10.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbem;]"
 
 	formspec = formspec.."button[8,10;2,1;save;Save]"
 	formspec = formspec.."button[10,10;2,1;back;Back]"
 	return formspec		
 end
+
 local import = {}
 import.get_formspec = function(player, pos)
 	if player == nil then
@@ -984,7 +864,7 @@ import.get_formspec = function(player, pos)
 	formspec = "size[5,3]"
         .."label[0,0.5;own_level_]"
 		.."label[4.6,0.5;.txt]"
-		.."field[1.3,0.85;3.8,0.5;input2;;]"
+		.."field[1.3,0.85;3.8,0.5;input1;;]"
 		.."button[1.5,1;2,1;import2;Import]"
 	return formspec		
 end
@@ -1002,17 +882,6 @@ delete.get_formspec = function(player, pos)
 	return formspec		
 end
 
-local no_save = {}
-no_save.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You have to place at least a rainbow and a nyancat!]"
-		.."button[1.5,1;2,1;create2;Ok]"
-	return formspec		
-end
-
 local back = {}
 back.get_formspec = function(player, pos)
 	if player == nil then
@@ -1025,127 +894,18 @@ back.get_formspec = function(player, pos)
 		.."button[2.5,1;2,1;create2;No]"
 	return formspec		
 end
-local delete2 = {}
-delete2.get_formspec = function(player, pos)
+
+local info = {}
+info.get_formspec = function(player, txt)
 	if player == nil then
         return
     end
-	local meta = player:get_meta()
 	formspec = "size[5,3]"
-        .."label[0,0.5;The Level was successfully deleted from the inventory list!]"
+        .."label[0,0.5;"..txt.."]"
 		.."button[1.5,1;2,1;main;Ok]"
 	return formspec		
 end
 
-local no_select = {}
-no_select.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You have to select a level!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local no_empty_import = {}
-no_empty_import.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You can't import a level with no name!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local no_empty_import2 = {}
-no_empty_import2.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You can't create a level with no name!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local exists = {}
-exists.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;This level already exists!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local import_success = {}
-import_success.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;Level was imported successfully!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local create_success = {}
-create_success.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;Level was created successfully!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local import_not_success = {}
-import_not_success.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;This level does not exist!]"
-		.."button[1.5,1;2,1;main;Ok]"
-	return formspec		
-end
-
-local key = {}
-key.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You can only have 40 keys.]"
-		.."button[1.5,1;2,1;create2;Ok]"
-	return formspec		
-end
-
-local green_orb = {}
-green_orb.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You can only have 40 green orbs.]"
-		.."button[1.5,1;2,1;create2;Ok]"
-	return formspec		
-end
-
-local white_orb = {}
-white_orb.get_formspec = function(player, pos)
-	if player == nil then
-        return
-    end
-	formspec = "size[5,3]"
-        .."label[0,0.5;You can only have 10 white orbs.]"
-		.."button[1.5,1;2,1;create2;Ok]"
-	return formspec		
-end
 
 function fsize (file)
     local current = file:seek()      -- get current position
@@ -1157,184 +917,31 @@ function move_data(player)
     local file = io.open(minetest.get_worldpath().."/move1.txt", "w")
     local t = ""
     local tt = ""
-    local k = 21
+    local k = 21	
     for l=1,12 do
         k = k-1
-        for j=9,29 do
-            if minetest.get_node({x=j, y=k, z=-76}).name == "default:sand" then
-                t = t.."0"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water" then
-                t = t.."1"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:rainbow" or minetest.get_node({x=j, y=k, z=-76}).name == "nyancat:nyancat_rainbow" then
+        for j=10,29 do
+			local e = true
+            if minetest.get_node({x=j, y=k, z=-76}).name == "nyancat:nyancat_rainbow" then
                 t = t.."2"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:red1" then
-                t = t.."3"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:green1" then
-                t = t.."4"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button1" then
-                t = t.."5"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:blue1" then
-                t = t.."6"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:green_col" then
-                t = t.."7"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:red_col" then
-                t = t.."8"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:blue_col" then
-                t = t.."9"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:key2" then
-                t = t.."a"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:tp" then
-                t = t.."b"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ball1" then
-                t = t.."c"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:boom" then
-                t = t.."d"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:00" then
-                t = t.."e"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:eye1" then
-                t = t.."f"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:box" then
-                t = t.."g"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "bones:bones" then
-                t = t.."h"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button11" then
-                t = t.."i"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:fire" then
-                t = t.."j"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:arrow" then
-                t = t.."k"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:round2" then
-                t = t.."l"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:round3" then
-                t = t.."m"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:arrow2" then
-                t = t.."n"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:red_sand" then
-                t = t.."o"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:moon" then
-                t = t.."p"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:sun" then
-                t = t.."q"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_wood" then
-                t = t.."r"
+				e = false
             elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:time30" then
-                t = t.."s"
                 tt = "30"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice1" then
-                t = t.."t"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice2" then
-                t = t.."u"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice3" then
-                t = t.."v"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:round4" then
-                t = t.."w"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:round1" then
-                t = t.."x"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:dirt" then
-                t = t.."y"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:rainbow2" or minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:rainbow3" then
+				e = false
+			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:rainbow3" then
                 t = t.."z"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:purple" then
-                t = t.."A"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:empty_gate" then
-                t = t.."B"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:gate_arrows" then
-                t = t.."C"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:red_cross" then
-                t = t.."D"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:green_cross" then
-                t = t.."E"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:blue_cross" then
-                t = t.."F"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:purple_dirt" then
-                t = t.."G"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:gate" then
-                t = t.."H"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:green" then
-                t = t.."I"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_wood_with_green" then
-                t = t.."J"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:sand_for_green" then
-                t = t.."K"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:cyan" then
-                t = t.."L"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:bow" then
-                t = t.."M"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:arrow4_2" then
-                t = t.."N"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:green_dirt" then
-                t = t.."O"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:cyan_dirt" then
-                t = t.."P"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:tp2" then
-                t = t.."Q"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:yellow2" then
-                t = t.."R"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:yellow_dirt" then
-                t = t.."S"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:wood_for_yellow" then
-                t = t.."T"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_stone" then
-                t = t.."U"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:sand_for_green_dirt" then
-                t = t.."V"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:red3" then
-                t = t.."W"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_wood_with_red" then
-                t = t.."X"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "default:wood" then
-                t = t.."Y"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:white" then
-                t = t.."Z"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:tp3" then
-                t = t..":"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice_with_green" then
-                t = t..";"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice_with_white" then
-                t = t.."<"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button_eye" then
-                t = t..">"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_eye1" then
-                t = t.."|"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_eye1_with_yellow" then
-                t = t.."."
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_eye1_with_cyan" then
-                t = t..","
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:arrow_path" then
-				t = t.."-"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:arrow_path_button" then
-				t = t.."_"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ball3" then
-				t = t.."#"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:ice_with_yellow" then
-				t = t.."'"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:dirt_with_yellow_circle" then
-				t = t.."*"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:dirt_with_red_circle" then
-				t = t.."+"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button12" then
-                t = t.."!"
-            elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button2" then
-                t = t.."$"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:empty_gate_purple" then
-                t = t.."%"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:gate" then
-                t = t.."&"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:button3" then
-                t = t.."/"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_eye2" then
-                t = t.."("
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_eye2_with_yellow" then
-                t = t..")"
-			elseif minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:water_eye2_with_yellow" then
-                t = t.."="
+				e = false
             end
             for i=0,29 do
                 if minetest.get_node({x=j, y=k, z=-76}).name == "labyrinthus:time"..i then
                     t = t.."s"
                     tt = ""..i
+					e = false
                 end
             end
+			if e then
+				t = t..get_item_list(node_list1,minetest.get_node({x=j, y=k, z=-76}).name,2,1)
+			end
         end
         t = t.."\n"
     end
@@ -1342,135 +949,11 @@ function move_data(player)
     local k = 21
     for l=1,12 do
         k = k-1
-        for j=9,29 do
-            if minetest.get_node({x=j, y=k, z=-77}).name == "air" then
-                t = t.."0"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "default:junglewood" then
-                t = t.."1"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "default:stone" then
-                t = t.."2"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "default:meselamp" then
-                t = t.."3"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:red2" then
-                t = t.."4"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:green2" then
-                t = t.."5"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:button2" then
-                t = t.."6"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:blue2" then
-                t = t.."7"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:key1" then
-                t = t.."8"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "default:diamondblock" then
-                t = t.."9"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:pbj_pup" then
-                t = t.."a"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "default:cobble" then
-                t = t.."b"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "tnt:tnt" then
-                t = t.."c"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "default:apple" then
-                t = t.."d"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:4" then
-                t = t.."e"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:3" then
-                t = t.."f"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:2" then
-                t = t.."g"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:1" then
-                t = t.."h"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:eye2" then
-                t = t.."i"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:red" then
-                t = t.."j"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:blue" then
-                t = t.."k"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:yellow" then
-                t = t.."l"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:glass" then
-                t = t.."m"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:nyan1" then
-                t = t.."n"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:nyan2" then
-                t = t.."o"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:nyan3" then
-                t = t.."p"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:nyan4" then
-                t = t.."q"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:arrow3" then
-                t = t.."r"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:leaves" then
-				t = t.."s"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:water_ball" then
-                t = t.."t"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:transport_stone" then
-                t = t.."u"	
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:red_pyramid" then
-                t = t.."v"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:green_pyramid" then
-                t = t.."w"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:blue_pyramid" then
-                t = t.."x"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:bow_right" then
-                t = t.."y"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:bow_left" then
-                t = t.."z"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:bow_down" then
-                t = t.."A"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:bow_up" then
-                t = t.."B"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:button3" then
-                t = t.."C"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:yellow_block" then
-                t = t.."D"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:yellow_red" then
-                t = t.."E"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:stone_for_white" then
-                t = t.."F"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:stone_with_no_white1" then
-                t = t.."G"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember1_off" then
-                t = t.."H"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember2_off" then
-                t = t.."I"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember3_off" then
-                t = t.."J"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember4_off" then
-                t = t.."K"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember5_off" then
-                t = t.."L"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:arrow4" then
-                t = t.."M"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:arrow5_yellow" then
-                t = t.."N"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:arrow5_red" then
-                t = t.."O"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "nyancat:nyancat" or minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:nyancat2" then
+        for j=10,29 do
+            if minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:nyancat2" then
                 t = t.."!"
-            elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:button13" then
-                t = t.."$"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:transport_stone_gate_arrows" then
-                t = t.."%"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:red_with_no_yellow" then
-                t = t.."&"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:stone_with_white" then
-                t = t.."/"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:stone_with_white2" then
-                t = t.."("
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:stone_with_no_white2" then
-                t = t..")"	
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember1_on" then
-                t = t.."="
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember2_on" then
-                t = t.."["
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember3_on" then
-                t = t.."]"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember4_on" then
-                t = t.."{"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember5_on" then
-                t = t.."}"
-			elseif minetest.get_node({x=j, y=k, z=-77}).name == "labyrinthus:remember5_temp" then
-                t = t.."?"
+			else
+				t = t..get_item_list(node_list2,minetest.get_node({x=j, y=k, z=-77}).name,2,1)
             end
         end
         t = t.."\n"
@@ -1514,7 +997,6 @@ function move_data(player)
     t = t..a.."\n"
     t = t..a2.."\n"
     t = t..time.."\n"
-	
     t = t..tt.."\n"
     t = t..f.."\n"
     t = t..x.."\n"
@@ -1523,7 +1005,6 @@ function move_data(player)
     t = t..pon.."\n"
     t = t..rrr.."\n"
     t = t..rrrr.."\n"
-	
     file:write(t)
 	file:close()
 end
@@ -1548,173 +1029,47 @@ function update()
 		green = player_inv:get_stack("g", 1):get_count()
         ll = player_inv:get_stack("ll", 1):get_count()
         local l = player_inv:get_stack("l", ll):get_count()
-		
 		local huds = 0
 		
 		if key ~= 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_key_"..key..".png")
-        end
-		if key ~= 0 then
+			player:hud_change(hud["1"], 'text', "labyrinthus_key_"..key..".png")
 			huds = huds+1
 		end
-		
-		if balls ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_ball_1.png")
-        elseif balls ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_ball_1.png")
-        end
 		if balls ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_ball_1.png")
 			huds = huds+1
 		end
-		
-		if balls2 ~= 0 and huds == 2 then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_ball2_1.png")
-        elseif balls2 ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_ball2_1.png")
-		elseif balls2 ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_ball2_1.png")
-        end
 		if balls2 ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_ball2_1.png")
 			huds = huds+1
 		end
-		
-		if white ~= 0 and huds == 3 then
-            player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_white_"..white..".png")
-        elseif white ~= 0 and huds == 2 then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_white_"..white..".png")
-		elseif white ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_white_"..white..".png")
-		elseif white ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_white_"..white..".png")
-        end
 		if white ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_white_"..white..".png")
 			huds = huds+1
 		end
-		
-		if purple ~= 0 and huds == 4 then
-            player:hud_change(hud_5[player:get_player_name()], 'text', "labyrinthus_purple_"..purple..".png")
-        elseif purple ~= 0 and huds == 3 then
-            player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_purple_"..purple..".png")
-		elseif purple ~= 0 and huds == 2  then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_purple_"..purple..".png")
-		elseif purple ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_purple_"..purple..".png")
-		elseif purple ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_purple_"..purple..".png")
-        end
 		if purple ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_purple_"..purple..".png")
 			huds = huds+1
 		end
-		
-		if green ~= 0 and huds == 5 then
-            player:hud_change(hud_6[player:get_player_name()], 'text', "labyrinthus_green_"..green..".png")
-        elseif green ~= 0 and huds == 4 then
-            player:hud_change(hud_5[player:get_player_name()], 'text', "labyrinthus_green_"..green..".png")
-		elseif green ~= 0 and huds == 3  then
-            player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_green_"..green..".png")
-		elseif green ~= 0 and huds == 2 then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_green_"..green..".png")
-		elseif green ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_green_"..green..".png")
-		elseif green ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_green_"..green..".png")
-        end
 		if green ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_green_"..green..".png")
 			huds = huds+1
 		end
-		
-		if cyan ~= 0 and huds == 6 then
-            player:hud_change(hud_7[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-        elseif cyan ~= 0 and huds == 5 then
-            player:hud_change(hud_6[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-		elseif cyan ~= 0 and huds == 4  then
-            player:hud_change(hud_5[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-		elseif cyan ~= 0 and huds == 3 then
-            player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-		elseif cyan ~= 0 and huds == 2 then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-		elseif cyan ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-		elseif cyan ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_cyan_"..cyan..".png")
-        end
 		if cyan ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_cyan_"..cyan..".png")
 			huds = huds+1
 		end
-		
-		if yellow ~= 0 and huds == 7 then
-            player:hud_change(hud_8[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-        elseif yellow ~= 0 and huds == 6 then
-            player:hud_change(hud_7[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-		elseif yellow ~= 0 and huds == 5  then
-            player:hud_change(hud_6[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-		elseif yellow ~= 0 and huds == 4 then
-            player:hud_change(hud_5[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-		elseif yellow ~= 0 and huds == 3 then
-            player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-		elseif yellow ~= 0 and huds == 2 then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-		elseif yellow ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-		elseif yellow ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_yellow_"..yellow..".png")
-        end
 		if yellow ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_yellow_"..yellow..".png")
 			huds = huds+1
 		end
-		
-		if red ~= 0 and huds == 8 then
-            player:hud_change(hud_9[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-        elseif red ~= 0 and huds == 7 then
-            player:hud_change(hud_8[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 6  then
-            player:hud_change(hud_7[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 5 then
-            player:hud_change(hud_6[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 4 then
-            player:hud_change(hud_5[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 3 then
-            player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 2 then
-            player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 1 then
-            player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-		elseif red ~= 0 and huds == 0 then
-            player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_red_"..red..".png")
-        end
 		if red ~= 0 then
+			player:hud_change(hud[""..(huds+1)], 'text', "labyrinthus_red_"..red..".png")
 			huds = huds+1
 		end
-		
-		
-		if huds < 9 then
-			player:hud_change(hud_9[player:get_player_name()], 'text', "labyrinthus_glass.png")
+		for i=(huds+1),9 do
+			player:hud_change(hud[""..i], 'text', "labyrinthus_glass.png")
 		end
-        if huds < 8 then
-			player:hud_change(hud_8[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 7 then
-			player:hud_change(hud_7[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 6 then
-			player:hud_change(hud_6[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 5 then
-			player:hud_change(hud_5[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 4 then
-			player:hud_change(hud_4[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 3 then
-			player:hud_change(hud_3[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 2 then
-			player:hud_change(hud_2[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		if huds < 1 then
-			player:hud_change(hud_1[player:get_player_name()], 'text', "labyrinthus_glass.png")
-		end
-		
 		local meta = player:get_meta()
         if ll == 0 and meta:get_string("celected") ~= "" then
 		elseif ll ~= 0 then
@@ -1770,10 +1125,13 @@ function update()
 					dd3 = dd3+1
 				end
 			end
-            if minetest.get_node({x=i, y=k, z=-77}).name == "default:apple" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:water_ball" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:red2" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:green2" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:blue2"  or minetest.get_node({x=i, y=k, z=-77}).name == "default:meselamp" or minetest.get_node({x=i, y=k, z=-77}).name == "default:diamondblock" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:pbj_pup" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:blue" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:yellow" then
+            if minetest.get_node({x=i, y=k, z=-77}).name == "default:apple" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:water_ball" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:red2" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:green2" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:blue2"  or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:meselamp2" or minetest.get_node({x=i, y=k, z=-77}).name == "default:diamondblock" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:pbj_pup" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:blue" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:yellow" then
                 d = 1
             end
-			if minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:green" or minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:green_dirt" or minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:water_wood_with_green" then
+			if minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:2red" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:2blue" then
+				d = 1
+            end
+			if minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:green" or minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:green_dirt" or minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:water_wood_with_green" or minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:ice_with_green" or minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:arrow_path_with_green" then
 				d = 1
             end
             if minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:ball1" then
@@ -2148,8 +1506,10 @@ minetest.register_on_joinplayer(function(player)
     end
 end)
 
+minetest.register_node("labyrinthus:wall",{
+	tiles = {"labyrinthus_wall.png"},
+})
 minetest.register_node("labyrinthus:yellow_block", {
-	description = "Yellow Block",
 	drawtype = "nodebox",
 	tiles = {"default_stone.png^labyrinthus_yellow_arrow.png","default_stone.png","default_stone.png","default_stone.png","default_stone.png","default_stone.png"},
 	paramtype = "light",
@@ -2160,760 +1520,489 @@ minetest.register_node("labyrinthus:yellow_block", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5},
 	},
 })
-	
-
 minetest.register_node("labyrinthus:pbj_pup", {
-	description = "PB&J Pup",
-	tiles = {
-		"labyrinthus_pup_sides.png",
-		"labyrinthus_pup_sides.png",
-		"labyrinthus_pup_sides.png",
-		"labyrinthus_pup_sides.png",
-		"labyrinthus_pup_sides.png",
-		"labyrinthus_pup_front.png"
-	},
-	groups = {cracky = 2},
+	tiles = {"labyrinthus_pup_sides.png","labyrinthus_pup_sides.png","labyrinthus_pup_sides.png","labyrinthus_pup_sides.png","labyrinthus_pup_sides.png","labyrinthus_pup_front.png"},
 })
-minetest.register_node("labyrinthus:wall",{
-	description = "Wall",
-	tiles = {"labyrinthus_wall.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-})
-
 minetest.register_node("labyrinthus:meselamp", {
-	description = "Mese Lamp",
-	drawtype = "glasslike",
 	tiles = {"labyrinthus_meselamp.png"},
+	drawtype = "glasslike",
 	paramtype = "light",
 	sunlight_propagates = true,
 	is_ground_content = false,
-	groups = {cracky = 3, oddly_breakable_by_hand = 3},
 	light_source = 15,
 })
-
 minetest.register_node("labyrinthus:glass",{
-	description = "Glass",
+	tiles = {"labyrinthus_glass.png"},
 	drawtype = "glasslike_framed_optional",
     alpha = 0,
-	tiles = {"labyrinthus_glass.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	use_texture_alpha = true,
 	is_ground_content = true,
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:nyancat2",{
-	description = "Nyancat 2",
-	tiles = {"nyancat_side.png", "nyancat_side.png", "nyancat_side.png",
-		"nyancat_side.png", "nyancat_back.png", "labyrinthus_nyancat2_front.png"},
+	tiles = {"nyancat_side.png", "nyancat_side.png", "nyancat_side.png","nyancat_side.png", "nyancat_back.png", "labyrinthus_nyancat2_front.png"},
     paramtype = "light",
 	light_source = 4,
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water",{
-	description = "Water",
 	tiles = {"default_water.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_stone",{
-	description = "Water Stone",
 	tiles = {"default_water.png^labyrinthus_water_stone.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ice1",{
-	description = "Ice 1",
 	tiles = {"default_ice.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ice2",{
-	description = "Ice 2",
 	tiles = {"labyrinthus_ice2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ice3",{
-	description = "Ice 3",
 	tiles = {"labyrinthus_ice3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_wood",{
-	description = "Water with wood",
 	tiles = {"default_water.png^labyrinthus_water_wood.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:rainbow",{
-	description = "Rainbow",
 	tiles = {"labyrinthus_rainbow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:rainbow2",{
-	description = "Rainbow",
 	tiles = {"labyrinthus_rainbow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:rainbow3",{
-	description = "Rainbow",
 	tiles = {"labyrinthus_rainbow3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button1",{
-	description = "Button 1",
 	tiles = {"default_sand.png^labyrinthus_button.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button2",{
-	description = "Button 2",
 	tiles = {"labyrinthus_button_2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button3",{
-	description = "Button 3",
 	tiles = {"labyrinthus_button_3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:red1",{
-	description = "Red 1",
 	tiles = {"labyrinthus_red1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:red2", {
-	description = "Red 2",
+	tiles = {"labyrinthus_red2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_ball.obj",
-	tiles = {"labyrinthus_red2.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
 })
 minetest.register_node("labyrinthus:blue1",{
-	description = "Blue 1",
 	tiles = {"labyrinthus_blue1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:blue2", {
-	description = "Blue 2",
+	tiles = {"labyrinthus_blue2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_ball.obj",
-	tiles = {"labyrinthus_blue2.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
 })
 minetest.register_node("labyrinthus:green1",{
-	description = "Green 1",
 	tiles = {"labyrinthus_green1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:green2", {
-	description = "Green 2",
+	tiles = {"labyrinthus_green2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_ball.obj",
-	tiles = {"labyrinthus_green2.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
 })
 minetest.register_node("labyrinthus:water_ball", {
-	description = "Water Ball",
+	tiles = {"default_water.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_ball.obj",
-	tiles = {"default_water.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
 })
 minetest.register_node("labyrinthus:red_pyramid", {
-	description = "Red Pyramid",
+	tiles = {"labyrinthus_red2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_pyramid.obj",
-	tiles = {"labyrinthus_red2.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
 })
 minetest.register_node("labyrinthus:red_cross",{
-	description = "Red cross",
 	tiles = {"default_sand.png^labyrinthus_red_cross.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:green_pyramid", {
-	description = "Green Pyramid",
+	tiles = {"labyrinthus_green2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_pyramid.obj",
-	tiles = {"labyrinthus_green2.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
 })
 minetest.register_node("labyrinthus:green_cross",{
-	description = "Green cross",
 	tiles = {"default_sand.png^labyrinthus_green_cross.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:blue_pyramid", {
-	description = "Blue Pyramid",
+	tiles = {"labyrinthus_blue2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_pyramid.obj",
-	tiles = {"labyrinthus_blue2.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=3, oddly_breakable_by_hand=2},
+})
+
+minetest.register_node("labyrinthus:meselamp2", {
+	tiles = {"default_meselamp.png"},
 })
 minetest.register_node("labyrinthus:blue_cross",{
-	description = "Blue cross",
 	tiles = {"default_sand.png^labyrinthus_blue_cross.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:blue_col",{
-	description = "Blue col",
 	tiles = {"default_sand.png^labyrinthus_blue_col.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:red_col",{
-	description = "Red col",
 	tiles = {"default_sand.png^labyrinthus_red_col.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:green_col",{
-	description = "Green col",
 	tiles = {"default_sand.png^labyrinthus_green_col.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:key1",{
-	description = "Key 1",
 	tiles = {"default_stone.png^labyrinthus_key2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:key2",{
-	description = "Key 2",
 	tiles = {"default_sand.png^labyrinthus_key.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+})
+minetest.register_node("labyrinthus:key3",{
+	tiles = {"default_stone.png^labyrinthus_key3.png"},
 })
 minetest.register_node("labyrinthus:tp",{
-	description = "Tp",
 	tiles = {"default_sand.png^labyrinthus_tp.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:tp2",{
-	description = "Tp 2",
 	tiles = {"default_sand.png^labyrinthus_tp2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:tp3",{
-	description = "Tp 3",
 	tiles = {"default_sand.png^labyrinthus_tp3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:purple",{
-	description = "Purple",
 	tiles = {"default_sand.png^labyrinthus_purple.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:white",{
-	description = "White",
 	tiles = {"default_sand.png^labyrinthus_white.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ice_with_white",{
-	description = "Ice with White",
 	tiles = {"labyrinthus_ice3.png^labyrinthus_white.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:stone_for_white",{
-	description = "Stone for white",
 	tiles = {"default_stone.png^labyrinthus_stone_for_white.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:stone_with_no_white1",{
-	description = "Stone with white",
 	tiles = {"default_mese_block.png^labyrinthus_stone_with_no_white.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:stone_with_no_white2",{
-	description = "Stone with white",
 	tiles = {"default_stone.png^labyrinthus_stone_with_no_white.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:stone_with_white",{
-	description = "Stone with white",
 	tiles = {"default_stone.png^labyrinthus_stone_with_white.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:stone_with_white2",{
-	description = "Stone with white",
 	tiles = {"default_stone.png^labyrinthus_stone_with_white2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:cyan",{
-	description = "Cyan",
 	tiles = {"default_sand.png^labyrinthus_cyan.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:yellow2",{
-	description = "Yellow",
 	tiles = {"default_sand.png^labyrinthus_yellow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ice_with_yellow",{
-	description = "Ice with Yellow",
 	tiles = {"labyrinthus_ice3.png^labyrinthus_yellow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:dirt_with_yellow_circle",{
-	description = "Dirt with yellow circle",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_yellow_circle.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:dirt_with_red_circle",{
-	description = "Dirt with red circle",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_red_circle.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:yellow_red",{
-	description = "Red with Yellow",
 	tiles = {"default_stone.png^labyrinthus_yellow_red.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:red_with_no_yellow",{
-	description = "Red with no Yellow",
 	tiles = {"default_stone.png^labyrinthus_red_with_no_yellow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:red3",{
-	description = "Red 3",
 	tiles = {"default_sand.png^labyrinthus_red3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_wood_with_red",{
-	description = "Water with wood and red",
 	tiles = {"default_water.png^labyrinthus_water_wood_with_red.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:cyan_dirt",{
-	description = "Cyan",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_cyan.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:yellow_dirt",{
-	description = "Yellow",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_yellow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_eye1_with_yellow",{
-	description = "Water eye 1 with yellow",
 	tiles = {"default_water.png^labyrinthus_yellow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_eye2_with_yellow",{
-	description = "Water eye 2 with yellow",
 	tiles = {"default_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_eye1_with_cyan",{
-	description = "Water eye 1 with cyan",
 	tiles = {"default_water.png^labyrinthus_cyan.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_eye2_with_cyan",{
-	description = "Water eye 2 with cyan",
 	tiles = {"default_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:bow",{
-	description = "Bow",
 	tiles = {"default_sand.png^labyrinthus_bow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:bow_right",{
-	description = "Bow Right",
 	tiles = {"default_mese_block.png^labyrinthus_bow_right.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:bow_left",{
-	description = "Bow Left",
 	tiles = {"default_mese_block.png^labyrinthus_bow_left.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:bow_down",{
-	description = "Bow Down",
 	tiles = {"default_mese_block.png^labyrinthus_bow_down.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:bow_up",{
-	description = "Bow Up",
 	tiles = {"default_mese_block.png^labyrinthus_bow_up.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:green",{
-	description = "Green",
 	tiles = {"default_sand.png^labyrinthus_green.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:green_dirt",{
-	description = "Green",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_green.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_wood_with_green",{
-	description = "Water with wood and green",
 	tiles = {"default_water.png^labyrinthus_water_wood_with_green.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ice_with_green",{
-	description = "Ice with Green",
 	tiles = {"labyrinthus_ice3.png^labyrinthus_green.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:sand_for_green",{
-	description = "Sand for Green",
 	tiles = {"default_sand.png^labyrinthus_stone_for_green.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:sand_for_green_dirt",{
-	description = "Sand for Green on Dirt",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_stone_for_green.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:wood_for_yellow",{
-	description = "Wood for Yellow",
 	tiles = {"default_wood.png^labyrinthus_stone_for_yellow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:purple_dirt",{
-	description = "Purple",
 	tiles = {"labyrinthus_dirt.png^labyrinthus_purple.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:empty_gate",{
-	description = "Empty Gate",
 	tiles = {"default_sand.png^labyrinthus_empty_gate.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:empty_gate_purple",{
-	description = "Empty Gate with Purple",
 	tiles = {"default_sand.png^labyrinthus_gate_with_purple.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:gate",{
-	description = "Gate",
 	tiles = {"default_sand.png^labyrinthus_gate.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:transport_stone",{
-	description = "Transport Stone",
 	tiles = {"default_mese_block.png^labyrinthus_transport_stone.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:gate_arrows",{
-	description = "Gate Arrows",
 	tiles = {"default_sand.png^labyrinthus_gate_arrows.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:transport_stone_gate_arrows",{
-	description = "Transport Stone",
 	tiles = {"default_mese_block.png^labyrinthus_gate_arrows.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ball1",{
-	description = "Ball 1",
 	tiles = {"default_sand.png^labyrinthus_ball.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ball3",{
-	description = "Ball 3",
 	tiles = {"default_sand.png^labyrinthus_ball2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:boom",{
-	description = "Boom",
 	tiles = {"default_sand.png^labyrinthus_boom.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:ball2",{
-	description = "Ball 2",
+	tiles = {"labyrinthus_ball.png"},
 	drawtype = "glasslike_framed_optional",
     alpha = 0,
-	tiles = {"labyrinthus_ball.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
 	use_texture_alpha = true,
 	is_ground_content = true,
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:1",{
-	description = "1",
 	tiles = {"default_mese_block.png^labyrinthus_1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:2",{
-	description = "2",
 	tiles = {"default_mese_block.png^labyrinthus_2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:3",{
-	description = "3",
 	tiles = {"default_mese_block.png^labyrinthus_3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:4",{
-	description = "4",
 	tiles = {"default_mese_block.png^labyrinthus_4.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:red",{
-	description = "Red",
 	tiles = {"default_mese_block.png^labyrinthus_red.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:blue",{
-	description = "Blue",
 	tiles = {"default_mese_block.png^labyrinthus_blue.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:yellow",{
-	description = "Yellow",
 	tiles = {"default_mese_block.png^labyrinthus_yellow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+})
+minetest.register_node("labyrinthus:2red",{
+	tiles = {"default_mese_block.png^labyrinthus_2red.png"},
+})
+minetest.register_node("labyrinthus:2blue",{
+	tiles = {"default_mese_block.png^labyrinthus_2blue.png"},
+})
+minetest.register_node("labyrinthus:2yellow",{
+	tiles = {"default_mese_block.png^labyrinthus_2yellow.png"},
 })
 minetest.register_node("labyrinthus:red_sand",{
-	description = "Red Sand",
 	tiles = {"default_sand.png^labyrinthus_red.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:0",{
-	description = "0",
 	tiles = {"default_mese_block.png^labyrinthus_0.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:00",{
-	description = "00",
 	tiles = {"default_sand.png^labyrinthus_0.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:eye2",{
-	description = "Eye 2",
 	tiles = {"default_mese_block.png^labyrinthus_eye.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:eye1",{
-	description = "Eye 1",
 	tiles = {"default_sand.png^labyrinthus_eye.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button_eye",{
-	description = "Button Eye",
 	tiles = {"default_sand.png^labyrinthus_button_eye.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:box",{
-	description = "Box",
 	tiles = {"default_sand.png^labyrinthus_box.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:desert",{
-	description = "Desert",
 	tiles = {"default_desert_sand.png"},
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:dirt",{
-	description = "Dirt",
 	tiles = {"labyrinthus_dirt.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:leaves", {
-	description = "Leaves",
-	drawtype = "allfaces_optional",
 	tiles = {"labyrinthus_leaves.png"},
+	drawtype = "allfaces_optional",
 	paramtype = "light",
 	is_ground_content = false,
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button11",{
-	description = "Block-Button 1",
 	tiles = {"default_sand.png^labyrinthus_button1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button12",{
-	description = "Block-Button 2",
 	tiles = {"default_sand.png^labyrinthus_button2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:button13",{
-	description = "Block-Button 3",
 	tiles = {"default_stone.png^labyrinthus_button2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:fire",{
-	description = "Fire",
 	tiles = {"default_sand.png^fire_basic_flame.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow",{
-	description = "Arrow",
 	tiles = {"default_sand.png^labyrinthus_arrow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow2",{
-	description = "Arrow 2",
 	tiles = {"default_sand.png^labyrinthus_arrow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:round1",{
-	description = "Round 1",
 	tiles = {"default_sand.png^labyrinthus_round1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:round2",{
-	description = "Round 2",
 	tiles = {"default_sand.png^labyrinthus_round2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:round3",{
-	description = "Round 3",
 	tiles = {"default_sand.png^labyrinthus_round3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:round4",{
-	description = "Round 4",
 	tiles = {"default_sand.png^labyrinthus_round4.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:nyan1",{
-	description = "Part 1",
 	tiles = {"labyrinthus_part1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:nyan2",{
-	description = "Part 2",
 	tiles = {"labyrinthus_part2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:nyan3",{
-	description = "Part 3",
 	tiles = {"labyrinthus_part3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:nyan4",{
-	description = "Part 4",
 	tiles = {"labyrinthus_part4.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow3",{
-	description = "Arrow 3",
 	tiles = {"default_mese_block.png^labyrinthus_arrow2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow4",{
-	description = "Arrow 4",
 	tiles = {"default_mese_block.png^labyrinthus_arrow4.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow4_2",{
-	description = "Arrow 4 (2)",
 	tiles = {"default_sand.png^labyrinthus_arrow4_2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow5_yellow",{
-	description = "Arrow 5 yellow",
 	tiles = {"default_mese_block.png^labyrinthus_arrow5_yellow.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow5_red",{
-	description = "Arrow 5 red",
 	tiles = {"default_mese_block.png^labyrinthus_arrow5_red.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:sun",{
-	description = "Sun",
 	tiles = {"default_sand.png^labyrinthus_sun.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:moon",{
-	description = "Moon",
 	tiles = {"default_sand.png^labyrinthus_moon.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
+
 for i=0,30 do
     minetest.register_node("labyrinthus:time"..i,{
-	    description = "Time "..i,
 	    tiles = {"default_sand.png^labyrinthus_time"..i..".png"},
-        groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     })
 end
 
 minetest.register_node("labyrinthus:remember1_off",{
-	description = "Remember 1 (off)",
 	tiles = {"default_mese_block.png^labyrinthus_remember.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember2_off",{
-	description = "Remember 2 (off)",
 	tiles = {"default_mese_block.png^labyrinthus_remember.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember3_off",{
-	description = "Remember 3 (off)",
 	tiles = {"default_mese_block.png^labyrinthus_remember.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember4_off",{
-	description = "Remember 4 (off)",
 	tiles = {"default_mese_block.png^labyrinthus_remember.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember5_off",{
-	description = "Remember 5 (off)",
 	tiles = {"default_mese_block.png^labyrinthus_remember.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember1_on",{
-	description = "Remember 1 (on)",
 	tiles = {"default_stone.png^labyrinthus_remember1.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember2_on",{
-	description = "Remember 2 (on)",
 	tiles = {"default_stone.png^labyrinthus_remember2.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember3_on",{
-	description = "Remember 3 (on)",
 	tiles = {"default_stone.png^labyrinthus_remember3.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember4_on",{
-	description = "Remember 4 (on)",
 	tiles = {"default_stone.png^labyrinthus_remember4.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember5_on",{
-	description = "Remember 5 (on)",
 	tiles = {"default_stone.png^labyrinthus_remember5.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:remember5_temp",{
-	description = "Remember 5 (temp)",
 	tiles = {"default_stone.png^labyrinthus_remember5.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_eye1",{
-	description = "Water eye 1",
 	tiles = {"default_water.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:water_eye2",{
-	description = "Water eye 2",
 	tiles = {"default_water.png^labyrinthus_water_eye.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 minetest.register_node("labyrinthus:arrow_path",{
-	description = "Arrow path",
 	tiles = {"default_sand.png^labyrinthus_arrow_path.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+})
+minetest.register_node("labyrinthus:arrow_path_with_green",{
+	tiles = {"default_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png"},
 })
 minetest.register_node("labyrinthus:arrow_path_button",{
-	description = "Arrow path with button",
 	tiles = {"default_sand.png^labyrinthus_arrow_path_button.png"},
-    groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
 })
 function one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,node,set_node,donetp2,mode)
 	local player_inv = player:get_inventory()
@@ -3177,8 +2266,12 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
     if minetest.get_node(e1m2).name == "labyrinthus:water" then
 	elseif minetest.get_node(e1m2).name == "labyrinthus:arrow4_2" then
 	elseif minetest.get_node(e1m2).name == "labyrinthus:water_stone" then
-	elseif minetest.get_node(e1m2).name == "labyrinthus:sand_for_green" or minetest.get_node(e1m2).name == "labyrinthus:sand_for_green_dirt" then
+	elseif minetest.get_node(e1m2).name == "labyrinthus:sand_for_green" then
 		if dir1 == "up" then
+			player_inv:set_stack("g", 1, nil)
+		end
+	elseif minetest.get_node(e1m2).name == "labyrinthus:sand_for_green_dirt" then
+		if dir1 == "up" and Dirt_Move2(e1m1,overdirt) then
 			player_inv:set_stack("g", 1, nil)
 		end
 	elseif minetest.get_node(e1m2).name == "labyrinthus:wood_for_yellow" then
@@ -3296,6 +2389,10 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 		local green = player_inv:get_stack("g", 1):get_count()
         player_inv:set_stack("g", 1, "default:dirt "..(green+1))
         one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"default:sand",true,donetp2,1)
+	elseif minetest.get_node(e1m2).name == "labyrinthus:arrow_path_with_green" then
+		local green = player_inv:get_stack("g", 1):get_count()
+        player_inv:set_stack("g", 1, "default:dirt "..(green+1))
+        one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:arrow_path",true,donetp2,1)
 	elseif minetest.get_node(e1m2).name == "labyrinthus:water_wood_with_green" then
 		local green = player_inv:get_stack("g", 1):get_count()
         player_inv:set_stack("g", 1, "default:dirt "..(green+1))
@@ -3506,7 +2603,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 		anotherstep = 1
 	elseif minetest.get_node(e2m2).name == "labyrinthus:stone_for_white" then
 		local white = player_inv:get_stack("w", 1):get_count()
-		if white > 0 then
+		if white > 0 and not Dirt_Move2(e1m1,overdirt) then
             player_inv:set_stack("w", 1, "default:dirt "..(white-1))
 			minetest.set_node(e2m2, {name="labyrinthus:stone_with_white"})
 			local sw = 0
@@ -3548,13 +2645,13 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
             end  
 			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
-    elseif minetest.get_node(e2m2).name == "default:meselamp" then
+    elseif minetest.get_node(e2m2).name == "labyrinthus:meselamp2" then
         if Is_Node(nodex,nodey,nil) then
-            minetest.set_node(e2m3, {name="default:meselamp"})
+            minetest.set_node(e2m3, {name="labyrinthus:meselamp2"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:red_pyramid" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then 
 			local red_pyramid = {}
 			for j=10,29 do
 				for l=9,20 do
@@ -3580,7 +2677,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:green_pyramid" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then 
 			local green_pyramid = {}
 			for j=10,29 do
 				for l=9,20 do
@@ -3606,7 +2703,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:blue_pyramid" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
 			local blue_pyramid = {}
 			for j=10,29 do
 				for l=9,20 do
@@ -3632,7 +2729,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:transport_stone" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
 			if minetest.get_node(e1m3).name == "labyrinthus:gate_arrows" then
                 minetest.set_node(e2m3, {name="labyrinthus:transport_stone_gate_arrows"})
 			else
@@ -3651,102 +2748,42 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:arrow4" then
 		minetest.set_node(e2m2, {name="air"})
+		local d = 0
+		local mode = 0
+		local dir_x = 0
+		local dir_y = 0
+		
 		if dir1 == "up" then
-			local bow_x = x+10
-			local bow_y = y+10
-			local d = 0
-			local mode = 0
-			if minetest.get_node({x=x+10, y=y+9, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=x+10, y=y+9, z=-76}).name == "labyrinthus:arrow_path_button" then
-				mode = 1
-			end
-			while ((Is_Node(bow_x,bow_y,"arrow4") and  mode == 0) or (Is_Node(bow_x,bow_y,"arrow5") and mode == 1 )) and d == 0 do
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path_button" then
-					mode = 1
-				else
-					mode = 0
-				end
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow4_2" then
-					d = 1
-					minetest.set_node({x=bow_x, y=bow_y, z=-76}, {name="default:sand"})
-				end
-				bow_y = bow_y+1
-			end
-			bow_y = bow_y-1
-			if d == 0 then
-				minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow4"})
-			end
+			dir_y = 1
 		elseif dir1 == "down" then
-			local bow_x = x+10
-			local bow_y = y+6
-			local d = 0
-			local mode = 0
-			if minetest.get_node({x=x+10, y=y+7, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=x+10, y=y+7, z=-76}).name == "labyrinthus:arrow_path_button" then
-				mode = 1
-			end
-			while ((Is_Node(bow_x,bow_y,"arrow4") and  mode == 0) or (Is_Node(bow_x,bow_y,"arrow5") and mode == 1 )) and d == 0 do
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path_button" then
-					mode = 1
-				else
-					mode = 0
-				end
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow4_2" then
-					d = 1
-					minetest.set_node({x=bow_x, y=bow_y, z=-76}, {name="default:sand"})
-				end
-				bow_y = bow_y-1
-			end
-			bow_y = bow_y+1
-			if d == 0 then
-				minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow4"})
-			end
+			dir_y = -1
 		elseif dir1 == "right" then
-			local bow_x = x+12
-			local bow_y = y+8
-			local d = 0
-			local mode = 0
-			if minetest.get_node({x=x+11, y=y+8, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=x+11, y=y+8, z=-76}).name == "labyrinthus:arrow_path_button" then
-				mode = 1
-			end
-			while ((Is_Node(bow_x,bow_y,"arrow4") and  mode == 0) or (Is_Node(bow_x,bow_y,"arrow5") and mode == 1 )) and d == 0 do
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path_button" then
-					mode = 1
-				else
-					mode = 0
-				end
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow4_2" then
-					d = 1
-					minetest.set_node({x=bow_x, y=bow_y, z=-76}, {name="default:sand"})
-				end
-				bow_x = bow_x+1
-			end
-			bow_x = bow_x-1
-			if d == 0 then
-				minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow4"})
-			end
+			dir_x = 1
 		elseif dir1 == "left" then
-			local bow_x = x+8
-			local bow_y = y+8
-			local d = 0
-			local mode = 0
-			if minetest.get_node({x=x+9, y=y+8, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=x+9, y=y+8, z=-76}).name == "labyrinthus:arrow_path_button" then
+			dir_x = -1
+		end
+		local bow_x = x+10+2*dir_x
+		local bow_y = y+8+2*dir_y
+		if minetest.get_node({x=x+10+dir_x, y=y+8+dir_y, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=x+10+dir_x, y=y+8+dir_y, z=-76}).name == "labyrinthus:arrow_path_button" then
+			mode = 1
+		end
+		while ((Is_Node(bow_x,bow_y,"arrow4") and  mode == 0) or (Is_Node(bow_x,bow_y,"arrow5") and mode == 1 )) and d == 0 do
+			if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path_button" then
 				mode = 1
+			else
+				mode = 0
 			end
-			while ((Is_Node(bow_x,bow_y,"arrow4") and  mode == 0) or (Is_Node(bow_x,bow_y,"arrow5") and mode == 1 )) and d == 0 do
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path" or minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow_path_button" then
-					mode = 1
-				else
-					mode = 0
-				end
-				if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow4_2" then
-					d = 1
-					minetest.set_node({x=bow_x, y=bow_y, z=-76}, {name="default:sand"})
-				end
-				bow_x = bow_x-1
+			if minetest.get_node({x=bow_x, y=bow_y, z=-76}).name == "labyrinthus:arrow4_2" then
+				d = 1
+				minetest.set_node({x=bow_x, y=bow_y, z=-76}, {name="default:sand"})
 			end
-			bow_x = bow_x+1
-			if d == 0 then
-				minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow4"})
-			end
+			bow_y = bow_y+dir_y
+			bow_x = bow_x+dir_x
+		end
+		bow_y = bow_y-dir_y
+		bow_x = bow_x-dir_x
+		if d == 0 then
+			minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow4"})
 		end
 		if Is_Node(e2m2.x,e2m2.y,nil) then
 			minetest.set_node(e2m1, {name="air"})
@@ -3784,7 +2821,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			end
 		end
 		while d == 0 do
-			if (Dirt_Move2({x=bow_x, y=bow_y, z=-76}, false) and minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "air" and mode == "dirt") or (Is_Node(bow_x,bow_y,nil) and mode == "not_dirt") then
+			if (Dirt_Move2({x=bow_x, y=bow_y, z=-76}, false) and minetest.get_node({x=bow_x, y=bow_y, z=-76}).name ~= "labyrinthus:dirt_with_red_circle" and minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "air" and mode == "dirt") or (Is_Node(bow_x,bow_y,nil) and mode == "not_dirt") then
 				minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow5_yellow"})
 			else
 				d = 1
@@ -3820,7 +2857,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			end
 		end
 		while d == 0 do
-			if (Dirt_Move2({x=bow_x, y=bow_y, z=-76}, false) and minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "air" and mode == "dirt") or (Is_Node(bow_x,bow_y,nil) and mode == "not_dirt") then
+			if (Dirt_Move2({x=bow_x, y=bow_y, z=-76}, false) and minetest.get_node({x=bow_x, y=bow_y, z=-76}).name ~= "labyrinthus:dirt_with_yellow_circle" and minetest.get_node({x=bow_x, y=bow_y, z=-77}).name == "air" and mode == "dirt") or (Is_Node(bow_x,bow_y,nil) and mode == "not_dirt") then
 				minetest.set_node({x=bow_x, y=bow_y, z=-77}, {name="labyrinthus:arrow5_red"})
 			else
 				d = 1
@@ -3997,6 +3034,21 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
             minetest.set_node(e2m3, {name="labyrinthus:red"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
+	elseif minetest.get_node(e2m2).name == "labyrinthus:2red" then
+        if Is_Node(nodex,nodey,nil) then
+            minetest.set_node(e2m3, {name="labyrinthus:2blue"})
+            one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
+        end
+    elseif minetest.get_node(e2m2).name == "labyrinthus:2blue" then
+        if Is_Node(nodex,nodey,nil) then
+            minetest.set_node(e2m3, {name="labyrinthus:2yellow"})
+            one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
+        end
+    elseif minetest.get_node(e2m2).name == "labyrinthus:2yellow" then
+        if Is_Node(nodex,nodey,nil) then
+            minetest.set_node(e2m3, {name="labyrinthus:2red"})
+            one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
+        end
     elseif minetest.get_node(e2m2).name == "labyrinthus:red2" then
         if Is_Node(nodex,nodey,"red") then
             if minetest.get_node(e1m3).name == "labyrinthus:red1" then
@@ -4051,13 +3103,17 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
     elseif minetest.get_node(e2m2).name == "labyrinthus:key1" then
         if key > 0 then
             player_inv:set_stack("k", 1, "default:dirt "..(key-1))
-            minetest.set_node(e2m1, {name="air"})
-			if donetp2 == 0 then
-				player_inv:set_stack(ko, 1, "default:dirt "..koad)
-				Other(player, pbjnr)
-				minetest.set_node(e2m2, {name="nyancat:nyancat"})
-			end
+			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
+	elseif minetest.get_node(e2m2).name == "labyrinthus:key3" then
+        if key > 0 then
+            player_inv:set_stack("k", 1, "default:dirt "..(key-1))
+			minetest.set_node(e2m2, {name="air"})
+        end
+		local a2 = player_inv:get_stack("a2", 1):get_count()
+		if a2 == 1 then
+			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
+		end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:yellow_red" then
 		if dir1 == "up" then
 			local red = player_inv:get_stack("re", 1):get_count()
@@ -4104,7 +3160,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
     local x = player_inv:get_stack("x", 1):get_count()
     local y = player_inv:get_stack("y", 1):get_count()
     local bones = player_inv:get_stack("b", 1):get_count()
-	if minetest.get_node(e1m2).name == "labyrinthus:empty_gate" and minetest.get_node(e2m2).name == "nyancat:nyancat" then
+	if minetest.get_node(e1m2).name == "labyrinthus:empty_gate" and (minetest.get_node(e2m2).name == "nyancat:nyancat" or minetest.get_node(e2m2).name == "nyancat:nyancat2") then
 		local purple = player_inv:get_stack("p", 1):get_count()
 		if purple > 0 then
             player_inv:set_stack("p", 1, "default:dirt "..(purple-1))
@@ -4332,7 +3388,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			end
 		end
     end
-	if anotherstep == 1 then
+	if anotherstep == 1 and minetest.get_node(e2m3).name == "air" then
 		if dir1 == "right" then
 			Right2(pos, node, player, true)
 		elseif dir1 == "left" then
@@ -4640,22 +3696,35 @@ function Shot(pos, node, player, pointed_thing)
     local player_inv = player:get_inventory()
     Load(player)
     local r = player_inv:get_stack("r", 1):get_count()
+	
     local x = player_inv:get_stack("x", 1):get_count()
     local y = player_inv:get_stack("y", 1):get_count()
     local z = player_inv:get_stack("z", 1):get_count()
     local s = player_inv:get_stack("s", 1):get_count()
 	local ss = player_inv:get_stack("ss", 1):get_count()
+	local a = player_inv:get_stack("a", 1):get_count()
+	if a == 1 then
+		if r == 1 then
+			r = 3
+		elseif r == 2 then
+			r = 4
+		elseif r == 3 then
+			r = 1
+		elseif r == 4 then
+			r = 2
+		end
+	end
     local d = 0
     if s > 0 or ss > 0 then
         if r == 1 then
             while x < 18 and d == 0 do
                 if minetest.get_node({x=x+11, y=y+8, z=-77}).name == "default:apple" then
                     if minetest.get_node({x=x+11, y=y+8, z=-76}).name ~= "labyrinthus:key2" then
-                        x = x+2
+                        x = x+1
                     else
                         d = 1
                     end
-                elseif minetest.get_node({x=x+11, y=y+8, z=-77}).name == "air" or minetest.get_node({x=x+11, y=y+8, z=-77}).name == "default:meselamp" then
+                elseif minetest.get_node({x=x+11, y=y+8, z=-77}).name == "air" or minetest.get_node({x=x+11, y=y+8, z=-77}).name == "labyrinthus:meselamp2" then
                     if minetest.get_node({x=x+11, y=y+8, z=-76}).name ~= "labyrinthus:key2" then
                         minetest.set_node({x=x+11, y=y+8, z=-78+z}, {name="labyrinthus:ball2"})
                         x = x+1
@@ -4670,11 +3739,11 @@ function Shot(pos, node, player, pointed_thing)
             while y > 1 and d == 0 do
                 if minetest.get_node({x=x+10, y=y+7, z=-77}).name == "default:apple" then
                     if minetest.get_node({x=x+10, y=y+7, z=-76}).name ~= "labyrinthus:key2" then
-                        y = y-2
+                        y = y-1
                     else
                         d = 1
                     end
-                elseif minetest.get_node({x=x+10, y=y+7, z=-77}).name == "air" or minetest.get_node({x=x+10, y=y+7, z=-77}).name == "default:meselamp" then
+                elseif minetest.get_node({x=x+10, y=y+7, z=-77}).name == "air" or minetest.get_node({x=x+10, y=y+7, z=-77}).name == "labyrinthus:meselamp2" then
                     if minetest.get_node({x=x+10, y=y+7, z=-76}).name ~= "labyrinthus:key2" then
                         minetest.set_node({x=x+10, y=y+7, z=-78+z}, {name="labyrinthus:ball2"})
                         y = y-1
@@ -4689,11 +3758,11 @@ function Shot(pos, node, player, pointed_thing)
             while x > 1 and d == 0 do
                 if minetest.get_node({x=x+9, y=y+8, z=-77}).name == "default:apple" then
                     if minetest.get_node({x=x+9, y=y+8, z=-76}).name ~= "labyrinthus:key2" then
-                        x = x-2
+                        x = x-1
                     else
                         d = 1
                     end
-                elseif minetest.get_node({x=x+9, y=y+8, z=-77}).name == "air" or minetest.get_node({x=x+9, y=y+8, z=-77}).name == "default:meselamp" then
+                elseif minetest.get_node({x=x+9, y=y+8, z=-77}).name == "air" or minetest.get_node({x=x+9, y=y+8, z=-77}).name == "labyrinthus:meselamp2" then
                     if minetest.get_node({x=x+9, y=y+8, z=-76}).name ~= "labyrinthus:key2" then
                         minetest.set_node({x=x+9, y=y+8, z=-78+z}, {name="labyrinthus:ball2"})
                         x = x-1
@@ -4708,11 +3777,11 @@ function Shot(pos, node, player, pointed_thing)
             while y < 10 and d == 0 do
                 if minetest.get_node({x=x+10, y=y+9, z=-77}).name == "default:apple" then
                     if minetest.get_node({x=x+10, y=y+9, z=-76}).name ~= "labyrinthus:key2" then
-                        y = y+2
+                        y = y+1
                     else
                         d = 1
                     end
-                elseif minetest.get_node({x=x+10, y=y+9, z=-77}).name == "air" or minetest.get_node({x=x+10, y=y+9, z=-77}).name == "default:meselamp" then
+                elseif minetest.get_node({x=x+10, y=y+9, z=-77}).name == "air" or minetest.get_node({x=x+10, y=y+9, z=-77}).name == "labyrinthus:meselamp2" then
                     if minetest.get_node({x=x+10, y=y+9, z=-76}).name ~= "labyrinthus:key2" then
                         minetest.set_node({x=x+10, y=y+9, z=-78+z}, {name="labyrinthus:ball2"})
                         y = y+1
@@ -4896,6 +3965,7 @@ function Is_Node(x,y,block)
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:rainbow2" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:rainbow3" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:green" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:arrow_path_with_green" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:sand_for_green" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:sand_for_green_dirt" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:wood_for_yellow" and
@@ -4903,13 +3973,16 @@ function Is_Node(x,y,block)
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:cyan_dirt" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:yellow_dirt" and
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:green_dirt" and 
-	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:green_dirt" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_wood_with_green" and
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_wood_with_red" and 
-	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:white" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_stone" and 
-	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:dirt_with_yellow_circle" and 
-	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:dirt_with_red_circle" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:ice_with_green" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:ice_with_white" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:ice_with_yellow" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_eye1_with_yellow" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_eye2_with_yellow" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_eye1_with_cyan" and 
+	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_eye2_with_cyan" and 
 	minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:ball3" then
 		if block ~= "wood" and block ~= "bow" and minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:water" then
 			d = 1
@@ -4923,7 +3996,7 @@ function Is_Node(x,y,block)
 		if block ~= "blue" and minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:blue1" then
 			d = 1
 		end
-		if block ~= "dirt" and minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:dirt" then
+		if block ~= "dirt" and (minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:dirt" or minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:dirt_with_yellow_circle" or minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:dirt_with_red_circle") then
 			d = 1
 		end
 		if block ~= "arrow4" and minetest.get_node({x=x, y=y, z=-76}).name == "labyrinthus:arrow4_2" then
@@ -4974,6 +4047,7 @@ function Load(player)
     player_inv:set_size("time", 1)
     player_inv:set_size("f", 1)
 end
+
 function New(player,page,art,num)
     local player_inv = player:get_inventory()
     Load(player)
@@ -5086,307 +4160,24 @@ function New(player,page,art,num)
 		end
 		for j = 1, 12 do
 			for i = 1, string.len(ar1[j]) do
-				if string.sub(ar1[j], i, i) == "0" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="default:sand"})
-				elseif string.sub(ar1[j], i, i) == "1" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water"})
-				elseif string.sub(ar1[j], i, i) == "2" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:rainbow"})
-				elseif string.sub(ar1[j], i, i) == "3" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:red1"})
-				elseif string.sub(ar1[j], i, i) == "4" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:green1"})
-				elseif string.sub(ar1[j], i, i) == "5" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button1"})
-				elseif string.sub(ar1[j], i, i) == "6" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:blue1"})
-				elseif string.sub(ar1[j], i, i) == "7" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:green_col"})
-				elseif string.sub(ar1[j], i, i) == "8" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:red_col"})
-				elseif string.sub(ar1[j], i, i) == "9" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:blue_col"})
-				elseif string.sub(ar1[j], i, i) == "a" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:key2"})
-				elseif string.sub(ar1[j], i, i) == "b" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:tp"})
-				elseif string.sub(ar1[j], i, i) == "c" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ball1"})
-				elseif string.sub(ar1[j], i, i) == "d" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:boom"})
-				elseif string.sub(ar1[j], i, i) == "e" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:00"})
-				elseif string.sub(ar1[j], i, i) == "f" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:eye1"})
-				elseif string.sub(ar1[j], i, i) == "g" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:box"})
-				elseif string.sub(ar1[j], i, i) == "h" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="bones:bones"})
-				elseif string.sub(ar1[j], i, i) == "i" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button11"})
-				elseif string.sub(ar1[j], i, i) == "j" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:fire"})
-				elseif string.sub(ar1[j], i, i) == "k" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:arrow"})
-				elseif string.sub(ar1[j], i, i) == "l" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:round2"})
-				elseif string.sub(ar1[j], i, i) == "m" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:round3"})
-				elseif string.sub(ar1[j], i, i) == "n" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:arrow2"})
-				elseif string.sub(ar1[j], i, i) == "o" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:red_sand"})
-				elseif string.sub(ar1[j], i, i) == "p" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:moon"})
-				elseif string.sub(ar1[j], i, i) == "q" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:sun"})
-				elseif string.sub(ar1[j], i, i) == "r" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_wood"})
-				elseif string.sub(ar1[j], i, i) == "s" then
+				
+				if string.sub(ar1[j], i, i) == "s" then
 					if num == 1 then
 						minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:time30"})
 					else
 						minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:time"..rrr16})
 					end
-				elseif string.sub(ar1[j], i, i) == "t" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice1"})
-				elseif string.sub(ar1[j], i, i) == "u" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice2"})
-				elseif string.sub(ar1[j], i, i) == "v" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice3"})
-				elseif string.sub(ar1[j], i, i) == "w" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:round4"})
-				elseif string.sub(ar1[j], i, i) == "x" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:round1"})
-				elseif string.sub(ar1[j], i, i) == "y" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:dirt"})
-				elseif string.sub(ar1[j], i, i) == "z" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:rainbow2"})
-				elseif string.sub(ar1[j], i, i) == "A" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:purple"})
-				elseif string.sub(ar1[j], i, i) == "B" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:empty_gate"})
-				elseif string.sub(ar1[j], i, i) == "C" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:gate_arrows"})
-				elseif string.sub(ar1[j], i, i) == "D" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:red_cross"})
-				elseif string.sub(ar1[j], i, i) == "E" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:green_cross"})
-				elseif string.sub(ar1[j], i, i) == "F" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:blue_cross"})
-				elseif string.sub(ar1[j], i, i) == "G" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:purple_dirt"})
-				elseif string.sub(ar1[j], i, i) == "H" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:gate"})
-				elseif string.sub(ar1[j], i, i) == "I" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:green"})
-				elseif string.sub(ar1[j], i, i) == "J" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_wood_with_green"})
-				elseif string.sub(ar1[j], i, i) == "K" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:sand_for_green"})
-				elseif string.sub(ar1[j], i, i) == "L" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:cyan"})
-				elseif string.sub(ar1[j], i, i) == "M" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:bow"})
-				elseif string.sub(ar1[j], i, i) == "N" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:arrow4_2"})
-				elseif string.sub(ar1[j], i, i) == "O" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:green_dirt"})
-				elseif string.sub(ar1[j], i, i) == "P" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:cyan_dirt"})
-				elseif string.sub(ar1[j], i, i) == "Q" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:tp2"})
-				elseif string.sub(ar1[j], i, i) == "R" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:yellow2"})
-				elseif string.sub(ar1[j], i, i) == "S" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:yellow_dirt"})
-				elseif string.sub(ar1[j], i, i) == "T" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:wood_for_yellow"})
-				elseif string.sub(ar1[j], i, i) == "U" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_stone"})
-				elseif string.sub(ar1[j], i, i) == "V" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:sand_for_green_dirt"})
-				elseif string.sub(ar1[j], i, i) == "W" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:red3"})
-				elseif string.sub(ar1[j], i, i) == "X" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_wood_with_red"})
-				elseif string.sub(ar1[j], i, i) == "Y" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="default:wood"})
-				elseif string.sub(ar1[j], i, i) == "Z" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:white"})
-				elseif string.sub(ar1[j], i, i) == ":" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:tp3"})
-				elseif string.sub(ar1[j], i, i) == ";" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_green"})
-				elseif string.sub(ar1[j], i, i) == "<" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_white"})
-				elseif string.sub(ar1[j], i, i) == ">" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button_eye"})
-				elseif string.sub(ar1[j], i, i) == "|" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_eye1"})
-				elseif string.sub(ar1[j], i, i) == "." then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_eye1_with_yellow"})
-				elseif string.sub(ar1[j], i, i) == "," then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_eye1_with_cyan"})
-				elseif string.sub(ar1[j], i, i) == "-" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:arrow_path"})
-				elseif string.sub(ar1[j], i, i) == "_" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:arrow_path_button"})
-				elseif string.sub(ar1[j], i, i) == "#" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ball3"})
-				elseif string.sub(ar1[j], i, i) == "'" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:ice_with_yellow"})
-				elseif string.sub(ar1[j], i, i) == "*" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:dirt_with_yellow_circle"})
-				elseif string.sub(ar1[j], i, i) == "+" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:dirt_with_red_circle"})
-				elseif string.sub(ar1[j], i, i) == "!" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button12"})
-                elseif string.sub(ar1[j], i, i) == "$" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button2"})
-				elseif string.sub(ar1[j], i, i) == "%" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:empty_gate_purple"})
-				elseif string.sub(ar1[j], i, i) == "&" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:gate"})
-				elseif string.sub(ar1[j], i, i) == "/" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:button3"})
-				elseif string.sub(ar1[j], i, i) == "(" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_eye2"})
-				elseif string.sub(ar1[j], i, i) == ")" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_eye2_with_yellow"})
-				elseif string.sub(ar1[j], i, i) == "=" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:water_eye2_with_cyan"})
+				else
+					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name=get_item_list(node_list1,string.sub(ar1[j], i, i),1,2)})
 				end
 			end
 		end
 		for j = 1, 12 do
 			for i = 1, string.len(ar2[j]) do
-				if string.sub(ar2[j], i, i) == "1" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="default:junglewood"})
-				elseif string.sub(ar2[j], i, i) == "2" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="default:stone"})
-				elseif string.sub(ar2[j], i, i) == "3" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="default:meselamp"})
-				elseif string.sub(ar2[j], i, i) == "4" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:red2"})
-				elseif string.sub(ar2[j], i, i) == "5" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:green2"})
-				elseif string.sub(ar2[j], i, i) == "6" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:button2"})
-				elseif string.sub(ar2[j], i, i) == "7" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:blue2"})
-				elseif string.sub(ar2[j], i, i) == "8" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:key1"})
-				elseif string.sub(ar2[j], i, i) == "9" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="default:diamondblock"})
-				elseif string.sub(ar2[j], i, i) == "a" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:pbj_pup"})
-				elseif string.sub(ar2[j], i, i) == "b" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="default:cobble"})
-				elseif string.sub(ar2[j], i, i) == "c" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="tnt:tnt"})
-				elseif string.sub(ar2[j], i, i) == "d" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="default:apple"})
-				elseif string.sub(ar2[j], i, i) == "e" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:4"})
-				elseif string.sub(ar2[j], i, i) == "f" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:3"})
-				elseif string.sub(ar2[j], i, i) == "g" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:2"})
-				elseif string.sub(ar2[j], i, i) == "h" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:1"})
-				elseif string.sub(ar2[j], i, i) == "i" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:eye2"})
-				elseif string.sub(ar2[j], i, i) == "j" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:red"})
-				elseif string.sub(ar2[j], i, i) == "k" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:blue"})
-				elseif string.sub(ar2[j], i, i) == "l" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:yellow"})
-				elseif string.sub(ar2[j], i, i) == "m" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:glass"})
-				elseif string.sub(ar2[j], i, i) == "n" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:nyan1"})
-				elseif string.sub(ar2[j], i, i) == "o" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:nyan2"})
-				elseif string.sub(ar2[j], i, i) == "p" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:nyan3"})
-				elseif string.sub(ar2[j], i, i) == "q" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:nyan4"})
-				elseif string.sub(ar2[j], i, i) == "r" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:arrow3"})
-				elseif string.sub(ar2[j], i, i) == "s" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:leaves"})
-				elseif string.sub(ar2[j], i, i) == "t" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:water_ball"})
-				elseif string.sub(ar2[j], i, i) == "u" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:transport_stone"})
-				elseif string.sub(ar2[j], i, i) == "v" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:red_pyramid"})
-				elseif string.sub(ar2[j], i, i) == "w" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:green_pyramid"})
-				elseif string.sub(ar2[j], i, i) == "x" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:blue_pyramid"})
-				elseif string.sub(ar2[j], i, i) == "y" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:bow_right"})
-				elseif string.sub(ar2[j], i, i) == "z" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:bow_left"})
-				elseif string.sub(ar2[j], i, i) == "A" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:bow_down"})
-				elseif string.sub(ar2[j], i, i) == "B" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:bow_up"})
-				elseif string.sub(ar2[j], i, i) == "C" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:button3"})
-				elseif string.sub(ar2[j], i, i) == "D" then
+				if string.sub(ar2[j], i, i) == "D" then
 					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:yellow_block", param2 = 8})
-				elseif string.sub(ar2[j], i, i) == "E" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:yellow_red"})
-				elseif string.sub(ar2[j], i, i) == "F" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:stone_for_white"})
-				elseif string.sub(ar2[j], i, i) == "G" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:stone_with_no_white1"})
-				elseif string.sub(ar2[j], i, i) == "H" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember1_off"})
-				elseif string.sub(ar2[j], i, i) == "I" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember2_off"})
-				elseif string.sub(ar2[j], i, i) == "J" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember3_off"})
-				elseif string.sub(ar2[j], i, i) == "K" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember4_off"})
-				elseif string.sub(ar2[j], i, i) == "L" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember5_off"})
-				elseif string.sub(ar2[j], i, i) == "M" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:arrow4"})
-				elseif string.sub(ar2[j], i, i) == "N" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:arrow5_yellow"})
-				elseif string.sub(ar2[j], i, i) == "O" then
-					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:arrow5_red"})
-				elseif string.sub(ar2[j], i, i) == "!" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="nyancat:nyancat"})
-                elseif string.sub(ar2[j], i, i) == "$" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:button13"})
-				elseif string.sub(ar2[j], i, i) == "%" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:transport_stone_gate_arrows"})
-				elseif string.sub(ar2[j], i, i) == "&" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:red_with_no_yellow"})
-				elseif string.sub(ar2[j], i, i) == "/" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:stone_with_white"})
-				elseif string.sub(ar2[j], i, i) == "(" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:stone_with_white2"})
-				elseif string.sub(ar2[j], i, i) == ")" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:stone_with_no_white2"})
-				elseif string.sub(ar2[j], i, i) == "=" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember1_on"})
-				elseif string.sub(ar2[j], i, i) == "[" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember2_on"})
-				elseif string.sub(ar2[j], i, i) == "]" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember3_on"})
-				elseif string.sub(ar2[j], i, i) == "{" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember4_on"})
-				elseif string.sub(ar2[j], i, i) == "}" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember5_on"})
-				elseif string.sub(ar2[j], i, i) == "?" then
-                    minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name="labyrinthus:remember5_temp"})
+				else
+					minetest.set_node({x=i+9, y=(13-j)+8, z=-77}, {name=get_item_list(node_list2,string.sub(ar2[j], i, i),1,2)})
 				end
 			end
 		end
@@ -5726,18 +4517,28 @@ minetest.register_node("labyrinthus:new_w5",{
         local player_inv = player:get_inventory()
         local page = player_inv:get_stack("page5", 1):get_count()+1
         if page == 1 then
-            minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",110,25,0,false,"",true,"wdb",""))
+            minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",125,25,0,false,"",true,"wdb",""))
 		elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",110,25,25,true,"wda",true,"wdc",""))
+            minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",125,25,25,true,"wda",true,"wdc",""))
 		elseif page == 3 then
-            minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",110,25,50,true,"wdb",true,"wdd",""))
+            minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",125,25,50,true,"wdb",true,"wdd",""))
 		elseif page == 4 then
-            minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",110,25,75,true,"wdc",true,"wde",""))
+            minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",125,25,75,true,"wdc",true,"wde",""))
 		elseif page == 5 then
-            minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",110,10,100,true,"wdd",false,"more comming soon","2.7"))
+            minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",125,25,100,true,"wdd",false,"more comming soon","5.7"))
         end
     end,
 })
+
+function check_ground(letter)
+	local list = {"2","z","3","4","6","a","b","#","c","h","j","p","q","1","H","I","J","K","Z","<",";","U","N","k","n","A","l","w","R",".","'","W","X","T"}
+	for _,v in pairs(list) do
+		if v == letter then
+			return false
+		end
+	end
+	return true
+end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
     local player_inv = player:get_inventory()
@@ -5818,19 +4619,19 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         minetest.show_formspec(player:get_player_name(), "w34" , level_formspec(player,"level4",86,11,75,true,"wcc",false,"play world 1, 2 and 3","3.7"))
 	elseif fields.wda then
         player_inv:set_stack("page5",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",110,25,0,false,"",true,"wdb",""))
+        minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",125,25,0,false,"",true,"wdb",""))
 	elseif fields.wdb then
         player_inv:set_stack("page5",  1, "default:dirt")
-        minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",110,25,25,true,"wda",true,"wdc",""))
+        minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",125,25,25,true,"wda",true,"wdc",""))
 	elseif fields.wdc then
         player_inv:set_stack("page5",  1, "default:dirt 2")
-        minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",110,25,50,true,"wdb",true,"wdd",""))
+        minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",125,25,50,true,"wdb",true,"wdd",""))
 	elseif fields.wdd then
         player_inv:set_stack("page5",  1, "default:dirt 3")
-        minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",110,25,75,true,"wdc",true,"wde",""))
+        minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",125,25,75,true,"wdc",true,"wde",""))
 	elseif fields.wde then
         player_inv:set_stack("page5",  1, "default:dirt 4")
-        minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",110,10,100,true,"wdd",false,"more comming soon","2.7"))
+        minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",125,25,100,true,"wdd",false,"more comming soon","5.7"))
 	elseif fields.import then
 		minetest.show_formspec(player:get_player_name(), "import" , import.get_formspec(player))
 	elseif fields.save then
@@ -5891,9 +4692,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			meta:set_string("levels", minetest.serialize(t))
 			player:set_inventory_formspec(main.get_formspec(player))
-			minetest.show_formspec(player:get_player_name(), "create_success" , create_success.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"Level was created successfully!"))
 		else
-			minetest.show_formspec(player:get_player_name(), "no_save" , no_save.get_formspec(player))
+			meta:set_string("error_message", "You have to place at least a rainbow \nand a nyancat!")
+			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+			player:set_inventory_formspec(create2.get_formspec(player))
 		end
 	elseif fields.change then
 		local meta = player:get_meta()
@@ -5922,10 +4725,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			meta:set_string("new_node1y", "1")
 			meta:set_string("new_node2x", "1")
 			meta:set_string("new_node2y", "1")
+			meta:set_string("error_message", "")
 			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 			player:set_inventory_formspec(create2.get_formspec(player))
 		else
-			minetest.show_formspec(player:get_player_name(), "no_select" , no_select.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"You have to select a level!"))
 		end
 	elseif fields.create then
 		local meta = player:get_meta()
@@ -5951,18 +4755,20 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 		if tostring(fields.input2) == "" then
-			minetest.show_formspec(player:get_player_name(), "no_empty_import2" , no_empty_import2.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"You can't create a level with no name!"))
 		elseif k == 1 then 
-			minetest.show_formspec(player:get_player_name(), "exists" , exists.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"This level already exists!"))
 		elseif fields.input2 ~= nil then
 			meta:set_string("new_name", fields.input2)
 			meta:set_string("new_node1x", "1")
 			meta:set_string("new_node1y", "1")
 			meta:set_string("new_node2x", "1")
 			meta:set_string("new_node2y", "1")
+			meta:set_string("error_message", "")
 			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 			player:set_inventory_formspec(create2.get_formspec(player))
 		else
+			meta:set_string("error_message", "")
 			minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 			player:set_inventory_formspec(create2.get_formspec(player))
 		end
@@ -5971,7 +4777,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if meta:get_string("celected") ~= "" then
 			minetest.show_formspec(player:get_player_name(), "delete" , delete.get_formspec(player))
 		else
-			minetest.show_formspec(player:get_player_name(), "no_select" , no_select.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"You have to select a level!"))
 		end
 	elseif fields.play then
 		local meta = player:get_meta()
@@ -5983,7 +4789,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			New(player,meta:get_string("toplay"),"o",1)
 			minetest.show_formspec(player:get_player_name(), "", "")
 		else
-			minetest.show_formspec(player:get_player_name(), "no_select" , no_select.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"You have to select a level!"))
 		end
 	elseif fields.delete2 then
 		local meta = player:get_meta()
@@ -5997,7 +4803,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 		meta:set_string("levels", minetest.serialize(t))
-		minetest.show_formspec(player:get_player_name(), "delete2" , delete2.get_formspec(player))
+		minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"The Level was successfully deleted from the inventory list!"))
 	elseif fields.back then
 		player:set_inventory_formspec(main.get_formspec(player))
 		minetest.show_formspec(player:get_player_name(), "back" , back.get_formspec(player))
@@ -6018,9 +4824,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 		if tostring(fields.input1) == "" then
-			minetest.show_formspec(player:get_player_name(), "no_empty_import" , no_empty_import.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"You can't import a level with no name!"))
 		elseif k == 1 then
-			minetest.show_formspec(player:get_player_name(), "exists" , exists.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"This level already exists!"))
 		elseif file_check(minetest.get_worldpath().."/own_level_"..fields.input1..".txt") then
 			local t = minetest.deserialize(meta:get_string("levels"))
 			if not t then
@@ -6028,9 +4834,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 			table.insert(t, ""..tostring(fields.input1))
 			meta:set_string("levels", minetest.serialize(t))
-			minetest.show_formspec(player:get_player_name(), "import_success" , import_success.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"Level was imported successfully!"))
 		else
-			minetest.show_formspec(player:get_player_name(), "import_not_success" , import_not_success.get_formspec(player))
+			minetest.show_formspec(player:get_player_name(), "info" , info.get_formspec(player,"This level does not exist!"))
 		end
     elseif fields.esc then
         minetest.show_formspec(player:get_player_name(), "", "")
@@ -6096,18 +4902,21 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						end
 						if k < 40 then
 							node_letter = "a"
+							meta:set_string("error_message", "")
 							player:set_inventory_formspec(create2.get_formspec(player))
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 						else
 							new_letter = false
-							minetest.show_formspec(player:get_player_name(), "key" , key.get_formspec(player))
+							meta:set_string("error_message", "You can only place 40 keys!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
 						end
 					elseif n1x == 3 and n1y == 2 then
 						node_letter = "b"					
 					elseif n1x == 4 and n1y == 2 then	
 						node_letter = "Q"
 					elseif n1x == 5 and n1y == 2 then	
-						node_letter = ""
+						node_letter = ":"
 					elseif n1x == 6 and n1y == 2 then
 						node_letter = "#"
 					elseif n1x == 7 and n1y == 2 then	
@@ -6198,11 +5007,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						end
 						if k < 40 then
 							node_letter = "I"
+							meta:set_string("error_message", "")
 							player:set_inventory_formspec(create2.get_formspec(player))
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 						else
 							new_letter = false
-							minetest.show_formspec(player:get_player_name(), "green_orb" , green_orb.get_formspec(player))
+							meta:set_string("error_message", "You can only place 40 green orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
 						end
 					elseif n1x == 10 and n1y == 4 then	
 						node_letter = ""
@@ -6217,11 +5029,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						end
 						if k < 40 then
 							node_letter = "J"
+							meta:set_string("error_message", "")
 							player:set_inventory_formspec(create2.get_formspec(player))
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 						else
 							new_letter = false
-							minetest.show_formspec(player:get_player_name(), "green_orb" , green_orb.get_formspec(player))
+							meta:set_string("error_message", "You can only place 40 green orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
 						end
 					elseif n1x == 12 and n1y == 4 then	
 						local k = 0
@@ -6234,35 +5049,139 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						end
 						if k < 40 then
 							node_letter = ";"
+							meta:set_string("error_message", "")
 							player:set_inventory_formspec(create2.get_formspec(player))
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 						else
 							new_letter = false
-							minetest.show_formspec(player:get_player_name(), "green_orb" , green_orb.get_formspec(player))
+							meta:set_string("error_message", "You can only place 40 green orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
 						end
 					elseif n1x == 13 and n1y == 4 then	
-						node_letter = "K"
+						node_letter = "~"
 					elseif n1x == 1 and n1y == 5 then
-						node_letter = ""
+						node_letter = "K"
 					elseif n1x == 2 and n1y == 5 then	
 						node_letter = ""
 					elseif n1x == 3 and n1y == 5 then
-						node_letter = ""					
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
+									k = k+1
+								end
+							end
+						end
+						if k < 60 then
+							node_letter = "R"
+							meta:set_string("error_message", "")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							meta:set_string("error_message", "You can only place 60 yellow orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
+						end						
 					elseif n1x == 4 and n1y == 5 then	
 						node_letter = ""
 					elseif n1x == 5 and n1y == 5 then	
-						node_letter = ""
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
+									k = k+1
+								end
+							end
+						end
+						if k < 60 then
+							node_letter = "'"
+							meta:set_string("error_message", "")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							meta:set_string("error_message", "You can only place 60 yellow orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
+						end
 					elseif n1x == 6 and n1y == 5 then	
-						node_letter = "Y"
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
+									k = k+1
+								end
+							end
+						end
+						if k < 60 then
+							node_letter = "."
+							meta:set_string("error_message", "")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							meta:set_string("error_message", "You can only place 60 yellow orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
+						end
 					elseif n1x == 7 and n1y == 5 then	
-						node_letter = ""
-					elseif n1x == 8 and n1y == 5 then	
-						node_letter = "U"
+						node_letter = "Y"
+					elseif n1x == 8 and n1y == 5 then
+						
+						node_letter = "T"
+						if j == 12 or check_ground(meta:get_string("na"..letter(i)..letter(j+1))) == false or meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
+							new_letter = false
+							meta:set_string("error_message", "You can not place that there!")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							meta:set_string("nb"..letter(i)..letter(j+1), "D")
+						end
 					elseif n1x == 9 and n1y == 5 then
-						node_letter = ""
+						node_letter = "U"
 					elseif n1x == 10 and n1y == 5 then	
-						node_letter = ""
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "W" or meta:get_string("na"..letter(i)..letter(j)) == "X" then
+									k = k+1
+								end
+							end
+						end
+						if k < 10 then
+							node_letter = "W"
+							meta:set_string("error_message", "")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							meta:set_string("error_message", "You can only place 10 red orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
+						end
 					elseif n1x == 11 and n1y == 5 then	
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "W" or meta:get_string("na"..letter(i)..letter(j)) == "X" then
+									k = k+1
+								end
+							end
+						end
+						if k < 10 then
+							node_letter = "X"
+							meta:set_string("error_message", "")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							meta:set_string("error_message", "You can only place 10 red orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
+						end
+					elseif n1x == 12 and n1y == 5 then
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -6273,13 +5192,16 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						end
 						if k < 10 then
 							node_letter = "Z"
+							meta:set_string("error_message", "")
 							player:set_inventory_formspec(create2.get_formspec(player))
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 						else
 							new_letter = false
-							minetest.show_formspec(player:get_player_name(), "white_orb" , white_orb.get_formspec(player))
+							meta:set_string("error_message", "You can only place 10 white orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 12 and n1y == 5 then
+					elseif n1x == 13 and n1y == 5 then	
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -6294,10 +5216,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 						else
 							new_letter = false
-							minetest.show_formspec(player:get_player_name(), "white_orb" , white_orb.get_formspec(player))
+							meta:set_string("error_message", "You can only place 10 white orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 13 and n1y == 5 then	
-						node_letter = ""
 					elseif n1x == 1 and n1y == 6 then	
 						node_letter = ""
 					elseif n1x == 2 and n1y == 6 then	
@@ -6305,18 +5227,30 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					elseif n1x == 3 and n1y == 6 then	
 						node_letter = ""
 					elseif n1x == 4 and n1y == 6 then	
-						node_letter = "-"
+						node_letter = ""
 					elseif n1x == 5 and n1y == 6 then	
-						node_letter = "_"
+						node_letter = "-"
 					elseif n1x == 6 and n1y == 6 then	
-						node_letter = "N"
+						node_letter = "_"
 					elseif n1x == 7 and n1y == 6 then	
-						node_letter = "k"
+						node_letter = "N"
 					elseif n1x == 8 and n1y == 6 then	
+						node_letter = "k"
+					elseif n1x == 9 and n1y == 6 then	
 						node_letter = "n"
+					end
+					if check_ground(node_letter) == false and meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
+						new_letter = false
+						meta:set_string("error_message", "You can not put that under this block")
+						player:set_inventory_formspec(create2.get_formspec(player))
+						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 					end
 					if new_letter then
 						meta:set_string("na"..letter(i)..letter(j), node_letter)
+						if meta:get_string("nb"..letter(i)..letter(j+1)) == "D" and node_letter ~= "T" then
+							meta:set_string("nb"..letter(i)..letter(j+1), "0")
+						end
+						meta:set_string("error_message", "")
 						player:set_inventory_formspec(create2.get_formspec(player))
 						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 					end
@@ -6362,10 +5296,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					elseif n2x == 1 and n2y == 2 then
 						node_letter = "8"
 					elseif n2x == 2 and n2y == 2 then
-						node_letter = "3"	
+						node_letter = "P"	
 					elseif n2x == 3 and n2y == 2 then
-						node_letter = "9"					
+						node_letter = "3"					
 					elseif n2x == 4 and n2y == 2 then	
+						node_letter = "9"
+					elseif n2x == 5 and n2y == 2 then	
 						node_letter = "a"
 						for i=1,20 do
 							for j=1,12 do
@@ -6374,37 +5310,43 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 								end
 							end
 						end
-					elseif n2x == 5 and n2y == 2 then	
-						node_letter = "b"
 					elseif n2x == 6 and n2y == 2 then
-						node_letter = "c"
+						node_letter = "b"
 					elseif n2x == 7 and n2y == 2 then	
-						node_letter = "e"
+						node_letter = "c"
 					elseif n2x == 8 and n2y == 2 then	
-						node_letter = "f"
+						node_letter = "e"
 					elseif n2x == 9 and n2y == 2 then
-						node_letter = "g"
+						node_letter = "f"
 					elseif n2x == 10 and n2y == 2 then	
-						node_letter = "h"
+						node_letter = "g"
 					elseif n2x == 11 and n2y == 2 then	
-						node_letter = "i"
+						node_letter = "h"
 					elseif n2x == 12 and n2y == 2 then	
-						node_letter = "m"
+						node_letter = "i"
 					elseif n2x == 13 and n2y == 2 then	
-						node_letter = "j"
+						node_letter = "m"
 					elseif n2x == 1 and n2y == 3 then
-						node_letter = "k"
+						node_letter = "j"
 					elseif n2x == 2 and n2y == 3 then	
-						node_letter = "l"
+						node_letter = "k"
 					elseif n2x == 3 and n2y == 3 then
-						node_letter = "n"					
+						node_letter = "l"					
 					elseif n2x == 4 and n2y == 3 then	
-						node_letter = "o"
+						node_letter = "Q"
 					elseif n2x == 5 and n2y == 3 then	
-						node_letter = "p"
+						node_letter = "R"
 					elseif n2x == 6 and n2y == 3 then
-						node_letter = "q"
+						node_letter = "S"
 					elseif n2x == 7 and n2y == 3 then	
+						node_letter = "n"
+					elseif n2x == 8 and n2y == 3 then	
+						node_letter = "o"
+					elseif n2x == 9 and n2y == 3 then
+						node_letter = "p"
+					elseif n2x == 10 and n2y == 3 then	
+						node_letter = "q"
+					elseif n2x == 11 and n2y == 3 then	
 						node_letter = "H"
 						for i=1,20 do
 							for j=1,12 do
@@ -6413,7 +5355,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 								end
 							end
 						end
-					elseif n2x == 8 and n2y == 3 then	
+					elseif n2x == 12 and n2y == 3 then	
 						node_letter = "I"
 						for i=1,20 do
 							for j=1,12 do
@@ -6422,7 +5364,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 								end
 							end
 						end
-					elseif n2x == 9 and n2y == 3 then
+					elseif n2x == 13 and n2y == 3 then	
 						node_letter = "J"
 						for i=1,20 do
 							for j=1,12 do
@@ -6431,7 +5373,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 								end
 							end
 						end
-					elseif n2x == 10 and n2y == 3 then	
+					elseif n2x == 1 and n2y == 4 then
 						node_letter = "K"
 						for i=1,20 do
 							for j=1,12 do
@@ -6440,7 +5382,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 								end
 							end
 						end
-					elseif n2x == 11 and n2y == 3 then	
+					elseif n2x == 2 and n2y == 4 then	
 						node_letter = "L"
 						for i=1,20 do
 							for j=1,12 do
@@ -6449,39 +5391,51 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 								end
 							end
 						end
-					elseif n2x == 12 and n2y == 3 then	
-						node_letter = "t"
-					elseif n2x == 13 and n2y == 3 then	
-						node_letter = "u"
-					elseif n2x == 1 and n2y == 4 then
-						node_letter = ""
-					elseif n2x == 2 and n2y == 4 then	
-						node_letter = ""
 					elseif n2x == 3 and n2y == 4 then
-						node_letter = "F"					
+						node_letter = "t"					
 					elseif n2x == 4 and n2y == 4 then	
-						node_letter = ""
+						node_letter = "u"
 					elseif n2x == 5 and n2y == 4 then	
-						node_letter = "s"
+						node_letter = "D"
+						if j == 1 or meta:get_string("nb"..letter(i)..letter(j-1)) ~= "0" or check_ground(meta:get_string("na"..letter(i)..letter(j))) == false then
+							new_letter = false
+							meta:set_string("error_message", "You can not place that there!")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							meta:set_string("na"..letter(i)..letter(j-1), "T")
+						end
 					elseif n2x == 6 and n2y == 4 then
-						node_letter = ""
+						node_letter = "E"
 					elseif n2x == 7 and n2y == 4 then	
-						node_letter = ""
+						node_letter = "F"
 					elseif n2x == 8 and n2y == 4 then	
 						node_letter = ""
 					elseif n2x == 9 and n2y == 4 then
-						node_letter = ""
+						node_letter = "s"
 					elseif n2x == 10 and n2y == 4 then	
-						node_letter = "M"
+						node_letter = ""
 					elseif n2x == 11 and n2y == 4 then	
-						node_letter = "r"
+						node_letter = ""
 					elseif n2x == 12 and n2y == 4 then	
 						node_letter = ""
 					elseif n2x == 13 and n2y == 4 then	
 						node_letter = ""
+					elseif n2x == 1 and n2y == 5 then	
+						node_letter = "M"
+					elseif n2x == 2 and n2y == 5 then	
+						node_letter = "r"
 					end
-					if new_letter then
+					if new_letter and check_ground(meta:get_string("na"..letter(i)..letter(j))) then
 						meta:set_string("nb"..letter(i)..letter(j), node_letter)
+						if meta:get_string("na"..letter(i)..letter(j-1)) == "T" and node_letter ~= "D" then
+							meta:set_string("na"..letter(i)..letter(j-1), "0")
+						end
+						meta:set_string("error_message", "")
+						player:set_inventory_formspec(create2.get_formspec(player))
+						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+					elseif not check_ground(meta:get_string("na"..letter(i)..letter(j))) then
+						meta:set_string("error_message", "You can not put that on this ground!")
 						player:set_inventory_formspec(create2.get_formspec(player))
 						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 					end
@@ -6494,12 +5448,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				if fields["sa"..letter(i)..letter(j)] then
 					meta:set_string("new_node1x", ""..j)
 					meta:set_string("new_node1y", ""..i)
+					meta:set_string("error_message", "")
 					player:set_inventory_formspec(create2.get_formspec(player))
 					minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 				end
 				if fields["sb"..letter(i)..letter(j)] then
 					meta:set_string("new_node2x", ""..j)
 					meta:set_string("new_node2y", ""..i)
+					meta:set_string("error_message", "")
 					player:set_inventory_formspec(create2.get_formspec(player))
 					minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 				end
