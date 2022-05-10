@@ -63,7 +63,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.10.0",
+		text = "Game Version	 :  2.10.1",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -2398,8 +2398,9 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
         player_inv:set_stack("g", 1, "default:dirt "..(green+1))
         one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:water_wood",true,donetp2,1)
 	elseif minetest.get_node(e1m2).name == "labyrinthus:water_wood_with_red" then
-		local green = player_inv:get_stack("re", 1):get_count()
-        one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:water_wood",true,donetp2,1)
+		local red = player_inv:get_stack("re", 1):get_count()
+        player_inv:set_stack("re", 1, "default:dirt "..(red+1))
+		one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:water_wood",true,donetp2,1)
 	elseif minetest.get_node(e1m2).name == "labyrinthus:purple_dirt" then
 		if Dirt_Move2(e1m1,overdirt) then
 			local purple = player_inv:get_stack("p", 1):get_count()
