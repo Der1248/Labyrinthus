@@ -7,10 +7,7 @@ local terrain_file = params[1]
 local generator_start_y = params[2]
 -- Default settings: grass, dirt, dirt, dirt with stone ground
 local layers = {
-	{ "default:dirt_with_grass", 1 },
-	{ "default:dirt", 3 },
-	{ "default:stone", nil } -- nil = no limit
-	-- Fake ignore to generate whenever you want: { "ignore_me", 1 }
+	{ "labyrinthus:sand", nil }
 }
 
 

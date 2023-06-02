@@ -1,0 +1,3 @@
+flatgen.cover	= "default:dirt_with_grass"
+flatgen.under	= "default:dirt"
+flatgen.ground	= "default:stone"

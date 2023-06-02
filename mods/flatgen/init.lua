@@ -49,10 +49,10 @@ set_mgparam("mg_biome_np_humidity_blend", get_noiseparams(0), true)
 -- Extend the depth of the grassland biome (y_min)
 minetest.register_biome({
 	name = "deep_grassy_deciduous_forest",
-	node_top = "default:dirt_with_grass",
+	node_top = "labyrinthus:sand",
 	depth_top = 1,
-	node_filler = "default:dirt",
-	depth_filler = 3,
+	node_filler = "labyrinthus:sand",
+	depth_filler = 100,
 	y_max = 31000,
 	y_min = -1000,
 	heat_point = 60,
