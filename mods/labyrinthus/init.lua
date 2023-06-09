@@ -56,7 +56,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.4.x",
+		text = "For Minetest 	  :  5.5.0",
 	})  
 	player:hud_add({
 		hud_elem_type = "text",
@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.11.0",
+		text = "Game Version	 :  2.11.1",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
