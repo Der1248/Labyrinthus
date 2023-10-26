@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.12.0",
+		text = "Game Version	 :  2.13.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -126,7 +126,7 @@ local node_list1 = {
 	{"v","labyrinthus:ice3",					"labyrinthus_ice3.png"},
 	{"w","labyrinthus:round4",					"labyrinthus_sand.png^labyrinthus_round4.png"},
 	{"x","labyrinthus:round1",					"labyrinthus_sand.png^labyrinthus_round1.png"},
-	{"y","labyrinthus:dirt",					""},
+	{"y","labyrinthus:dirt",					"labyrinthus_dirt.png"},
 	{"z","labyrinthus:rainbow2",				"labyrinthus_rainbow2.png"},
 	{"A","labyrinthus:purple",					"labyrinthus_sand.png^labyrinthus_purple.png"},
 	{"B","labyrinthus:empty_gate",				"labyrinthus_sand.png^labyrinthus_empty_gate.png"},
@@ -172,6 +172,8 @@ local node_list1 = {
 	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png"},
 	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png"},
 	{"{","labyrinthus:grey_sand",				"labyrinthus_sand.png^labyrinthus_grey3.png"},
+	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png"},
+	
 	
 	{"!","labyrinthus:button12",				""},
 	{"$","labyrinthus:button2",					""},
@@ -244,6 +246,11 @@ local node_list2 = {
 	{"V","labyrinthus:grey3",							"labyrinthus_mese_block.png^labyrinthus_grey3.png"},
 	{"W","labyrinthus:backward_arrow",					"labyrinthus_mese_block.png^labyrinthus_backward_arrow.png"},
 	{"X","labyrinthus:wood2",							"labyrinthus_mese_block.png^labyrinthus_wood2.png"},
+	{"Y","labyrinthus:bow_right_block",					"labyrinthus_stone.png^labyrinthus_bow_right2.png"},
+	{"Z","labyrinthus:bow_left_block",					"labyrinthus_stone.png^labyrinthus_bow_left2.png"},
+	{"'","labyrinthus:bow_down_block",					"labyrinthus_stone.png^labyrinthus_bow_down2.png"},
+	{"*","labyrinthus:bow_up_block",					"labyrinthus_stone.png^labyrinthus_bow_up2.png"},
+	{"+","labyrinthus:stone_with_white2",				"labyrinthus_stone.png^labyrinthus_stone_with_white2.png"},
 	
 	{":","labyrinthus:wire_10100000",					""},
 	{";","labyrinthus:wire_10000000",					""},
@@ -255,13 +262,12 @@ local node_list2 = {
 	{"-","labyrinthus:wire_01100000",					""},
 	{"_","labyrinthus:wire_00110000",					""},
 	{"#","labyrinthus:wire_10010000",					""},
-	
 	{"!","nyancat:nyancat",								""},
 	{"$","labyrinthus:button13",						""},
 	{"%","labyrinthus:transport_stone_gate_arrows",		""},
 	{"&","labyrinthus:red_with_no_yellow",				""},
 	{"/","labyrinthus:stone_with_white",				""},
-	{"(","labyrinthus:stone_with_white2",				""},
+	
 	{")","labyrinthus:stone_with_no_white2",			""},
 	{"=","labyrinthus:remember1_on",					""},
 	{"[","labyrinthus:remember2_on",					""},
@@ -269,6 +275,7 @@ local node_list2 = {
 	{"{","labyrinthus:remember4_on",					""},
 	{"}","labyrinthus:remember5_on",					""},
 	{"?","labyrinthus:remember5_temp",					""},
+	{"\\","labyrinthus:0",								""},
 }
 function get_item_list(list,index,index_number,number)
 	for index2, value in ipairs(list) do
@@ -761,7 +768,7 @@ create2.get_formspec = function(player, pos)
 	.."image_button["..(0.5+4*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_button_eye.png;sada;]"
 	.."image_button["..(0.5+5*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_eye.png;sadb;]"
 	.."image_button["..(0.5+6*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_wood.png;sadc;]"
-	--.."image_button["..(0.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadd;]"
+	--.."image_button["..(0.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_dirt.png;sadd;]"
 	.."image_button["..(0.5+8*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_purple.png;sade;]"
 	--.."image_button["..(0.5+9*0.45)..","..(0.5+17*0.5)..";0.6,0.6;;sadf;]"
 	.."image_button["..(0.5+10*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_gate_arrows.png;sadg;]"
@@ -783,26 +790,26 @@ create2.get_formspec = function(player, pos)
 	.."image_button["..(0.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_wood.png^labyrinthus_stone_for_yellow.png;saei;]"
 	.."image_button["..(0.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_stone.png;saej;]"
 	.."image_button["..(0.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_red3.png;saek;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_wood_with_red.png;sael;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_white.png;saem;]"
+	--.."image_button["..(0.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sael;]"
+	.."image_button["..(0.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_wood_with_red.png;saem;]"
 	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_white.png;safa;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cyan.png;safb;]"
-	--.."image_button["..(0.5+6*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_cyan.png;safc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_cyan.png;safd;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_bow.png;safe;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path.png;saff;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path_button.png;safg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow4_2.png;safh;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow.png;safi;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow2.png;safj;]"
-	--.."image_button["..(0.5+14*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safk;]"
+	.."image_button["..(0.5+4*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_white.png;safa;]"
+	.."image_button["..(0.5+5*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_white.png;safb;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cyan.png;safc;]"
+	--.."image_button["..(0.5+7*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_cyan.png;safd;]"
+	.."image_button["..(0.5+8*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_cyan.png;safe;]"
+	.."image_button["..(0.5+9*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_bow.png;saff;]"
+	.."image_button["..(0.5+10*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path.png;safg;]"
+	.."image_button["..(0.5+11*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path_button.png;safh;]"
+	.."image_button["..(0.5+12*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow4_2.png;safi;]"
+	.."image_button["..(0.5+13*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow.png;safj;]"
+	.."image_button["..(0.5+14*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow2.png;safk;]"
 	--.."image_button["..(0.5+15*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safl;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_switch.png;safm;]"
+	--.."image_button["..(0.5+16*0.45)..","..(0.5+19*0.5)..";0.6,0.6;;safm;]"
 	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_red.png;saga;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_green.png;sagb;]"
-	
+	.."image_button["..(0.5+4*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_switch.png;saga;]"
+	.."image_button["..(0.5+5*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_red.png;sagb;]"
+	.."image_button["..(0.5+6*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_green.png;sagc;]"
 
 	formspec = formspec
 	.."image_button["..(10.5+4*0.45)..","..(0.5+14*0.5)..";0.6,0.6;;sbaa;]"
@@ -863,18 +870,18 @@ create2.get_formspec = function(player, pos)
 	.."image_button["..(10.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png;sbdm;]"
 	
 	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_leaves.png;sbea;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_right.png;sbeb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_left.png;sbec;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_down.png;sbed;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_up.png;sbee;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow4.png;sbef;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow2.png;sbeg;]"
-	--.."image_button["..(10.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbeh;]"
-	--.."image_button["..(10.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbei;]"
-	--.."image_button["..(10.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbej;]"
-	--.."image_button["..(10.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbek;]"
-	--.."image_button["..(10.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbel;]"
+	.."image_button["..(10.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_stone_with_white2.png;sbea;]"
+	.."image_button["..(10.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_leaves.png;sbeb;]"
+	.."image_button["..(10.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_right.png;sbec;]"
+	.."image_button["..(10.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_left.png;sbed;]"
+	.."image_button["..(10.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_down.png;sbee;]"
+	.."image_button["..(10.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_up.png;sbef;]"
+	.."image_button["..(10.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_right2.png;sbeg;]"
+	.."image_button["..(10.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_left2.png;sbeh;]"
+	.."image_button["..(10.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_down2.png;sbei;]"
+	.."image_button["..(10.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_up2.png;sbej;]"
+	.."image_button["..(10.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow4.png;sbek;]"
+	.."image_button["..(10.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow2.png;sbel;]"
 	--.."image_button["..(10.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;;sbem;]"
 
 	
@@ -1842,6 +1849,9 @@ minetest.register_node("labyrinthus:water_wood_with_red",{
 minetest.register_node("labyrinthus:cyan_dirt",{
 	tiles = {"labyrinthus_dirt.png^labyrinthus_cyan.png"},
 })
+minetest.register_node("labyrinthus:red_dirt",{
+	tiles = {"labyrinthus_dirt.png^labyrinthus_red3.png"},
+})
 minetest.register_node("labyrinthus:yellow_dirt",{
 	tiles = {"labyrinthus_dirt.png^labyrinthus_yellow2.png"},
 })
@@ -1871,6 +1881,18 @@ minetest.register_node("labyrinthus:bow_down",{
 })
 minetest.register_node("labyrinthus:bow_up",{
 	tiles = {"labyrinthus_mese_block.png^labyrinthus_bow_up.png"},
+})
+minetest.register_node("labyrinthus:bow_right_block",{
+	tiles = {"labyrinthus_stone.png^labyrinthus_bow_right2.png"},
+})
+minetest.register_node("labyrinthus:bow_left_block",{
+	tiles = {"labyrinthus_stone.png^labyrinthus_bow_left2.png"},
+})
+minetest.register_node("labyrinthus:bow_down_block",{
+	tiles = {"labyrinthus_stone.png^labyrinthus_bow_down2.png"},
+})
+minetest.register_node("labyrinthus:bow_up_block",{
+	tiles = {"labyrinthus_stone.png^labyrinthus_bow_up2.png"},
 })
 minetest.register_node("labyrinthus:green",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_green.png"},
@@ -1990,7 +2012,7 @@ minetest.register_node("labyrinthus:grey_sand",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_grey3.png"},
 })
 minetest.register_node("labyrinthus:0",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_0.png"},
+	tiles = {"labyrinthus_stone.png^labyrinthus_0.png"},
 })
 minetest.register_node("labyrinthus:00",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_0.png"},
@@ -2254,9 +2276,11 @@ function one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,node,set_node,donetp2,mode
 	end
 end
 function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2,pbjnr,trfire,overdirt)
-    local player_inv = player:get_inventory()
+	local player_inv = player:get_inventory()
     local x = player_inv:get_stack("x", 1):get_count()
     local y = player_inv:get_stack("y", 1):get_count()
+	player_inv:set_stack("sx", 1, "labyrinthus:dirt "..x)
+	player_inv:set_stack("sy", 1, "labyrinthus:dirt "..y)
 	local wire_x = player_inv:get_stack("x", 1):get_count()
     local wire_y = player_inv:get_stack("y", 1):get_count()
     local z = player_inv:get_stack("z", 1):get_count()
@@ -2294,6 +2318,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
     if minetest.get_node(e1m1).name == "labyrinthus:ice1" and trfire == true then
         minetest.set_node(e1m1, {name="labyrinthus:ice2"})
     end
+	local wood_moved = false
 	if minetest.get_node(e1m1).name == "labyrinthus:wood" then
 		local x = player_inv:get_stack("x", 1):get_count()
         local y = player_inv:get_stack("y", 1):get_count()
@@ -2305,6 +2330,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			while ex == 0 do
 				if minetest.get_node({x=x+10, y=y+ad, z=-76}).name == "labyrinthus:water"  and minetest.get_node({x=x+10, y=y+ad, z=-77}).name == "air" then
 					ad = ad+1
+					wood_moved = true
 				else
 					ex = 1
 				end
@@ -2318,6 +2344,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			while ex == 0 do
 				if minetest.get_node({x=x+10, y=y+ad, z=-76}).name == "labyrinthus:water" and minetest.get_node({x=x+10, y=y+ad, z=-77}).name == "air" then
 					ad = ad-1
+					wood_moved = true
 				else
 					ex = 1
 				end
@@ -2331,6 +2358,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			while ex == 0 do
 				if minetest.get_node({x=x+ad, y=y+8, z=-76}).name == "labyrinthus:water" and minetest.get_node({x=x+ad, y=y+8, z=-77}).name == "air" then
 					ad = ad+1
+					wood_moved = true
 				else
 					ex = 1
 				end
@@ -2344,6 +2372,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			while ex == 0 do
 				if minetest.get_node({x=x+ad, y=y+8, z=-76}).name == "labyrinthus:water" and minetest.get_node({x=x+ad, y=y+8, z=-77}).name == "air" then
 					ad = ad-1
+					wood_moved = true
 				else
 					ex = 1
 				end
@@ -2513,6 +2542,12 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 		if Dirt_Move2(e1m1,overdirt) then
 			local cyan = player_inv:get_stack("c", 1):get_count()
 			player_inv:set_stack("c", 1, "labyrinthus:dirt "..(cyan+1))
+			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:dirt",true,donetp2,1)
+		end
+	elseif minetest.get_node(e1m2).name == "labyrinthus:red_dirt" then
+		if Dirt_Move2(e1m1,overdirt) then
+			local red = player_inv:get_stack("re", 1):get_count()
+			player_inv:set_stack("re", 1, "labyrinthus:dirt "..(red+1))
 			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:dirt",true,donetp2,1)
 		end
 	elseif minetest.get_node(e1m2).name == "labyrinthus:yellow_dirt" then
@@ -2750,7 +2785,8 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			end
 		end
     elseif minetest.get_node(e2m2).name == "labyrinthus:diamondblock" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
+			minetest.set_node(e2m2, {name="air"})
             minetest.set_node(e2m3, {name="labyrinthus:diamondblock"})
             if minetest.get_node({x=e2m3.x+1, y=e2m3.y, z=-77}).name == "labyrinthus:diamondblock" then
                 minetest.set_node(e2m3, {name="air"})
@@ -2771,7 +2807,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:meselamp2" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:meselamp2"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
@@ -2991,7 +3027,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			bow_x = bow_x+dir_x
 		end
     elseif minetest.get_node(e2m2).name == "labyrinthus:arrow3" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:arrow3"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
             update()
@@ -3078,32 +3114,32 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 		local white = player_inv:get_stack("w", 1):get_count()
 		player_inv:set_stack("w", 1, "labyrinthus:dirt "..(white+1))
     elseif minetest.get_node(e2m2).name == "labyrinthus:nyan1" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:nyan1"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:nyan2" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:nyan2"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:nyan3" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:nyan3"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:nyan4" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:nyan4"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:eye2" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:glass"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:glass" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:glass"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
@@ -3112,85 +3148,73 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
 			minetest.set_node(e2m3, {name="labyrinthus:tnt"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
-	elseif minetest.get_node(e1m2).name == "labyrinthus:dirt" then
-		if Dirt_Move2(e1m1,overdirt) or (minetest.get_node(e1m1).name == "labyrinthus:rainbow3" and minetest.get_node({x=e1m1.x, y=e1m1.y-1, z=e1m1.z}).name == "labyrinthus:dirt") then
-			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,1)
-		end
-	elseif minetest.get_node(e1m2).name == "labyrinthus:dirt_with_yellow_circle" then
-		if Dirt_Move2(e1m1,overdirt) or (minetest.get_node(e1m1).name == "labyrinthus:rainbow3" and minetest.get_node({x=e1m1.x, y=e1m1.y-1, z=e1m1.z}).name == "labyrinthus:dirt") then
-			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,1)
-		end
-	elseif minetest.get_node(e1m2).name == "labyrinthus:dirt_with_red_circle" then
-		if Dirt_Move2(e1m1,overdirt) or (minetest.get_node(e1m1).name == "labyrinthus:rainbow3" and minetest.get_node({x=e1m1.x, y=e1m1.y-1, z=e1m1.z}).name == "labyrinthus:dirt") then
-			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,1)
-		end
-    elseif minetest.get_node(e2m2).name == "labyrinthus:4" then
-        if Is_Node(nodex,nodey,nil) then
+	elseif minetest.get_node(e2m2).name == "labyrinthus:4" then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:3"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:3" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:2"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:2" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:1"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:1" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:0"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:red" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:blue"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:blue" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:yellow"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:yellow" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:red"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:grey1" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:grey3"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:grey2" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:grey1"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:grey3" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:grey2"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
 	elseif minetest.get_node(e2m2).name == "labyrinthus:2red" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:2blue"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:2blue" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:2yellow"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:2yellow" then
-        if Is_Node(nodex,nodey,nil) then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,nil) then
             minetest.set_node(e2m3, {name="labyrinthus:2red"})
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:red2" then
-        if Is_Node(nodex,nodey,"red") then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,"red") then
             if minetest.get_node(e1m3).name == "labyrinthus:red1" then
             elseif minetest.get_node(e1m3).name == "labyrinthus:green_col" then
                 minetest.set_node(e2m3, {name="labyrinthus:green2"})
@@ -3207,7 +3231,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:green2" then
-        if Is_Node(nodex,nodey,"green") then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,"green") then
             if minetest.get_node(e1m3).name == "labyrinthus:green1" then
             elseif minetest.get_node(e1m3).name == "labyrinthus:green_col" then
                 minetest.set_node(e2m3, {name="labyrinthus:green2"})
@@ -3224,7 +3248,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
     elseif minetest.get_node(e2m2).name == "labyrinthus:blue2" then
-        if Is_Node(nodex,nodey,"blue") then
+        if Dirt_Move(e1m1,e1m2,nodex,nodey,"blue") then
             if minetest.get_node(e1m3).name == "labyrinthus:blue1" then
             elseif minetest.get_node(e1m3).name == "labyrinthus:green_col" then
                 minetest.set_node(e2m3, {name="labyrinthus:green2"})
@@ -3240,6 +3264,29 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
             end
             one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,2)
         end
+	elseif minetest.get_node(e2m2).name == "labyrinthus:bow_right_block" or minetest.get_node(e2m2).name == "labyrinthus:bow_left_block" or minetest.get_node(e2m2).name == "labyrinthus:bow_down_block" or minetest.get_node(e2m2).name == "labyrinthus:bow_up_block" then
+		for i=10,29 do
+			for k=9,20 do
+				if minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_right" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_left" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_up" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_down" then
+					minetest.set_node({x=i, y=k, z=-77}, {name="labyrinthus:bow_"..dir1})
+				end
+				if minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_right_block" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_left_block" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_up_block" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:bow_down_block" then
+					minetest.set_node({x=i, y=k, z=-77}, {name="labyrinthus:bow_"..dir1.."_block"})
+				end
+			end
+		end
+	elseif minetest.get_node(e1m2).name == "labyrinthus:dirt" then
+		if Dirt_Move2(e1m1,overdirt) or (minetest.get_node(e1m1).name == "labyrinthus:rainbow3" and minetest.get_node({x=e1m1.x, y=e1m1.y-1, z=e1m1.z}).name == "labyrinthus:dirt") then
+			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,1)
+		end
+	elseif minetest.get_node(e1m2).name == "labyrinthus:dirt_with_yellow_circle" then
+		if Dirt_Move2(e1m1,overdirt) or (minetest.get_node(e1m1).name == "labyrinthus:rainbow3" and minetest.get_node({x=e1m1.x, y=e1m1.y-1, z=e1m1.z}).name == "labyrinthus:dirt") then
+			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,1)
+		end
+	elseif minetest.get_node(e1m2).name == "labyrinthus:dirt_with_red_circle" then
+		if Dirt_Move2(e1m1,overdirt) or (minetest.get_node(e1m1).name == "labyrinthus:rainbow3" and minetest.get_node({x=e1m1.x, y=e1m1.y-1, z=e1m1.z}).name == "labyrinthus:dirt") then
+			one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"",false,donetp2,1)
+		end
     elseif minetest.get_node(e2m2).name == "labyrinthus:key1" then
         if key > 0 then
             player_inv:set_stack("k", 1, "labyrinthus:dirt "..(key-1))
@@ -3569,7 +3616,9 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
     if minetest.get_node({x=x+10, y=y+8, z=-76}).name ~= "labyrinthus:time30" and time == 1 then
         player_inv:set_stack("time", 1, "labyrinthus:dirt 2")
     end
-    if minetest.get_node({x=x+10, y=y+8, z=-76}).name == "labyrinthus:fire" and trfire == true then
+	local secx = player_inv:get_stack("sx", 1):get_count()
+    local secy = player_inv:get_stack("sy", 1):get_count()
+    if minetest.get_node({x=x+10, y=y+8, z=-76}).name == "labyrinthus:fire" and trfire == true and (secx ~= x or secy ~= y) then
         player_inv:set_stack("f", 1, "labyrinthus:dirt "..(fire+1))
         player_inv:set_stack("a2", 1, nil)
         local fire = player_inv:get_stack("f", 1):get_count()
@@ -3661,28 +3710,28 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,nodex,nodey,dir1,dir2
         end
     end
 	if dir1 == "up" and minetest.get_node({x=e2m1.x, y=e2m1.y-1, z=e2m1.z}).name == "labyrinthus:backward_arrow" then
-		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,nil) then
+		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,"wood") and wood_moved == false then
 			minetest.set_node({x=e2m1.x, y=e2m1.y-1, z=e2m1.z}, {name="air"})
 			if minetest.get_node({x=e1m1.x, y=e1m1.y, z=e1m1.z}).name ~= "labyrinthus:gate_arrows" then
 				minetest.set_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}, {name="labyrinthus:backward_arrow"})
 			end	
 		end
 	elseif dir1 == "down" and minetest.get_node({x=e2m1.x, y=e2m1.y+1, z=e2m1.z}).name == "labyrinthus:backward_arrow" then
-		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,nil) then
+		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,"wood") and wood_moved == false then
 			minetest.set_node({x=e2m1.x, y=e2m1.y+1, z=e2m1.z}, {name="air"})
 			if minetest.get_node({x=e1m1.x, y=e1m1.y, z=e1m1.z}).name ~= "labyrinthus:gate_arrows" then
 				minetest.set_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}, {name="labyrinthus:backward_arrow"})
 			end	
 		end
 	elseif dir1 == "right" and minetest.get_node({x=e2m1.x-1, y=e2m1.y, z=e2m1.z}).name == "labyrinthus:backward_arrow" then
-		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,nil) then
+		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,"wood") and wood_moved == false then
 			minetest.set_node({x=e2m1.x-1, y=e2m1.y, z=e2m1.z}, {name="air"})
 			if minetest.get_node({x=e1m1.x, y=e1m1.y, z=e1m1.z}).name ~= "labyrinthus:gate_arrows" then
 				minetest.set_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}, {name="labyrinthus:backward_arrow"})
 			end	
 		end
 	elseif dir1 == "left" and minetest.get_node({x=e2m1.x+1, y=e2m1.y, z=e2m1.z}).name == "labyrinthus:backward_arrow" then
-		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,nil) then
+		if minetest.get_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}).name == "air" and Is_Node(e1m1.x,e1m1.y,"wood") and wood_moved == false then
 			minetest.set_node({x=e2m1.x+1, y=e2m1.y, z=e2m1.z}, {name="air"})
 			if minetest.get_node({x=e1m1.x, y=e1m1.y, z=e1m1.z}).name ~= "labyrinthus:gate_arrows" then
 				minetest.set_node({x=e2m1.x, y=e2m1.y, z=e2m1.z}, {name="labyrinthus:backward_arrow"})
@@ -4357,6 +4406,7 @@ function Is_Node(x,y,block)
 		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:wood_for_yellow" and
 		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:purple_dirt" and 
 		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:cyan_dirt" and 
+		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:red_dirt" and 
 		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:yellow_dirt" and
 		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:green_dirt" and 
 		minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:water_wood_with_green" and
@@ -4437,6 +4487,8 @@ function Load(player)
 	player_inv:set_size("page5", 1)
     player_inv:set_size("time", 1)
     player_inv:set_size("f", 1)
+	player_inv:set_size("sx", 1)
+	player_inv:set_size("sy", 1)
 end
 
 function New(player,page,art,num)
@@ -4931,17 +4983,19 @@ minetest.register_node("labyrinthus:new_w5",{
         local player_inv = player:get_inventory()
         local page = player_inv:get_stack("page5", 1):get_count()+1
         if page == 1 then
-            minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",150,25,0,false,"",true,"wdb",""))
+            minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",160,25,0,false,"",true,"wdb",""))
 		elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",150,25,25,true,"wda",true,"wdc",""))
+            minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",160,25,25,true,"wda",true,"wdc",""))
 		elseif page == 3 then
-            minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",150,25,50,true,"wdb",true,"wdd",""))
+            minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",160,25,50,true,"wdb",true,"wdd",""))
 		elseif page == 4 then
-            minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",150,25,75,true,"wdc",true,"wde",""))
+            minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",160,25,75,true,"wdc",true,"wde",""))
 		elseif page == 5 then
-            minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",150,25,100,true,"wdd",true,"wdf",""))
+            minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",160,25,100,true,"wdd",true,"wdf",""))
 		elseif page == 6 then
-            minetest.show_formspec(player:get_player_name(), "w56" , level_formspec(player,"level5",150,25,125,true,"wde",false,"more comming soon","5.7"))
+            minetest.show_formspec(player:get_player_name(), "w56" , level_formspec(player,"level5",160,25,125,true,"wde",true,"wdg",""))
+		elseif page == 7 then
+            minetest.show_formspec(player:get_player_name(), "w57" , level_formspec(player,"level5",160,10,150,true,"wdf",false,"more comming soon","2.7"))
         end
     end,
 })
@@ -5035,22 +5089,25 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         minetest.show_formspec(player:get_player_name(), "w34" , level_formspec(player,"level4",86,11,75,true,"wcc",false,"play world 1, 2 and 3","3.7"))
 	elseif fields.wda then
         player_inv:set_stack("page5",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",150,25,0,false,"",true,"wdb",""))
+        minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",160,25,0,false,"",true,"wdb",""))
 	elseif fields.wdb then
         player_inv:set_stack("page5",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",150,25,25,true,"wda",true,"wdc",""))
+        minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",160,25,25,true,"wda",true,"wdc",""))
 	elseif fields.wdc then
         player_inv:set_stack("page5",  1, "labyrinthus:dirt 2")
-        minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",150,25,50,true,"wdb",true,"wdd",""))
+        minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",160,25,50,true,"wdb",true,"wdd",""))
 	elseif fields.wdd then
         player_inv:set_stack("page5",  1, "labyrinthus:dirt 3")
-        minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",150,25,75,true,"wdc",true,"wde",""))
+        minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",160,25,75,true,"wdc",true,"wde",""))
 	elseif fields.wde then
         player_inv:set_stack("page5",  1, "labyrinthus:dirt 4")
-        minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",150,25,100,true,"wdd",true,"wdf",""))
+        minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",160,25,100,true,"wdd",true,"wdf",""))
 	elseif fields.wdf then
         player_inv:set_stack("page5",  1, "labyrinthus:dirt 5")
-        minetest.show_formspec(player:get_player_name(), "w56" , level_formspec(player,"level5",150,25,125,true,"wde",false,"more comming soon","5.7"))
+        minetest.show_formspec(player:get_player_name(), "w56" , level_formspec(player,"level5",160,25,125,true,"wde",true,"wdg",""))
+	elseif fields.wdg then
+        player_inv:set_stack("page5",  1, "labyrinthus:dirt 6")
+        minetest.show_formspec(player:get_player_name(), "w57" , level_formspec(player,"level5",160,10,150,true,"wdf",false,"more comming soon","2.7"))
 	elseif fields.import then
 		minetest.show_formspec(player:get_player_name(), "import" , import.get_formspec(player))
 	elseif fields.save then
@@ -5399,7 +5456,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					elseif n1x == 3 and n1y == 4 then	
 						node_letter = "r"
 					elseif n1x == 4 and n1y == 4 then
-						node_letter = ""					
+						node_letter = "y"					
 					elseif n1x == 5 and n1y == 4 then
 						node_letter = "A"
 						for i=1,20 do
@@ -5591,6 +5648,26 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							end
 						end
 						if k < 10 then
+							node_letter = "["
+							meta:set_string("error_message", "")
+							player:set_inventory_formspec(create2.get_formspec(player))
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+						else
+							new_letter = false
+							meta:set_string("error_message", "You can only place 10 red orbs!")
+							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+							player:set_inventory_formspec(create2.get_formspec(player))
+						end
+					elseif n1x == 13 and n1y == 5 then	
+						local k = 0
+						for j=1,12 do
+							for i=1,20 do
+								if meta:get_string("na"..letter(i)..letter(j)) == "W" or meta:get_string("na"..letter(i)..letter(j)) == "X" then
+									k = k+1
+								end
+							end
+						end
+						if k < 10 then
 							node_letter = "X"
 							meta:set_string("error_message", "")
 							player:set_inventory_formspec(create2.get_formspec(player))
@@ -5601,7 +5678,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 13 and n1y == 5 then
+					elseif n1x == 1 and n1y == 6 then
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -5621,7 +5698,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 1 and n1y == 6 then	
+					elseif n1x == 2 and n1y == 6 then	
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -5640,7 +5717,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 2 and n1y == 6 then
+					elseif n1x == 3 and n1y == 6 then
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -5659,7 +5736,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 3 and n1y == 6 then	
+					elseif n1x == 4 and n1y == 6 then	
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -5678,7 +5755,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 4 and n1y == 6 then	
+					elseif n1x == 5 and n1y == 6 then	
 						local k = 0
 						for j=1,12 do
 							for i=1,20 do
@@ -5697,23 +5774,23 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
 							player:set_inventory_formspec(create2.get_formspec(player))
 						end
-					elseif n1x == 5 and n1y == 6 then	
-						node_letter = "M"
 					elseif n1x == 6 and n1y == 6 then	
-						node_letter = "-"
+						node_letter = "M"
 					elseif n1x == 7 and n1y == 6 then	
-						node_letter = "_"
+						node_letter = "-"
 					elseif n1x == 8 and n1y == 6 then	
-						node_letter = "N"
+						node_letter = "_"
 					elseif n1x == 9 and n1y == 6 then	
-						node_letter = "k"
+						node_letter = "N"
 					elseif n1x == 10 and n1y == 6 then	
+						node_letter = "k"
+					elseif n1x == 11 and n1y == 6 then	
 						node_letter = "n"
-					elseif n1x == 13 and n1y == 6 then	
-						node_letter = "\\"
 					elseif n1x == 1 and n1y == 7 then	
-						node_letter = "@"
+						node_letter = "\\"
 					elseif n1x == 2 and n1y == 7 then	
+						node_letter = "@"
+					elseif n1x == 3 and n1y == 7 then	
 						node_letter = "?"
 					end
 					if check_ground(node_letter) == false and meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
@@ -5904,18 +5981,28 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					elseif n2x == 13 and n2y == 4 then	
 						node_letter = "G"
 					elseif n2x == 1 and n2y == 5 then	
-						node_letter = "s"
+						node_letter = "+"
 					elseif n2x == 2 and n2y == 5 then	
-						node_letter = "y"
+						node_letter = "s"
 					elseif n2x == 3 and n2y == 5 then	
-						node_letter = "z"
+						node_letter = "y"
 					elseif n2x == 4 and n2y == 5 then	
-						node_letter = "A"
+						node_letter = "z"
 					elseif n2x == 5 and n2y == 5 then	
-						node_letter = "B"
+						node_letter = "A"
 					elseif n2x == 6 and n2y == 5 then	
-						node_letter = "M"
+						node_letter = "B"
 					elseif n2x == 7 and n2y == 5 then	
+						node_letter = "Y"
+					elseif n2x == 8 and n2y == 5 then	
+						node_letter = "Z"
+					elseif n2x == 9 and n2y == 5 then	
+						node_letter = "'"
+					elseif n2x == 10 and n2y == 5 then	
+						node_letter = "*"
+					elseif n2x == 11 and n2y == 5 then	
+						node_letter = "M"
+					elseif n2x == 12 and n2y == 5 then	
 						node_letter = "r"
 					end
 					if new_letter and check_ground(meta:get_string("na"..letter(i)..letter(j))) then
@@ -5986,7 +6073,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         end
 		
 	end
-	if formname == "w51" or formname == "w52" or formname == "w53" or formname == "w54" or formname == "w55" or formname == "w56" then
+	if formname == "w51" or formname == "w52" or formname == "w53" or formname == "w54" or formname == "w55" or formname == "w56" or formname == "w57" then
         for k, v in pairs(fields) do
             if tonumber(v) ~= nil then
                 New(player,"5_"..v,"n",1)

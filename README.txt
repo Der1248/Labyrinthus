@@ -11,8 +11,8 @@ Can you help the nyancat to find her rainbow block??
 But first you have to solve puzzles to color the rainbow block.
 Use your Up, Down, Right, Left key to control the cat 
 and if you jump the cat will throw a ball. (if you have one)
-Use the sneak key to restart a level.
-Over 50 blocks with differend functions to solve more than 520 puzzles.
+Use the sneak key to restart a level and aux1 to reset the last step.
+Over 140 blocks with differend functions to solve more than 680 puzzles.
 
 License:
 See README.txt in each mod for more information
