@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.14.0",
+		text = "Game Version	 :  2.15.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -92,193 +92,193 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 local node_list1 = {
-	{"0","labyrinthus:sand",					"labyrinthus_sand.png"},
-	{"1","labyrinthus:water",					"labyrinthus_water.png"},
-	{"2","labyrinthus:rainbow",					"nyancat_rainbow.png"},
-	{"3","labyrinthus:red1",					"labyrinthus_red1.png"},
-	{"4","labyrinthus:green1",					"labyrinthus_green1.png"},
-	{"5","labyrinthus:button1",					"labyrinthus_sand.png^labyrinthus_button.png"},
-	{"6","labyrinthus:blue1",					"labyrinthus_blue1.png"},
-	{"7","labyrinthus:green_col",				"labyrinthus_sand.png^labyrinthus_green_col.png"},
-	{"8","labyrinthus:red_col",					"labyrinthus_sand.png^labyrinthus_red_col.png"},
-	{"9","labyrinthus:blue_col",				"labyrinthus_sand.png^labyrinthus_blue_col.png"},
-	{"a","labyrinthus:key2",					"labyrinthus_sand.png^labyrinthus_key.png"},
-	{"b","labyrinthus:tp",						"labyrinthus_sand.png^labyrinthus_tp.png"},
-	{"c","labyrinthus:ball1",					"labyrinthus_sand.png^labyrinthus_ball.png"},
-	{"d","labyrinthus:boom",					"labyrinthus_sand.png^labyrinthus_boom.png"},
-	{"e","labyrinthus:00",						"labyrinthus_sand.png^labyrinthus_0.png"},
-	{"f","labyrinthus:eye1",					"labyrinthus_sand.png^labyrinthus_eye.png"},
-	{"g","labyrinthus:box",						"labyrinthus_sand.png^labyrinthus_box.png"},
-	{"h","labyrinthus:bones",					"labyrinthus_bones_front.png"},
-	{"i","labyrinthus:button11",				"labyrinthus_sand.png^labyrinthus_button1.png"},
-	{"j","labyrinthus:fire",					"labyrinthus_sand.png^labyrinthus_flame.png"},
-	{"k","labyrinthus:arrow",					"labyrinthus_sand.png^labyrinthus_arrow.png"},
-	{"l","labyrinthus:round2",					"labyrinthus_sand.png^labyrinthus_round2.png"},
-	{"m","labyrinthus:round3",					"labyrinthus_sand.png^labyrinthus_round3.png"},
-	{"n","labyrinthus:arrow2",					"labyrinthus_sand.png^labyrinthus_arrow2.png"},
-	{"o","labyrinthus:red_sand",				"labyrinthus_sand.png^labyrinthus_red.png"},
-	{"p","labyrinthus:moon",					"labyrinthus_sand.png^labyrinthus_moon.png"},
-	{"q","labyrinthus:sun",						"labyrinthus_sand.png^labyrinthus_sun.png"},
-	{"r","labyrinthus:water_wood",				"labyrinthus_water.png^labyrinthus_water_wood.png"},
-	{"s","labyrinthus:time30",					"labyrinthus_sand.png^labyrinthus_time30.png"},
-	{"t","labyrinthus:ice1",					"labyrinthus_ice.png"},
-	{"u","labyrinthus:ice2",					"labyrinthus_ice2.png"},
-	{"v","labyrinthus:ice3",					"labyrinthus_ice3.png"},
-	{"w","labyrinthus:round4",					"labyrinthus_sand.png^labyrinthus_round4.png"},
-	{"x","labyrinthus:round1",					"labyrinthus_sand.png^labyrinthus_round1.png"},
-	{"y","labyrinthus:dirt",					"labyrinthus_dirt.png"},
-	{"z","labyrinthus:rainbow2",				"labyrinthus_rainbow2.png"},
-	{"A","labyrinthus:purple",					"labyrinthus_sand.png^labyrinthus_purple.png"},
-	{"B","labyrinthus:empty_gate",				"labyrinthus_sand.png^labyrinthus_empty_gate.png"},
-	{"C","labyrinthus:gate_arrows",				"labyrinthus_sand.png^labyrinthus_gate_arrows.png"},
-	{"D","labyrinthus:red_cross",				"labyrinthus_sand.png^labyrinthus_red_cross.png"},
-	{"E","labyrinthus:green_cross",				"labyrinthus_sand.png^labyrinthus_green_cross.png"},
-	{"F","labyrinthus:blue_cross",				"labyrinthus_sand.png^labyrinthus_blue_cross.png"},
-	{"G","labyrinthus:purple_dirt",				"labyrinthus_dirt.png^labyrinthus_purple.png"},
-	{"H","labyrinthus:gate",					"labyrinthus_sand.png^labyrinthus_gate.png"},
-	{"I","labyrinthus:green",					"labyrinthus_sand.png^labyrinthus_green.png"},
-	{"J","labyrinthus:water_wood_with_green",	"labyrinthus_water.png^labyrinthus_water_wood_with_green.png"},
-	{"K","labyrinthus:sand_for_green",			"labyrinthus_sand.png^labyrinthus_stone_for_green.png"},
-	{"L","labyrinthus:cyan",					"labyrinthus_sand.png^labyrinthus_cyan.png"},
-	{"M","labyrinthus:bow",						"labyrinthus_sand.png^labyrinthus_bow.png"},
-	{"N","labyrinthus:arrow4_2",				"labyrinthus_sand.png^labyrinthus_arrow4_2.png"},
-	{"O","labyrinthus:green_dirt",				"labyrinthus_dirt.png^labyrinthus_green.png"},
-	{"P","labyrinthus:cyan_dirt",				"labyrinthus_dirt.png^labyrinthus_cyan.png"},
-	{"Q","labyrinthus:tp2",						"labyrinthus_sand.png^labyrinthus_tp2.png"},
-	{"R","labyrinthus:yellow2",					"labyrinthus_sand.png^labyrinthus_yellow2.png"},
-	{"S","labyrinthus:yellow_dirt",				"labyrinthus_dirt.png^labyrinthus_yellow2.png"},
-	{"T","labyrinthus:wood_for_yellow",			"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png"},
-	{"U","labyrinthus:water_stone",				"labyrinthus_water.png^labyrinthus_water_stone.png"},
-	{"V","labyrinthus:sand_for_green_dirt",		"labyrinthus_dirt.png^labyrinthus_stone_for_green.png"},
-	{"W","labyrinthus:red3",					"labyrinthus_sand.png^labyrinthus_red3.png"},
-	{"X","labyrinthus:water_wood_with_red",		"labyrinthus_water.png^labyrinthus_water_wood_with_red.png"},
-	{"Y","labyrinthus:wood",					"labyrinthus_wood.png"},
-	{"Z","labyrinthus:white",					"labyrinthus_sand.png^labyrinthus_white.png"},
-	{":","labyrinthus:tp3",						"labyrinthus_sand.png^labyrinthus_tp3.png"},
-	{";","labyrinthus:ice_with_green",			"labyrinthus_ice3.png^labyrinthus_green.png"},
-	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png"},
-	{">","labyrinthus:button_eye",				"labyrinthus_sand.png^labyrinthus_button_eye.png"},
-	{"|","labyrinthus:water_eye1",				"labyrinthus_water.png^labyrinthus_water_eye.png"},
-	{".","labyrinthus:water_eye1_with_yellow",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png"},
-	{",","labyrinthus:water_eye1_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png"},
-	{"-","labyrinthus:arrow_path",				"labyrinthus_sand.png^labyrinthus_arrow_path.png"},
-	{"_","labyrinthus:arrow_path_button",		"labyrinthus_sand.png^labyrinthus_arrow_path_button.png"},
-	{"#","labyrinthus:ball3",					"labyrinthus_sand.png^labyrinthus_ball2.png"},
-	{"'","labyrinthus:ice_with_yellow",			"labyrinthus_ice3.png^labyrinthus_yellow2.png"},
-	{"*","labyrinthus:dirt_with_yellow_circle",	"labyrinthus_dirt.png^labyrinthus_yellow_circle.png"},
-	{"+","labyrinthus:dirt_with_red_circle",	"labyrinthus_dirt.png^labyrinthus_red_circle.png"},
-	{"~","labyrinthus:arrow_path_with_green",	"labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png"},
-	{"@","labyrinthus:cross_red",				"labyrinthus_sand.png^labyrinthus_cross_red.png"},
-	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png"},
-	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png"},
-	{"{","labyrinthus:grey_sand",				"labyrinthus_sand.png^labyrinthus_grey3.png"},
-	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png"},
-	{"]","labyrinthus:water_eye1_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png"},
+	{"0","labyrinthus:sand",					"labyrinthus_sand.png",														1,	1},
+	{"1","labyrinthus:water",					"labyrinthus_water.png",													10,	3},
+	{"2","labyrinthus:rainbow",					"nyancat_rainbow.png",														2,	1},
+	{"3","labyrinthus:red1",					"labyrinthus_red1.png",														5,	1},
+	{"4","labyrinthus:green1",					"labyrinthus_green1.png",													6,	1},
+	{"5","labyrinthus:button1",					"labyrinthus_sand.png^labyrinthus_button.png",								1,	2},
+	{"6","labyrinthus:blue1",					"labyrinthus_blue1.png",													7,	1},
+	{"7","labyrinthus:green_col",				"labyrinthus_sand.png^labyrinthus_green_col.png",							9,	1},
+	{"8","labyrinthus:red_col",					"labyrinthus_sand.png^labyrinthus_red_col.png",								8,	1},
+	{"9","labyrinthus:blue_col",				"labyrinthus_sand.png^labyrinthus_blue_col.png",							10,	1},
+	{"a","labyrinthus:key2",					"labyrinthus_sand.png^labyrinthus_key.png",									2,	2},
+	{"b","labyrinthus:tp",						"labyrinthus_sand.png^labyrinthus_tp.png",									3,	2},
+	{"c","labyrinthus:ball1",					"labyrinthus_sand.png^labyrinthus_ball.png",								7,	2},
+	{"d","labyrinthus:boom",					"labyrinthus_sand.png^labyrinthus_boom.png",								8,	2},
+	{"e","labyrinthus:00",						"labyrinthus_sand.png^labyrinthus_0.png",									9,	2},
+	{"f","labyrinthus:eye1",					"labyrinthus_sand.png^labyrinthus_eye.png",									10,	2},
+	{"g","labyrinthus:box",						"labyrinthus_sand.png^labyrinthus_box.png",									4,	1},
+	{"h","labyrinthus:bones",					"labyrinthus_bones_front.png",												11,	2},
+	{"i","labyrinthus:button11",				"labyrinthus_sand.png^labyrinthus_button1.png",								12,	2},
+	{"j","labyrinthus:fire",					"labyrinthus_sand.png^labyrinthus_flame.png",								13,	2},
+	{"k","labyrinthus:arrow",					"labyrinthus_sand.png^labyrinthus_arrow.png",								11,	6},
+	{"l","labyrinthus:round2",					"labyrinthus_sand.png^labyrinthus_round2.png",								5,	3},
+	{"m","labyrinthus:round3",					"labyrinthus_sand.png^labyrinthus_round3.png",								4,	3},
+	{"n","labyrinthus:arrow2",					"labyrinthus_sand.png^labyrinthus_arrow2.png",								12,	6},
+	{"o","labyrinthus:red_sand",				"labyrinthus_sand.png^labyrinthus_red.png",									1,	3},
+	{"p","labyrinthus:moon",					"labyrinthus_sand.png^labyrinthus_moon.png",								7,	3},
+	{"q","labyrinthus:sun",						"labyrinthus_sand.png^labyrinthus_sun.png",									8,	3},
+	{"r","labyrinthus:water_wood",				"labyrinthus_water.png^labyrinthus_water_wood.png",							3,	4},
+	{"s","labyrinthus:time30",					"labyrinthus_sand.png^labyrinthus_time30.png",								9,	3},
+	{"t","labyrinthus:ice1",					"labyrinthus_ice.png",														13,	3},
+	{"u","labyrinthus:ice2",					"labyrinthus_ice2.png",														12,	3},
+	{"v","labyrinthus:ice3",					"labyrinthus_ice3.png",														11,	3},
+	{"w","labyrinthus:round4",					"labyrinthus_sand.png^labyrinthus_round4.png",								6,	3},
+	{"x","labyrinthus:round1",					"labyrinthus_sand.png^labyrinthus_round1.png",								3,	3},
+	{"y","labyrinthus:dirt",					"labyrinthus_dirt.png",														4,	4},
+	{"z","labyrinthus:rainbow2",				"labyrinthus_rainbow2.png",													3,	1},
+	{"A","labyrinthus:purple",					"labyrinthus_sand.png^labyrinthus_purple.png",								5,	4},
+	{"B","labyrinthus:empty_gate",				"labyrinthus_sand.png^labyrinthus_empty_gate.png",							8,	4},
+	{"C","labyrinthus:gate_arrows",				"labyrinthus_sand.png^labyrinthus_gate_arrows.png",							7,	4},
+	{"D","labyrinthus:red_cross",				"labyrinthus_sand.png^labyrinthus_red_cross.png",							11,	1},
+	{"E","labyrinthus:green_cross",				"labyrinthus_sand.png^labyrinthus_green_cross.png",							12,	1},
+	{"F","labyrinthus:blue_cross",				"labyrinthus_sand.png^labyrinthus_blue_cross.png",							13,	1},
+	{"G","labyrinthus:purple_dirt",				"labyrinthus_dirt.png^labyrinthus_purple.png",								6,	4},
+	{"H","labyrinthus:gate",					"labyrinthus_sand.png^labyrinthus_gate.png",								9,	4},
+	{"I","labyrinthus:green",					"labyrinthus_sand.png^labyrinthus_green.png",								10,	4},
+	{"J","labyrinthus:water_wood_with_green",	"labyrinthus_water.png^labyrinthus_water_wood_with_green.png",				12,	4},
+	{"K","labyrinthus:sand_for_green",			"labyrinthus_sand.png^labyrinthus_stone_for_green.png",						3,	5},
+	{"L","labyrinthus:cyan",					"labyrinthus_sand.png^labyrinthus_cyan.png",								4,	6},
+	{"M","labyrinthus:bow",						"labyrinthus_sand.png^labyrinthus_bow.png",									7,	6},
+	{"N","labyrinthus:arrow4_2",				"labyrinthus_sand.png^labyrinthus_arrow4_2.png",							10,	6},
+	{"O","labyrinthus:green_dirt",				"labyrinthus_dirt.png^labyrinthus_green.png",								11,	4},
+	{"P","labyrinthus:cyan_dirt",				"labyrinthus_dirt.png^labyrinthus_cyan.png",								5,	6},
+	{"Q","labyrinthus:tp2",						"labyrinthus_sand.png^labyrinthus_tp2.png",									4,	2},
+	{"R","labyrinthus:yellow2",					"labyrinthus_sand.png^labyrinthus_yellow2.png",								5,	5},
+	{"S","labyrinthus:yellow_dirt",				"labyrinthus_dirt.png^labyrinthus_yellow2.png",								6,	5},
+	{"T","labyrinthus:wood_for_yellow",			"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png",					10,	5},
+	{"U","labyrinthus:water_stone",				"labyrinthus_water.png^labyrinthus_water_stone.png",						11,	5},
+	{"V","labyrinthus:sand_for_green_dirt",		"labyrinthus_dirt.png^labyrinthus_stone_for_green.png",						4,	5},
+	{"W","labyrinthus:red3",					"labyrinthus_sand.png^labyrinthus_red3.png",								12,	5},
+	{"X","labyrinthus:water_wood_with_red",		"labyrinthus_water.png^labyrinthus_water_wood_with_red.png",				1,	6},
+	{"Y","labyrinthus:wood",					"labyrinthus_wood.png",														9,	5},
+	{"Z","labyrinthus:white",					"labyrinthus_sand.png^labyrinthus_white.png",								2,	6},
+	{":","labyrinthus:tp3",						"labyrinthus_sand.png^labyrinthus_tp3.png",									5,	2},
+	{";","labyrinthus:ice_with_green",			"labyrinthus_ice3.png^labyrinthus_green.png",								13,	4},
+	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png",								3,	6},
+	{">","labyrinthus:button_eye",				"labyrinthus_sand.png^labyrinthus_button_eye.png",							1,	4},
+	{"|","labyrinthus:water_eye1",				"labyrinthus_water.png^labyrinthus_water_eye.png",							2,	4},
+	{".","labyrinthus:water_eye1_with_yellow",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png",	8,	5},
+	{",","labyrinthus:water_eye1_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png",		6,	6},
+	{"-","labyrinthus:arrow_path",				"labyrinthus_sand.png^labyrinthus_arrow_path.png",							8,	6},
+	{"_","labyrinthus:arrow_path_button",		"labyrinthus_sand.png^labyrinthus_arrow_path_button.png",					9,	6},
+	{"#","labyrinthus:ball3",					"labyrinthus_sand.png^labyrinthus_ball2.png",								6,	2},
+	{"'","labyrinthus:ice_with_yellow",			"labyrinthus_ice3.png^labyrinthus_yellow2.png",								7,	5},
+	{"*","labyrinthus:dirt_with_yellow_circle",	"labyrinthus_dirt.png^labyrinthus_yellow_circle.png",						13,	6},
+	{"+","labyrinthus:dirt_with_red_circle",	"labyrinthus_dirt.png^labyrinthus_red_circle.png",							1,	7},
+	{"~","labyrinthus:arrow_path_with_green",	"labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png",	2,	5},
+	{"@","labyrinthus:cross_red",				"labyrinthus_sand.png^labyrinthus_cross_red.png",							3,	7},
+	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png",							4,	7},
+	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png",						2,	7},
+	{"{","labyrinthus:grey_sand",				"labyrinthus_sand.png^labyrinthus_grey3.png",								2,	3},
+	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png",								13,	5},
+	{"]","labyrinthus:water_eye1_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png",	1,	5},
 	
-	{"!","labyrinthus:button12",				""},
-	{"$","labyrinthus:button2_1",				""},
-	{"%","labyrinthus:empty_gate_purple",		""},
-	{"&","labyrinthus:gate",					""},
-	{"/","labyrinthus:button3_1",				""},
-	{"(","labyrinthus:water_eye2",				""},
-	{")","labyrinthus:water_eye2_with_yellow",	""},
-	{"=","labyrinthus:water_eye2_with_cyan",	""},
-	{"}","labyrinthus:water_eye2_with_green",	""},
-	{"`","labyrinthus:button2_2",				""},
-	{"^","labyrinthus:button3_2",				""},
+	{"!","labyrinthus:button12",				"",																			0, 	0},
+	{"$","labyrinthus:button2_1",				"",																			0,	0},
+	{"%","labyrinthus:empty_gate_purple",		"",																			0, 	0},
+	{"&","labyrinthus:gate",					"",																			0, 	0},
+	{"/","labyrinthus:button3_1",				"",																			0,	0},
+	{"(","labyrinthus:water_eye2",				"",																			0,	0},
+	{")","labyrinthus:water_eye2_with_yellow",	"",																			0,	0},
+	{"=","labyrinthus:water_eye2_with_cyan",	"",																			0,	0},
+	{"}","labyrinthus:water_eye2_with_green",	"",																			0,	0},
+	{"`","labyrinthus:button2_2",				"",																			0,	0},
+	{"^","labyrinthus:button3_2",				"",																			0,	0},
 	--noch offen: 93/94   "
 }
 
 local node_list2 = {
-	{"0","air",											""},
-	{"1","labyrinthus:junglewood",						"labyrinthus_junglewood.png"},
-	{"2","labyrinthus:stone",							"labyrinthus_stone.png"},
-	{"3","labyrinthus:meselamp2",						"labyrinthus_meselamp2.png"},
-	{"4","labyrinthus:red2",							"labyrinthus_ball_red.png"},
-	{"5","labyrinthus:green2",							"labyrinthus_ball_green.png"},
-	{"6","labyrinthus:button2",							"labyrinthus_stone.png^labyrinthus_button_2.png"},
-	{"7","labyrinthus:blue2",							"labyrinthus_ball_blue.png"},
-	{"8","labyrinthus:key1",							"labyrinthus_stone.png^labyrinthus_key2.png"},
-	{"9","labyrinthus:diamondblock",					"labyrinthus_diamond_block.png"},
-	{"a","labyrinthus:pbj_pup",							"labyrinthus_pup_front.png"},
-	{"b","labyrinthus:cobble",							"labyrinthus_cobble.png"},
-	{"c","labyrinthus:tnt",								"labyrinthus_tnt_side.png"},
-	{"d","labyrinthus:apple",							"labyrinthus_apple.png"},
-	{"e","labyrinthus:4",								"labyrinthus_mese_block.png^labyrinthus_4.png"},
-	{"f","labyrinthus:3",								"labyrinthus_mese_block.png^labyrinthus_3.png"},
-	{"g","labyrinthus:2",								"labyrinthus_mese_block.png^labyrinthus_2.png"},
-	{"h","labyrinthus:1",								"labyrinthus_mese_block.png^labyrinthus_1.png"},
-	{"i","labyrinthus:eye2",							"labyrinthus_mese_block.png^labyrinthus_eye.png"},
-	{"j","labyrinthus:red",								"labyrinthus_mese_block.png^labyrinthus_red.png"},
-	{"k","labyrinthus:blue",							"labyrinthus_mese_block.png^labyrinthus_blue.png"},
-	{"l","labyrinthus:yellow",							"labyrinthus_mese_block.png^labyrinthus_yellow.png"},
-	{"m","labyrinthus:glass",							"labyrinthus_eye2.png"},
-	{"n","labyrinthus:nyan1",							"labyrinthus_part1.png"},
-	{"o","labyrinthus:nyan2",							"labyrinthus_part2.png"},
-	{"p","labyrinthus:nyan3",							"labyrinthus_part3.png"},
-	{"q","labyrinthus:nyan4",							"labyrinthus_part4.png"},
-	{"r","labyrinthus:arrow3",							"labyrinthus_mese_block.png^labyrinthus_arrow2.png"},
-	{"s","labyrinthus:leaves",							"labyrinthus_leaves.png"},
-	{"t","labyrinthus:water_ball",						"labyrinthus_ball_water.png"},
-	{"u","labyrinthus:transport_stone",					"labyrinthus_mese_block.png^labyrinthus_gate_arrows2.png"},
-	{"v","labyrinthus:red_pyramid",						"labyrinthus_pyramid_red.png"},
-	{"w","labyrinthus:green_pyramid",					"labyrinthus_pyramid_green.png"},
-	{"x","labyrinthus:blue_pyramid",					"labyrinthus_pyramid_blue.png"},
-	{"y","labyrinthus:bow_right",						"labyrinthus_mese_block.png^labyrinthus_bow_right.png"},
-	{"z","labyrinthus:bow_left",						"labyrinthus_mese_block.png^labyrinthus_bow_left.png"},
-	{"A","labyrinthus:bow_down",						"labyrinthus_mese_block.png^labyrinthus_bow_down.png"},
-	{"B","labyrinthus:bow_up",							"labyrinthus_mese_block.png^labyrinthus_bow_up.png"},
-	{"C","labyrinthus:button3",							"labyrinthus_stone.png^labyrinthus_button_3.png"},
-	{"D","labyrinthus:yellow_block",					"labyrinthus_stone.png^labyrinthus_yellow_arrow.png"},
-	{"E","labyrinthus:yellow_red",						"labyrinthus_stone.png^labyrinthus_yellow_red.png"},
-	{"F","labyrinthus:stone_for_white",					"labyrinthus_stone.png^labyrinthus_stone_for_white.png"},
-	{"G","labyrinthus:stone_with_no_white1",			"labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png"},
-	{"H","labyrinthus:remember1_off",					"labyrinthus_mese_block.png^labyrinthus_remember1.png"},
-	{"I","labyrinthus:remember2_off",					"labyrinthus_mese_block.png^labyrinthus_remember2.png"},
-	{"J","labyrinthus:remember3_off",					"labyrinthus_mese_block.png^labyrinthus_remember3.png"},
-	{"K","labyrinthus:remember4_off",					"labyrinthus_mese_block.png^labyrinthus_remember4.png"},
-	{"L","labyrinthus:remember5_off",					"labyrinthus_mese_block.png^labyrinthus_remember5.png"},
-	{"M","labyrinthus:arrow4",							"labyrinthus_mese_block.png^labyrinthus_arrow4.png"},
-	{"N","labyrinthus:arrow5_yellow",					"labyrinthus_mese_block.png^labyrinthus_arrow5_yellow.png"},
-	{"O","labyrinthus:arrow5_red",						"labyrinthus_mese_block.png^labyrinthus_arrow5_red.png"},
-	{"P","labyrinthus:key3",							"labyrinthus_stone.png^labyrinthus_key3.png"},
-	{"Q","labyrinthus:2red",							"labyrinthus_mese_block.png^labyrinthus_2red.png"},
-	{"R","labyrinthus:2blue",							"labyrinthus_mese_block.png^labyrinthus_2blue.png"},
-	{"S","labyrinthus:2yellow",							"labyrinthus_mese_block.png^labyrinthus_2yellow.png"},
-	{"T","labyrinthus:grey1",							"labyrinthus_mese_block.png^labyrinthus_grey1.png"},
-	{"U","labyrinthus:grey2",							"labyrinthus_mese_block.png^labyrinthus_grey2.png"},
-	{"V","labyrinthus:grey3",							"labyrinthus_mese_block.png^labyrinthus_grey3.png"},
-	{"W","labyrinthus:backward_arrow",					"labyrinthus_mese_block.png^labyrinthus_backward_arrow.png"},
-	{"X","labyrinthus:wood2",							"labyrinthus_mese_block.png^labyrinthus_wood2.png"},
-	{"Y","labyrinthus:bow_right_block",					"labyrinthus_stone.png^labyrinthus_bow_right2.png"},
-	{"Z","labyrinthus:bow_left_block",					"labyrinthus_stone.png^labyrinthus_bow_left2.png"},
-	{"'","labyrinthus:bow_down_block",					"labyrinthus_stone.png^labyrinthus_bow_down2.png"},
-	{"*","labyrinthus:bow_up_block",					"labyrinthus_stone.png^labyrinthus_bow_up2.png"},
-	{"+","labyrinthus:stone_with_white2",				"labyrinthus_stone.png^labyrinthus_stone_with_white2.png"},
+	{"0","air",											"",																	1,	1},
+	{"1","labyrinthus:junglewood",						"labyrinthus_junglewood.png",										5,	1},
+	{"2","labyrinthus:stone",							"labyrinthus_stone.png",											3,	1},
+	{"3","labyrinthus:meselamp2",						"labyrinthus_meselamp2.png",										5,	2},
+	{"4","labyrinthus:red2",							"labyrinthus_ball_red.png",											8,	1},
+	{"5","labyrinthus:green2",							"labyrinthus_ball_green.png",										9,	1},
+	{"6","labyrinthus:button2",							"labyrinthus_stone.png^labyrinthus_button_2.png",					1,	2},
+	{"7","labyrinthus:blue2",							"labyrinthus_ball_blue.png",										10,	1},
+	{"8","labyrinthus:key1",							"labyrinthus_stone.png^labyrinthus_key2.png",						3,	2},
+	{"9","labyrinthus:diamondblock",					"labyrinthus_diamond_block.png",									6,	2},
+	{"a","labyrinthus:pbj_pup",							"labyrinthus_pup_front.png",										7,	2},
+	{"b","labyrinthus:cobble",							"labyrinthus_cobble.png",											8,	2},
+	{"c","labyrinthus:tnt",								"labyrinthus_tnt_side.png",											9,	2},
+	{"d","labyrinthus:apple",							"labyrinthus_apple.png",											4,	1},
+	{"e","labyrinthus:4",								"labyrinthus_mese_block.png^labyrinthus_4.png",						10,	2},
+	{"f","labyrinthus:3",								"labyrinthus_mese_block.png^labyrinthus_3.png",						11,	2},
+	{"g","labyrinthus:2",								"labyrinthus_mese_block.png^labyrinthus_2.png",						12,	2},
+	{"h","labyrinthus:1",								"labyrinthus_mese_block.png^labyrinthus_1.png",						13,	2},
+	{"i","labyrinthus:eye2",							"labyrinthus_mese_block.png^labyrinthus_eye.png",					1,	3},
+	{"j","labyrinthus:red",								"labyrinthus_mese_block.png^labyrinthus_red.png",					3,	3},
+	{"k","labyrinthus:blue",							"labyrinthus_mese_block.png^labyrinthus_blue.png",					4,	3},
+	{"l","labyrinthus:yellow",							"labyrinthus_mese_block.png^labyrinthus_yellow.png",				5,	3},
+	{"m","labyrinthus:glass",							"labyrinthus_eye2.png",												2,	3},
+	{"n","labyrinthus:nyan1",							"labyrinthus_part1.png",											12,	3},
+	{"o","labyrinthus:nyan2",							"labyrinthus_part2.png",											13,	3},
+	{"p","labyrinthus:nyan3",							"labyrinthus_part3.png",											1,	4},
+	{"q","labyrinthus:nyan4",							"labyrinthus_part4.png",											2,	4},
+	{"r","labyrinthus:arrow3",							"labyrinthus_mese_block.png^labyrinthus_arrow2.png",				12,	5},
+	{"s","labyrinthus:leaves",							"labyrinthus_leaves.png",											2,	5},
+	{"t","labyrinthus:water_ball",						"labyrinthus_ball_water.png",										7,	1},
+	{"u","labyrinthus:transport_stone",					"labyrinthus_mese_block.png^labyrinthus_gate_arrows2.png",			8,	4},
+	{"v","labyrinthus:red_pyramid",						"labyrinthus_pyramid_red.png",										11,	1},
+	{"w","labyrinthus:green_pyramid",					"labyrinthus_pyramid_green.png",									12,	1},
+	{"x","labyrinthus:blue_pyramid",					"labyrinthus_pyramid_blue.png",										13,	1},
+	{"y","labyrinthus:bow_right",						"labyrinthus_mese_block.png^labyrinthus_bow_right.png",				3,	5},
+	{"z","labyrinthus:bow_left",						"labyrinthus_mese_block.png^labyrinthus_bow_left.png",				4,	5},
+	{"A","labyrinthus:bow_down",						"labyrinthus_mese_block.png^labyrinthus_bow_down.png",				5,	5},
+	{"B","labyrinthus:bow_up",							"labyrinthus_mese_block.png^labyrinthus_bow_up.png",				6,	5},
+	{"C","labyrinthus:button3",							"labyrinthus_stone.png^labyrinthus_button_3.png",					2,	2},
+	{"D","labyrinthus:yellow_block",					"labyrinthus_stone.png^labyrinthus_yellow_arrow.png",				10,	4},
+	{"E","labyrinthus:yellow_red",						"labyrinthus_stone.png^labyrinthus_yellow_red.png",					11,	4},
+	{"F","labyrinthus:stone_for_white",					"labyrinthus_stone.png^labyrinthus_stone_for_white.png",			12,	4},
+	{"G","labyrinthus:stone_with_no_white1",			"labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png",	13,	4},
+	{"H","labyrinthus:remember1_off",					"labyrinthus_mese_block.png^labyrinthus_remember1.png",				3,	4},
+	{"I","labyrinthus:remember2_off",					"labyrinthus_mese_block.png^labyrinthus_remember2.png",				4,	4},
+	{"J","labyrinthus:remember3_off",					"labyrinthus_mese_block.png^labyrinthus_remember3.png",				5,	4},
+	{"K","labyrinthus:remember4_off",					"labyrinthus_mese_block.png^labyrinthus_remember4.png",				6,	4},
+	{"L","labyrinthus:remember5_off",					"labyrinthus_mese_block.png^labyrinthus_remember5.png",				7,	4},
+	{"M","labyrinthus:arrow4",							"labyrinthus_mese_block.png^labyrinthus_arrow4.png",				11,	5},
+	{"N","labyrinthus:arrow5_yellow",					"labyrinthus_mese_block.png^labyrinthus_arrow5_yellow.png",			13,	5},
+	{"O","labyrinthus:arrow5_red",						"labyrinthus_mese_block.png^labyrinthus_arrow5_red.png",			1,	6},
+	{"P","labyrinthus:key3",							"labyrinthus_stone.png^labyrinthus_key3.png",						4,	2},
+	{"Q","labyrinthus:2red",							"labyrinthus_mese_block.png^labyrinthus_2red.png",					9,	3},
+	{"R","labyrinthus:2blue",							"labyrinthus_mese_block.png^labyrinthus_2blue.png",					10,	3},
+	{"S","labyrinthus:2yellow",							"labyrinthus_mese_block.png^labyrinthus_2yellow.png",				11,	3},
+	{"T","labyrinthus:grey1",							"labyrinthus_mese_block.png^labyrinthus_grey1.png",					8,	3},
+	{"U","labyrinthus:grey2",							"labyrinthus_mese_block.png^labyrinthus_grey2.png",					7,	3},
+	{"V","labyrinthus:grey3",							"labyrinthus_mese_block.png^labyrinthus_grey3.png",					6,	3},
+	{"W","labyrinthus:backward_arrow",					"labyrinthus_mese_block.png^labyrinthus_backward_arrow.png",		9,	4},
+	{"X","labyrinthus:wood2",							"labyrinthus_mese_block.png^labyrinthus_wood2.png",					6,	1},
+	{"Y","labyrinthus:bow_right_block",					"labyrinthus_stone.png^labyrinthus_bow_right2.png",					7,	5},
+	{"Z","labyrinthus:bow_left_block",					"labyrinthus_stone.png^labyrinthus_bow_left2.png",					8,	5},
+	{"'","labyrinthus:bow_down_block",					"labyrinthus_stone.png^labyrinthus_bow_down2.png",					9,	5},
+	{"*","labyrinthus:bow_up_block",					"labyrinthus_stone.png^labyrinthus_bow_up2.png",					10,	5},
+	{"+","labyrinthus:stone_with_white2",				"labyrinthus_stone.png^labyrinthus_stone_with_white2.png",			1,	5},
 	
-	{"!","nyancat:nyancat",								""},
-	{"$","labyrinthus:button13",						""},
-	{"%","labyrinthus:transport_stone_gate_arrows",		""},
-	{"&","labyrinthus:red_with_no_yellow",				""},
-	{"/","labyrinthus:stone_with_white",				""},
-	{")","labyrinthus:stone_with_no_white2",			""},
-	{"=","labyrinthus:remember1_on",					""},
-	{"[","labyrinthus:remember2_on",					""},
-	{"]","labyrinthus:remember3_on",					""},
-	{"{","labyrinthus:remember4_on",					""},
-	{"}","labyrinthus:remember5_on",					""},
-	{"?","labyrinthus:remember5_temp",					""},
-	{"\\","labyrinthus:0",								""},
-	{":","labyrinthus:wire_10100000",					""},
-	{";","labyrinthus:wire_10000000",					""},
-	{"<","labyrinthus:wire_01000000",					""},
-	{">","labyrinthus:wire_00100000",					""},
-	{"|","labyrinthus:wire_00010000",					""},
-	{".","labyrinthus:wire_01010000",					""},
-	{",","labyrinthus:wire_11000000",					""},
-	{"-","labyrinthus:wire_01100000",					""},
-	{"_","labyrinthus:wire_00110000",					""},
-	{"#","labyrinthus:wire_10010000",					""},
+	{"!","nyancat:nyancat",								"",																	0,	0},
+	{"$","labyrinthus:button13",						"",																	0,	0},
+	{"%","labyrinthus:transport_stone_gate_arrows",		"",																	0,	0},
+	{"&","labyrinthus:red_with_no_yellow",				"",																	0,	0},
+	{"/","labyrinthus:stone_with_white",				"",																	0,	0},
+	{")","labyrinthus:stone_with_no_white2",			"",																	0,	0},
+	{"=","labyrinthus:remember1_on",					"",																	0,	0},
+	{"[","labyrinthus:remember2_on",					"",																	0,	0},
+	{"]","labyrinthus:remember3_on",					"",																	0,	0},
+	{"{","labyrinthus:remember4_on",					"",																	0,	0},
+	{"}","labyrinthus:remember5_on",					"",																	0,	0},
+	{"?","labyrinthus:remember5_temp",					"",																	0,	0},
+	{"\\","labyrinthus:0",								"",																	0,	0},
+	{":","labyrinthus:wire_10100000",					"",																	0,	0},
+	{";","labyrinthus:wire_10000000",					"",																	0,	0},
+	{"<","labyrinthus:wire_01000000",					"",																	0,	0},
+	{">","labyrinthus:wire_00100000",					"",																	0,	0},
+	{"|","labyrinthus:wire_00010000",					"",																	0,	0},
+	{".","labyrinthus:wire_01010000",					"",																	0,	0},
+	{",","labyrinthus:wire_11000000",					"",																	0,	0},
+	{"-","labyrinthus:wire_01100000",					"",																	0,	0},
+	{"_","labyrinthus:wire_00110000",					"",																	0,	0},
+	{"#","labyrinthus:wire_10010000",					"",																	0,	0},
 	
 	--noch offen 88/94	` ^ " ( @ ~
 }
@@ -377,7 +377,7 @@ function globalstep(timer, timer2)
             player_inv:set_stack("con", 6 , "labyrinthus:dirt")
             local player_inv = player:get_inventory()
             player_inv:set_size("ll", 1)
-            player_inv:set_size("l", 5)
+            player_inv:set_size("l", 6)
             local ll = player_inv:get_stack("ll", 1):get_count()
             local l = player_inv:get_stack("l", ll):get_count()
 			local meta = player:get_meta()
@@ -4482,7 +4482,7 @@ function Load(player)
     player_inv:set_size("r", 1)
     player_inv:set_size("s", 1)
 	player_inv:set_size("ss", 1)
-    player_inv:set_size("l", 5)
+    player_inv:set_size("l", 6)
     player_inv:set_size("b", 1)
 	player_inv:set_size("wire", 1)
     player_inv:set_size("a", 1)
@@ -4573,7 +4573,7 @@ function New(player,page,art,num)
 		elseif art == "o" then
 			lv = io.open(minetest.get_worldpath().."/own_level_"..page..".txt", "r")
 		end
-		if string.sub(page, 1, 1) == "5" or art == "o" then
+		if string.sub(page, 1, 1) == "5" or string.sub(page, 1, 1) == "6" or art == "o" then
 			for i=1,12 do
 				ar1[i] = lv:read("*l")
 			end
@@ -4585,7 +4585,7 @@ function New(player,page,art,num)
 			end
 		end
 		local zw = lv:read("*l")
-		if string.sub(page, 1, 1) == "5" or art == "o" then
+		if string.sub(page, 1, 1) == "5" or string.sub(page, 1, 1) == "6" or art == "o" then
 			for i=1,12 do
 				ar2[i] = lv:read("*l")
 			end
@@ -5028,20 +5028,71 @@ minetest.register_node("labyrinthus:new_w6",{
 		local player_inv = player:get_inventory()
         local page = player_inv:get_stack("page6", 1):get_count()+1
         if page == 1 then
-			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",0,0,0,false,"",false,"comming soon","0.7"))
+			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",10,10,0,false,"",false,"more comming soon","2.7"))
 		end
     end,
 })
 
-function check_ground(letter)
+function check_ground(ground_id, id)
 	local list = {"2","z","3","4","6","a","b","#","c","h","j","p","q","H","I","J","K","Z","<",";","U","N","k","n","A","l","w","R",".","'","W","X","T"}
+	local list_button = {"1", "y"}
 	for _,v in pairs(list) do
-		if v == letter then
+		if v == ground_id then
 			return false
 		end
 	end
+	if ground_id ~= "1" and ground_id ~= "y" and (id == "6" or id == "C") then
+		return false
+	end
+	if ground_id ~= "y" and (id == "N" or id == "O") then
+		return false
+	end
 	return true
 end
+
+function check_num_items(meta, player, id, ids, num, name)
+	node_letter = ""
+	new_letter = true
+	local k = 0
+	for j=1,12 do
+		for i=1,20 do
+			for _, v in ipairs(ids) do
+				if v == meta:get_string("na"..letter(i)..letter(j)) then
+					k = k+1
+				end
+			end
+		end
+	end
+	if k < num then
+		node_letter = id
+		meta:set_string("error_message", "")
+		player:set_inventory_formspec(create2.get_formspec(player))
+		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+	else
+		new_letter = false
+		meta:set_string("error_message", "You can only place "..num.." "..name.."!")
+		minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
+		player:set_inventory_formspec(create2.get_formspec(player))
+	end
+	return node_letter, new_letter
+end
+
+function place_only_once(meta, id, layer)
+	node_letter = id
+	for i=1,20 do
+		for j=1,12 do
+			if meta:get_string(layer..letter(i)..letter(j)) == id then
+				meta:set_string(layer..letter(i)..letter(j),"0")
+			end
+		end
+	end	
+	return node_letter
+end
+
+
+						
+						
+						
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
     local player_inv = player:get_inventory()
@@ -5372,379 +5423,39 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					local n1y = tonumber(meta:get_string("new_node1y"))
 					local node_letter = ""
 					local new_letter = true
-					if n1x == 1 and n1y == 1 then
-						node_letter = "0"
-					elseif n1x == 2 and n1y == 1 then	
-						node_letter = "2"
-					elseif n1x == 3 and n1y == 1 then
-						node_letter = "z"
-					elseif n1x == 4 and n1y == 1 then	
-						node_letter = "g"
-					elseif n1x == 5 and n1y == 1 then	
-						node_letter = "3"
-					elseif n1x == 6 and n1y == 1 then
-						node_letter = "4"
-					elseif n1x == 7 and n1y == 1 then	
-						node_letter = "6"
-					elseif n1x == 8 and n1y == 1 then	
-						node_letter = "8"
-					elseif n1x == 9 and n1y == 1 then
-						node_letter = "7"
-					elseif n1x == 10 and n1y == 1 then	
-						node_letter = "9"
-					elseif n1x == 11 and n1y == 1 then	
-						node_letter = "D"
-					elseif n1x == 12 and n1y == 1 then	
-						node_letter = "E"
-					elseif n1x == 13 and n1y == 1 then	
-						node_letter = "F"
-					elseif n1x == 1 and n1y == 2 then
-						node_letter = "5"
-					elseif n1x == 2 and n1y == 2 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "a" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = "a"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 keys!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 3 and n1y == 2 then
-						node_letter = "b"					
-					elseif n1x == 4 and n1y == 2 then	
-						node_letter = "Q"
-					elseif n1x == 5 and n1y == 2 then	
-						node_letter = ":"
-					elseif n1x == 6 and n1y == 2 then
-						node_letter = "#"
-					elseif n1x == 7 and n1y == 2 then	
-						node_letter = "c"
-					elseif n1x == 8 and n1y == 2 then	
-						node_letter = "d"
-					elseif n1x == 9 and n1y == 2 then
-						node_letter = "e"
-					elseif n1x == 10 and n1y == 2 then	
-						node_letter = "f"
-					elseif n1x == 11 and n1y == 2 then	
-						node_letter = "h"
-					elseif n1x == 12 and n1y == 2 then	
-						node_letter = "i"
-					elseif n1x == 13 and n1y == 2 then	
-						node_letter = "j"
-					elseif n1x == 1 and n1y == 3 then
-						node_letter = "o"
-					elseif n1x == 2 and n1y == 3 then
-						node_letter = "{"
-					elseif n1x == 3 and n1y == 3 then	
-						node_letter = "x"
-					elseif n1x == 4 and n1y == 3 then
-						node_letter = "m"					
+					if n1x == 2 and n1y == 2 then
+						node_letter, new_letter = check_num_items(meta, player, "a", {"a"}, 40, "keys")
 					elseif n1x == 5 and n1y == 3 then	
-						node_letter = "l"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "l" then
-									meta:set_string("na"..letter(i)..letter(j),"0")
-								end
-							end
-						end	
-					elseif n1x == 6 and n1y == 3 then	
-						node_letter = "w"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "w" then
-									meta:set_string("na"..letter(i)..letter(j),"0")
-								end
-							end
-						end	
-					elseif n1x == 7 and n1y == 3 then
-						node_letter = "p"
-					elseif n1x == 8 and n1y == 3 then	
-						node_letter = "q"
-					elseif n1x == 9 and n1y == 3 then	
-						node_letter = "s"
-					elseif n1x == 10 and n1y == 3 then
-						node_letter = "1"
-					elseif n1x == 11 and n1y == 3 then	
-						node_letter = "v"
-					elseif n1x == 12 and n1y == 3 then	
-						node_letter = "u"
-					elseif n1x == 13 and n1y == 3 then	
-						node_letter = "t"
-					elseif n1x == 1 and n1y == 4 then	
-						node_letter = ">"
-					elseif n1x == 2 and n1y == 4 then
-						node_letter = "|"
-					elseif n1x == 3 and n1y == 4 then	
-						node_letter = "r"
-					elseif n1x == 4 and n1y == 4 then
-						node_letter = "y"					
+						node_letter = place_only_once(meta, "l", "na")
+					elseif n1x == 6 and n1y == 3 then
+						node_letter = place_only_once(meta, "w", "na")
 					elseif n1x == 5 and n1y == 4 then
-						local k = 0
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "A" or meta:get_string("na"..letter(i)..letter(j)) == "G" then
-									k = k+1
-								end
-							end
-						end
-						if k < 2 then
-							node_letter = "A"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 2 purple orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "A", {"A", "G"}, 2, "purple orbs")
 					elseif n1x == 6 and n1y == 4 then	
-						local k = 0
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "A" or meta:get_string("na"..letter(i)..letter(j)) == "G" then
-									k = k+1
-								end
-							end
-						end
-						if k < 2 then
-							node_letter = "G"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 2 purple orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 7 and n1y == 4 then	
-						node_letter = "C"
-					elseif n1x == 8 and n1y == 4 then	
-						node_letter = "B"
-					elseif n1x == 9 and n1y == 4 then
-						node_letter = "H"
-					elseif n1x == 10 and n1y == 4 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = "I"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 green orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "G", {"A", "G"}, 2, "purple orbs")
+					elseif n1x == 10 and n1y == 4 then
+						node_letter, new_letter = check_num_items(meta, player, "I", {"I", "J", "O", ";", "]", "~"}, 40, "green orbs")
 					elseif n1x == 11 and n1y == 4 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = "O"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 green orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "O", {"I", "J", "O", ";", "]", "~"}, 40, "green orbs")
 					elseif n1x == 12 and n1y == 4 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = "J"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 green orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 13 and n1y == 4 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = ";"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 green orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "J", {"I", "J", "O", ";", "]", "~"}, 40, "green orbs")
+					elseif n1x == 13 and n1y == 4 then
+						node_letter, new_letter = check_num_items(meta, player, ";", {"I", "J", "O", ";", "]", "~"}, 40, "green orbs")
 					elseif n1x == 1 and n1y == 5 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = "]"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 green orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 2 and n1y == 5 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "I" or meta:get_string("na"..letter(i)..letter(j)) == "J" or meta:get_string("na"..letter(i)..letter(j)) == ";" then
-									k = k+1
-								end
-							end
-						end
-						if k < 40 then
-							node_letter = "~"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 40 green orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 3 and n1y == 5 then
-						node_letter = "K"
-					elseif n1x == 4 and n1y == 5 then	
-						node_letter = "V"
+						node_letter, new_letter = check_num_items(meta, player, "]", {"I", "J", "O", ";", "]", "~"}, 40, "green orbs")
+					elseif n1x == 2 and n1y == 5 then
+						node_letter, new_letter = check_num_items(meta, player, "~", {"I", "J", "O", ";", "]", "~"}, 40, "green orbs")
 					elseif n1x == 5 and n1y == 5 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
-									k = k+1
-								end
-							end
-						end
-						if k < 60 then
-							node_letter = "R"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 60 yellow orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end						
-					elseif n1x == 6 and n1y == 5 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
-									k = k+1
-								end
-							end
-						end
-						if k < 60 then
-							node_letter = "S"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 60 yellow orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end	
+						node_letter, new_letter = check_num_items(meta, player, "R", {"R", "S", ".", "'"}, 60, "yellow orbs")
+					elseif n1x == 6 and n1y == 5 then
+						node_letter, new_letter = check_num_items(meta, player, "S", {"R", "S", ".", "'"}, 60, "yellow orbs")
 					elseif n1x == 7 and n1y == 5 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
-									k = k+1
-								end
-							end
-						end
-						if k < 60 then
-							node_letter = "'"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 60 yellow orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 8 and n1y == 5 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "R" or meta:get_string("na"..letter(i)..letter(j)) == "." or meta:get_string("na"..letter(i)..letter(j)) == "'" then
-									k = k+1
-								end
-							end
-						end
-						if k < 60 then
-							node_letter = "."
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 60 yellow orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 9 and n1y == 5 then	
-						node_letter = "Y"
+						node_letter, new_letter = check_num_items(meta, player, "'", {"R", "S", ".", "'"}, 60, "yellow orbs")
+					elseif n1x == 8 and n1y == 5 then
+						node_letter, new_letter = check_num_items(meta, player, ".", {"R", "S", ".", "'"}, 60, "yellow orbs")
 					elseif n1x == 10 and n1y == 5 then
 						node_letter = "T"
-						if j == 12 or check_ground(meta:get_string("na"..letter(i)..letter(j+1))) == false or meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
+						if j == 12 or check_ground(meta:get_string("na"..letter(i)..letter(j+1)), "T") == false or meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
 							new_letter = false
 							meta:set_string("error_message", "You can not place that there!")
 							player:set_inventory_formspec(create2.get_formspec(player))
@@ -5752,188 +5463,30 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						else
 							meta:set_string("nb"..letter(i)..letter(j+1), "D")
 						end
-					elseif n1x == 11 and n1y == 5 then
-						node_letter = "U"
-					elseif n1x == 12 and n1y == 5 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "W" or meta:get_string("na"..letter(i)..letter(j)) == "X" then
-									k = k+1
-								end
-							end
-						end
-						if k < 10 then
-							node_letter = "W"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 red orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+					elseif n1x == 12 and n1y == 5 then
+						node_letter, new_letter = check_num_items(meta, player, "W", {"W", "X", "["}, 10, "red orbs")
 					elseif n1x == 13 and n1y == 5 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "W" or meta:get_string("na"..letter(i)..letter(j)) == "X" then
-									k = k+1
-								end
-							end
-						end
-						if k < 10 then
-							node_letter = "["
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 red orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "[", {"W", "X", "["}, 10, "red orbs")
 					elseif n1x == 1 and n1y == 6 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "W" or meta:get_string("na"..letter(i)..letter(j)) == "X" then
-									k = k+1
-								end
-							end
-						end
-						if k < 10 then
-							node_letter = "X"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 red orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "X", {"W", "X", "["}, 10, "red orbs")
 					elseif n1x == 2 and n1y == 6 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "Z" or meta:get_string("na"..letter(i)..letter(j)) == "<" then
-									k = k+1
-								end
-							end
-						end
-						if k < 10 then
-							node_letter = "Z"
-							meta:set_string("error_message", "")
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 white orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 3 and n1y == 6 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "Z" or meta:get_string("na"..letter(i)..letter(j)) == "<" then
-									k = k+1
-								end
-							end
-						end
-						if k < 10 then
-							node_letter = "<"
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 white orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "Z", {"Z", "<"}, 10, "white orbs")
+					elseif n1x == 3 and n1y == 6 then
+						node_letter, new_letter = check_num_items(meta, player, "<", {"Z", "<"}, 10, "white orbs")
 					elseif n1x == 4 and n1y == 6 then
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "L" or meta:get_string("na"..letter(i)..letter(j)) == "P" or meta:get_string("na"..letter(i)..letter(j)) == "," then
-									k = k+1
-								end
-							end
-						end				
-						if k < 10 then
-							node_letter = "L"
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 cyan orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "L", {"L", "P", ","}, 10, "cyan orbs")
 					elseif n1x == 5 and n1y == 6 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "L" or meta:get_string("na"..letter(i)..letter(j)) == "P" or meta:get_string("na"..letter(i)..letter(j)) == "," then
-									k = k+1
-								end
-							end
-						end				
-						if k < 10 then
-							node_letter = "P"
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 cyan orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
+						node_letter, new_letter = check_num_items(meta, player, "P", {"L", "P", ","}, 10, "cyan orbs")
 					elseif n1x == 6 and n1y == 6 then	
-						local k = 0
-						for j=1,12 do
-							for i=1,20 do
-								if meta:get_string("na"..letter(i)..letter(j)) == "L" or meta:get_string("na"..letter(i)..letter(j)) == "P" or meta:get_string("na"..letter(i)..letter(j)) == "," then
-									k = k+1
-								end
+						node_letter, new_letter = check_num_items(meta, player, ",", {"L", "P", ","}, 10, "cyan orbs")
+					else
+						for _, row in ipairs(node_list1) do
+							if row[4] == n1x and row[5] == n1y then
+								node_letter =  row[1]
 							end
 						end
-						if k < 10 then
-							node_letter = ","
-							player:set_inventory_formspec(create2.get_formspec(player))
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-						else
-							new_letter = false
-							meta:set_string("error_message", "You can only place 10 cyan orbs!")
-							minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-							player:set_inventory_formspec(create2.get_formspec(player))
-						end
-					elseif n1x == 7 and n1y == 6 then	
-						node_letter = "M"
-					elseif n1x == 8 and n1y == 6 then	
-						node_letter = "-"
-					elseif n1x == 9 and n1y == 6 then	
-						node_letter = "_"
-					elseif n1x == 10 and n1y == 6 then	
-						node_letter = "N"
-					elseif n1x == 11 and n1y == 6 then	
-						node_letter = "k"
-					elseif n1x == 12 and n1y == 6 then	
-						node_letter = "n"
-					elseif n1x == 13 and n1y == 6 then	
-						node_letter = "*"
-					elseif n1x == 1 and n1y == 7 then	
-						node_letter = "+"
-					elseif n1x == 2 and n1y == 7 then	
-						node_letter = "\\"
-					elseif n1x == 3 and n1y == 7 then	
-						node_letter = "@"
-					elseif n1x == 4 and n1y == 7 then	
-						node_letter = "?"
 					end
-					if check_ground(node_letter) == false and meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
+					if check_ground(node_letter, meta:get_string("nb"..letter(i)..letter(j))) == false and meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
 						new_letter = false
 						meta:set_string("error_message", "You can not put that under this block")
 						player:set_inventory_formspec(create2.get_formspec(player))
@@ -5954,151 +5507,20 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					local n2y = tonumber(meta:get_string("new_node2y"))
 					local node_letter = ""
 					local new_letter = true
-					if n2x == 1 and n2y == 1 then
-						node_letter = "0"
-					elseif n2x == 2 and n2y == 1 then	
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "nn" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end
-						node_letter = "nn"
-					elseif n2x == 3 and n2y == 1 then
-						node_letter = "2"
-					elseif n2x == 4 and n2y == 1 then	
-						node_letter = "d"
-					elseif n2x == 5 and n2y == 1 then	
-						node_letter = "1"
-					elseif n2x == 6 and n2y == 1 then
-						node_letter = "X"
-					elseif n2x == 7 and n2y == 1 then	
-						node_letter = "t"
-					elseif n2x == 8 and n2y == 1 then	
-						node_letter = "4"
-					elseif n2x == 9 and n2y == 1 then
-						node_letter = "5"
-					elseif n2x == 10 and n2y == 1 then	
-						node_letter = "7"
-					elseif n2x == 11 and n2y == 1 then	
-						node_letter = "v"
-					elseif n2x == 12 and n2y == 1 then	
-						node_letter = "w"
-					elseif n2x == 13 and n2y == 1 then	
-						node_letter = "x"
-					elseif n2x == 1 and n2y == 2 then
-						node_letter = "6"
-					elseif n2x == 2 and n2y == 2 then
-						node_letter = "C"	
-					elseif n2x == 3 and n2y == 2 then
-						node_letter = "8"				
-					elseif n2x == 4 and n2y == 2 then	
-						node_letter = "P"
-					elseif n2x == 5 and n2y == 2 then	
-						node_letter = "3"
-					elseif n2x == 6 and n2y == 2 then
-						node_letter = "9"
+					if n2x == 2 and n2y == 1 then
+						node_letter = place_only_once(meta, "nn", "nb")
 					elseif n2x == 7 and n2y == 2 then	
-						node_letter = "a"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "a" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end
-					elseif n2x == 8 and n2y == 2 then	
-						node_letter = "b"
-					elseif n2x == 9 and n2y == 2 then
-						node_letter = "c"
-					elseif n2x == 10 and n2y == 2 then	
-						node_letter = "e"
-					elseif n2x == 11 and n2y == 2 then	
-						node_letter = "f"
-					elseif n2x == 12 and n2y == 2 then	
-						node_letter = "g"
-					elseif n2x == 13 and n2y == 2 then	
-						node_letter = "h"
-					elseif n2x == 1 and n2y == 3 then
-						node_letter = "i"
-					elseif n2x == 2 and n2y == 3 then	
-						node_letter = "m"
-					elseif n2x == 3 and n2y == 3 then
-						node_letter = "j"
-					elseif n2x == 4 and n2y == 3 then	
-						node_letter = "k"
-					elseif n2x == 5 and n2y == 3 then	
-						node_letter = "l"
-					elseif n2x == 6 and n2y == 3 then	
-						node_letter = "V"
-					elseif n2x == 7 and n2y == 3 then	
-						node_letter = "U"
-					elseif n2x == 8 and n2y == 3 then	
-						node_letter = "T"
-					elseif n2x == 9 and n2y == 3 then
-						node_letter = "Q"
-					elseif n2x == 10 and n2y == 3 then	
-						node_letter = "R"
-					elseif n2x == 11 and n2y == 3 then	
-						node_letter = "S"
-					elseif n2x == 12 and n2y == 3 then
-						node_letter = "n"
-					elseif n2x == 13 and n2y == 3 then	
-						node_letter = "o"
-					elseif n2x == 1 and n2y == 4 then	
-						node_letter = "p"
-					elseif n2x == 2 and n2y == 4 then	
-						node_letter = "q"
+						node_letter = place_only_once(meta, "a", "nb")
 					elseif n2x == 3 and n2y == 4 then	
-						node_letter = "H"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "H" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end
+						node_letter = place_only_once(meta, "H", "nb")
 					elseif n2x == 4 and n2y == 4 then
-						node_letter = "I"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "I" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end
+						node_letter = place_only_once(meta, "I", "nb")
 					elseif n2x == 5 and n2y == 4 then	
-						node_letter = "J"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "J" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end
+						node_letter = place_only_once(meta, "J", "nb")
 					elseif n2x == 6 and n2y == 4 then
-						node_letter = "K"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "K" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end				
+						node_letter = place_only_once(meta, "K", "nb")			
 					elseif n2x == 7 and n2y == 4 then	
-						node_letter = "L"
-						for i=1,20 do
-							for j=1,12 do
-								if meta:get_string("nb"..letter(i)..letter(j)) == "L" then
-									meta:set_string("nb"..letter(i)..letter(j),"0")
-								end
-							end
-						end
-					elseif n2x == 8 and n2y == 4 then	
-						node_letter = "u"
-					elseif n2x == 9 and n2y == 4 then
-						node_letter = "W"
+						node_letter = place_only_once(meta, "L", "nb")
 					elseif n2x == 10 and n2y == 4 then	
 						node_letter = "D"
 						if j == 1 or meta:get_string("nb"..letter(i)..letter(j-1)) ~= "0" or check_ground(meta:get_string("na"..letter(i)..letter(j))) == false then
@@ -6109,42 +5531,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						else
 							meta:set_string("na"..letter(i)..letter(j-1), "T")
 						end
-					elseif n2x == 11 and n2y == 4 then	
-						node_letter = "E"
-					elseif n2x == 12 and n2y == 4 then
-						node_letter = "F"
-					elseif n2x == 13 and n2y == 4 then	
-						node_letter = "G"
-					elseif n2x == 1 and n2y == 5 then	
-						node_letter = "+"
-					elseif n2x == 2 and n2y == 5 then	
-						node_letter = "s"
-					elseif n2x == 3 and n2y == 5 then	
-						node_letter = "y"
-					elseif n2x == 4 and n2y == 5 then	
-						node_letter = "z"
-					elseif n2x == 5 and n2y == 5 then	
-						node_letter = "A"
-					elseif n2x == 6 and n2y == 5 then	
-						node_letter = "B"
-					elseif n2x == 7 and n2y == 5 then	
-						node_letter = "Y"
-					elseif n2x == 8 and n2y == 5 then	
-						node_letter = "Z"
-					elseif n2x == 9 and n2y == 5 then	
-						node_letter = "'"
-					elseif n2x == 10 and n2y == 5 then	
-						node_letter = "*"
-					elseif n2x == 11 and n2y == 5 then	
-						node_letter = "M"
-					elseif n2x == 12 and n2y == 5 then	
-						node_letter = "r"
-					elseif n2x == 13 and n2y == 5 then	
-						node_letter = "N"
-					elseif n2x == 1 and n2y == 6 then	
-						node_letter = "O"
+					else
+						for _, row in ipairs(node_list2) do
+							if row[4] == n2x and row[5] == n2y then
+								node_letter =  row[1]
+							end
+						end
 					end
-					if new_letter and check_ground(meta:get_string("na"..letter(i)..letter(j))) then
+					if new_letter and check_ground(meta:get_string("na"..letter(i)..letter(j)), node_letter) then
 						meta:set_string("nb"..letter(i)..letter(j), node_letter)
 						if meta:get_string("na"..letter(i)..letter(j-1)) == "T" and node_letter ~= "D" then
 							meta:set_string("na"..letter(i)..letter(j-1), "0")
@@ -6152,7 +5546,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 						meta:set_string("error_message", "")
 						player:set_inventory_formspec(create2.get_formspec(player))
 						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
-					elseif not check_ground(meta:get_string("na"..letter(i)..letter(j))) then
+					elseif not check_ground(meta:get_string("na"..letter(i)..letter(j)), node_letter) then
 						meta:set_string("error_message", "You can not put that on this ground!")
 						player:set_inventory_formspec(create2.get_formspec(player))
 						minetest.show_formspec(player:get_player_name(), "create2" , create2.get_formspec(player))
@@ -6218,6 +5612,16 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                 New(player,"5_"..v,"n",1)
                 player_inv:set_stack("l",  5, "labyrinthus:dirt "..v)
                 player_inv:set_stack("ll", 1, "labyrinthus:dirt 5")
+				minetest.show_formspec(player:get_player_name(), "", "")
+            end
+        end
+	end
+	if formname == "w61" then
+        for k, v in pairs(fields) do
+            if tonumber(v) ~= nil then
+                New(player,"6_"..v,"n",1)
+                player_inv:set_stack("l",  6, "labyrinthus:dirt "..v)
+                player_inv:set_stack("ll", 1, "labyrinthus:dirt 6")
 				minetest.show_formspec(player:get_player_name(), "", "")
             end
         end
