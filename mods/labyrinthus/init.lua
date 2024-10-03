@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.15.0",
+		text = "Game Version	 :  2.15.1",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -5041,7 +5041,7 @@ function check_ground(ground_id, id)
 			return false
 		end
 	end
-	if ground_id ~= "1" and ground_id ~= "y" and (id == "6" or id == "C") then
+	if ground_id ~= "0" and ground_id ~= "y" and (id == "6" or id == "C") then
 		return false
 	end
 	if ground_id ~= "y" and (id == "N" or id == "O") then
