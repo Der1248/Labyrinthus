@@ -37,7 +37,7 @@ main.get_formspec = function(player, pos)
 	end
 	elements = elements:sub(1, #elements - 1)
 	meta:set_string("celected", "")
-	formspec = "size[8,8]"
+	local formspec = "size[8,8]"
 	.."textlist[0,0;4,8;levels;"..elements.."]"
 	.."background9[5,5;1,1;gui_formbg.png;true;10]"
 	.."button[5,0;2,1;play;Play]"
@@ -56,15 +56,15 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=10},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "For Minetest 	  :  5.6.x",
-	})  
+		text = "For Minetest 	  :  5.7.0",
+	})
 	player:hud_add({
 		hud_elem_type = "text",
 		position = {x=0, y=0.85},
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.16.0",
+		text = "Game Version	 :  2.17.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -85,8 +85,8 @@ minetest.register_on_joinplayer(function(player)
 		})
 	end
 	player:set_inventory_formspec(main.get_formspec(player))
-	if player:get_player_name() ~= "singleplayer" then
-		minetest.kick_player(player:get_player_name(), "you can play labyrinthus only as 'singleplayer'")
+	if not minetest.is_singleplayer() then
+		minetest.kick_player(player:get_player_name(), "You can play Sudoku only in singleplayer")
 	end
 end)
 
@@ -289,6 +289,14 @@ function get_item_list(list,index,index_number,number)
     end
 end
 
+function get_item_list2(list, x, y, row_num)
+	for _, row in ipairs(list) do
+		if row[4] == x and row[5] == y then
+			return row[row_num]
+		end
+	end
+end
+
 function utf8_char(s,n)
 	local k = 0
 	for uchar in string.gmatch(s, "([%z\1-\127\194-\244][\128-\191]*)") do
@@ -302,6 +310,7 @@ end
 minetest.register_globalstep(function(dtime)
 	timer = timer + dtime
     timer2 = timer2 + dtime
+	local dots_change = true
 	local players = minetest.get_connected_players()
 	for _,player in ipairs(players) do
 		if timer2 >= 1 then
@@ -309,24 +318,25 @@ minetest.register_globalstep(function(dtime)
 			change_timer(player)
 			minetest.set_timeofday(0.5)
         end
+		if timer >= 0.355 and dots_change then
+			dots_change = false
+			timer = 0
+			change_dots(player)
+		end
     end
-	if timer >= 0.355 then
-		timer = 0
-		change_dots(player)
-	end
 	update()
 end)
 
 
 function change_timer(player)
 	local message = true
+	local player_inv = player:get_inventory()
+	local time = player_inv:get_stack("time", 1):get_count()
+	local x = player_inv:get_stack("x", 1):get_count()
+	local y = player_inv:get_stack("y", 1):get_count()
 	for j=10,29 do
 		for l=9,20 do
 			for m=0,30 do
-				local player_inv = player:get_inventory()
-				local time = player_inv:get_stack("time", 1):get_count()
-				local x = player_inv:get_stack("x", 1):get_count()
-				local y = player_inv:get_stack("y", 1):get_count()
 				if minetest.get_node({x=j, y=l, z=-76}).name == "labyrinthus:time"..m and (time == 2 or pon == 2) and y ~= 0 then
 					if m ~= 0 then
 						minetest.set_node({x=j, y=l, z=-76}, {name="labyrinthus:time"..(m-1)})
@@ -335,7 +345,6 @@ function change_timer(player)
 							message = false
 						end
 					else
-						local player_inv = player:get_inventory()
 						player_inv:set_stack("x", 1, nil)
 						player_inv:set_stack("y", 1, nil)
 						minetest.chat_send_all("you run out of time")
@@ -555,7 +564,7 @@ create.get_formspec = function(player, pos)
 	if player == nil then
         return
     end
-	formspec = "size[5.5,3]"
+	local formspec = "size[5.5,3]"
 		.."background9[5,5;1,1;gui_formbg.png;true;10]"
         .."label[0.15,0.5;own_level_]"
 		.."label[4.85,0.5;.txt]"
@@ -571,7 +580,7 @@ create2.get_formspec = function(player, pos)
 	if player == nil then
         return
     end
-	formspec = "size[20.5,12]"
+	local formspec = "size[20.5,12]"
 	.."background9[5,5;1,1;gui_formbg.png;true;10]"
 	for i=0,20 do
 		for j=0,12 do
@@ -612,175 +621,30 @@ create2.get_formspec = function(player, pos)
 	.."label[8.3,8.5;"..message.."]"
 	.."background["..(0.572+(meta:get_string("new_node1x")+3)*0.45)..","..(0.53+(meta:get_string("new_node1y")+13)*0.5)..";0.47,0.557;labyrinthus_edge.png]"
 	.."background["..(10.572+(meta:get_string("new_node2x")+3)*0.45)..","..(0.53+(meta:get_string("new_node2y")+13)*0.5)..";0.47,0.557;labyrinthus_edge.png]"
-	.."image_button["..(0.5+4*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png;saaa;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+14*0.5)..";0.6,0.6;nyancat_rainbow.png;saab;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_rainbow2.png;saac;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_box.png;saad;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_red1.png;saae;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_green1.png;saaf;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_blue1.png;saag;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_red_col.png;saah;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_green_col.png;saai;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_blue_col.png;saaj;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_red_cross.png;saak;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_green_cross.png;saal;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_blue_cross.png;saam;]"
-	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_button.png;saba;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_key.png;sabb;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_tp.png;sabc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_tp2.png;sabd;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_tp3.png;sabe;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_ball2.png;sabf;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_ball.png;sabg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_boom.png;sabh;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_0.png;sabi;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_eye.png;sabj;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_bones_front.png;sabk;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_button1.png;sabl;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_flame.png;sabm;]"
-	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_red.png;saca;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_grey3.png;sacb;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_round1.png;sacc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_round3.png;sacd;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_round2.png;sace;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_round4.png;sacf;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_moon.png;sacg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_sun.png;sach;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_time30.png;saci;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_water.png;sacj;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ice3.png;sack;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ice2.png;sacl;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_ice.png;sacm;]"
-	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_button_eye.png;sada;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_eye.png;sadb;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_wood.png;sadc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_dirt.png;sadd;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_purple.png;sade;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_purple.png;sadf;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_gate_arrows.png;sadg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_empty_gate.png;sadh;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_gate.png;sadi;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_green.png;sadj;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_green.png;sadk;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_wood_with_green.png;sadl;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_green.png;sadm;]"
-	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png;saea;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png;saeb;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_stone_for_green.png;saec;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_stone_for_green.png;saed;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_yellow2.png;saee;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_yellow2.png;saef;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_yellow2.png;saeg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png;saeh;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_wood.png;saei;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_wood.png^labyrinthus_stone_for_yellow.png;saej;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_stone.png;saek;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_red3.png;sael;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_red3.png;saem;]"
-	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_wood_with_red.png;safa;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_white.png;safb;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_ice3.png^labyrinthus_white.png;safc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cyan.png;safd;]"
-	.."image_button["..(0.5+8*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_cyan.png;safe;]"
-	.."image_button["..(0.5+9*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png;saff;]"
-	.."image_button["..(0.5+10*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_bow.png;safg;]"
-	.."image_button["..(0.5+11*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path.png;safh;]"
-	.."image_button["..(0.5+12*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow_path_button.png;safi;]"
-	.."image_button["..(0.5+13*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow4_2.png;safj;]"
-	.."image_button["..(0.5+14*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow.png;safk;]"
-	.."image_button["..(0.5+15*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_arrow2.png;safl;]"
-	.."image_button["..(0.5+16*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_yellow_circle.png;safm;]"
-	formspec = formspec
-	.."image_button["..(0.5+4*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_dirt.png^labyrinthus_red_circle.png;saga;]"
-	.."image_button["..(0.5+5*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_switch.png;sagb;]"
-	.."image_button["..(0.5+6*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_red.png;sagc;]"
-	.."image_button["..(0.5+7*0.45)..","..(0.5+20*0.5)..";0.6,0.6;labyrinthus_sand.png^labyrinthus_cross_green.png;sagd;]"
-	
-
-	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+14*0.5)..";0.6,0.6;;sbaa;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+14*0.5)..";0.6,0.6;nyancat_front.png;sbab;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_stone.png;sbac;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_apple.png;sbad;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_junglewood.png;sbae;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_wood2.png;sbaf;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_water.png;sbag;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_red.png;sbah;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_green.png;sbai;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_ball_blue.png;sbaj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_pyramid_red.png;sbak;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_pyramid_green.png;sbal;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+14*0.5)..";0.6,0.6;labyrinthus_pyramid_blue.png;sbam;]"
-	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_button_2.png;sbba;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_button_3.png;sbbb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_key2.png;sbbc;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_key3.png;sbbd;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_meselamp2.png;sbbe;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_diamond_block.png;sbbf;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_pup_front.png;sbbg;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_cobble.png;sbbh;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_tnt_side.png;sbbi;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_4.png;sbbj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_3.png;sbbk;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_2.png;sbbl;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+15*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_1.png;sbbm;]"
-	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_eye.png;sbca;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_eye2.png;sbcb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_red.png;sbcc;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_blue.png;sbcd;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_yellow.png;sbce;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_grey3.png;sbcf;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_grey2.png;sbcg;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_grey1.png;sbch;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_2red.png;sbci;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_2blue.png;sbcj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_2yellow.png;sbck;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part1.png;sbcl;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+16*0.5)..";0.6,0.6;labyrinthus_part2.png;sbcm;]"
-	
-	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_part3.png;sbda;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_part4.png;sbdb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_remember1.png;sbdc;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_remember2.png;sbdd;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_remember3.png;sbde;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_remember4.png;sbdf;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_remember5.png;sbdg;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_gate_arrows2.png;sbdh;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_backward_arrow.png;sbdi;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_yellow_arrow.png;sbdj;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_yellow_red.png;sbdk;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_stone_for_white.png;sbdl;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+17*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png;sbdm;]"
-	
-	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_stone_with_white2.png;sbea;]"
-	.."image_button["..(10.5+5*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_leaves.png;sbeb;]"
-	.."image_button["..(10.5+6*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_right.png;sbec;]"
-	.."image_button["..(10.5+7*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_left.png;sbed;]"
-	.."image_button["..(10.5+8*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_down.png;sbee;]"
-	.."image_button["..(10.5+9*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_bow_up.png;sbef;]"
-	.."image_button["..(10.5+10*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_right2.png;sbeg;]"
-	.."image_button["..(10.5+11*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_left2.png;sbeh;]"
-	.."image_button["..(10.5+12*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_down2.png;sbei;]"
-	.."image_button["..(10.5+13*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_stone.png^labyrinthus_bow_up2.png;sbej;]"
-	.."image_button["..(10.5+14*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow4.png;sbek;]"
-	.."image_button["..(10.5+15*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow2.png;sbel;]"
-	.."image_button["..(10.5+16*0.45)..","..(0.5+18*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow5_yellow.png;sbem;]"
-	
-	formspec = formspec
-	.."image_button["..(10.5+4*0.45)..","..(0.5+19*0.5)..";0.6,0.6;labyrinthus_mese_block.png^labyrinthus_arrow5_red.png;sbfa;]"
-
-	
-	formspec = formspec.."button[8,11;2,1;save;Save]"
-	formspec = formspec.."button[10,11;2,1;back;Back]"
+	.."button[8,11;2,1;save;Save]"
+	.."button[10,11;2,1;back;Back]"
+	for row = 1, 7 do
+		local row_labels1 = "sa" .. string.char(96 + row)
+		local row_labels2 = "sb" .. string.char(96 + row)
+		for col = 1, 13 do
+			local x1 = 0.5 + (col + 3) * 0.45
+			local x2 = 10.5 + (col + 3) * 0.45
+			local y = 0.5 + (13 + row) * 0.5
+			local img1 = get_item_list2(node_list1, col, row, 3)
+			local img2 = get_item_list2(node_list2, col, row, 3)
+			if row == 1 and col == 2 then
+				img2 = "nyancat_front.png"
+			end
+			local name1 = row_labels1 .. string.char(96 + col) -- a,b,c...
+			local name2 = row_labels2 .. string.char(96 + col) -- a,b,c...
+			if row < 7 or col < 5 then
+				formspec = formspec .. string.format("image_button[%.2f,%.2f;0.6,0.6;%s;%s;]", x1, y, img1, name1)
+			end
+			if row < 6 or (row < 7 and col < 2) then
+				formspec = formspec .. string.format("image_button[%.2f,%.2f;0.6,0.6;%s;%s;]", x2, y, img2, name2)
+			end
+		end
+	end
 	return formspec		
 end
 
@@ -789,7 +653,7 @@ import.get_formspec = function(player, pos)
 	if player == nil then
         return
     end
-	formspec = "size[5.5,3]"
+	local formspec = "size[5.5,3]"
 		.."background9[5,5;1,1;gui_formbg.png;true;10]"
         .."label[0.15,0.5;own_level_]"
 		.."label[4.85,0.5;.txt]"
@@ -803,7 +667,7 @@ delete.get_formspec = function(player, pos)
 	if player == nil then
         return
     end
-	formspec = "size[5.5,3]"
+	local formspec = "size[5.5,3]"
 		.."background9[5,5;1,1;gui_formbg.png;true;10]"
         .."label[0.1,0.5;Do you want to delete the level from the inventory list?]"
 		.."button[0.75,1.3;2,1;delete2;Yes]"
@@ -816,7 +680,7 @@ back.get_formspec = function(player, pos)
 	if player == nil then
         return
     end
-	formspec = "size[5.5,3]"
+	local formspec = "size[5.5,3]"
 		.."background9[5,5;1,1;gui_formbg.png;true;10]"
         .."label[0,0.5;Do you want to go back? You will lose you builded level.]"
 		.."button[0.75,1.3;2,1;main;Yes]"
@@ -829,7 +693,7 @@ info.get_formspec = function(player, txt)
 	if player == nil then
         return
     end
-	formspec = "size[5.5,3]"
+	local formspec = "size[5.5,3]"
 		.."background9[5,5;1,1;gui_formbg.png;true;10]"
         .."label[0,0.5;"..txt.."]"
 		.."button[1.5,1.3;2,1;main;Ok]"
@@ -943,6 +807,7 @@ function update()
     for _,player in ipairs(players) do
         local player_inv = player:get_inventory()
         Load(player)
+		
         local x = player_inv:get_stack("x", 1):get_count()
         local y = player_inv:get_stack("y", 1):get_count()
         local key = player_inv:get_stack("k", 1):get_count()
@@ -1316,7 +1181,7 @@ function update()
             pon = 0
 			local level = ""
 			if ll ~= 0 then
-				lv = io.open(minetest.get_worldpath().."/level"..ll..".txt", "r")
+				local lv = io.open(minetest.get_worldpath().."/level"..ll..".txt", "r")
 				level = lv:read("*l")
 				lv:close()
 			end
@@ -1338,16 +1203,16 @@ function update()
 	        local emin, emax = vm:get_emerged_area()
 			if ll ~= 0 then
 				if tonumber(level) == tonumber(l) then
-					le = io.open(minetest.get_worldpath().."/level"..ll..".txt", "w")
+					local le = io.open(minetest.get_worldpath().."/level"..ll..".txt", "w")
 					le:write(level+1)
 					le:close()
 				end
 			end
         end
 	end
-	minetest.set_node({x=10, y=8, z=-77}, {name="labyrinthus:desert"})
 	local players = minetest.get_connected_players()
     for _,player in ipairs(players) do
+		minetest.set_node({x=10, y=8, z=-77}, {name="labyrinthus:desert"})
         local player_inv = player:get_inventory()
 		local fire = player_inv:get_stack("f", 1):get_count()
 		local x = player_inv:get_stack("x", 1):get_count()
@@ -1380,8 +1245,9 @@ function file_check(file_name)
 	return file_found
 end
 minetest.register_on_joinplayer(function(player)
-	minetest.setting_set("node_highlighting", "none")
-	player:setpos({x=19.5, y=10.5, z=-88})
+	
+	minetest.settings:set("node_highlighting", "none")
+	player:set_pos({x=19.5, y=10.5, z=-88})
 	player:set_physics_override({
         speed = 0,
         jump = 0,
@@ -1419,11 +1285,11 @@ minetest.register_on_joinplayer(function(player)
 	    vm:update_liquids()
 	    vm:write_to_map()
 	    vm:update_map()
-		file = io.open(minetest.get_worldpath().."/Map_Version.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/Map_Version.txt", "w")
 		file:write(1)
 		file:close()
 	end
-	file = io.open(minetest.get_worldpath().."/Map_Version.txt", "r")
+	local file = io.open(minetest.get_worldpath().."/Map_Version.txt", "r")
 	local map_ver = file:read("*l")
     file:close()
 	if tonumber(map_ver) < map_version then
@@ -1443,49 +1309,49 @@ minetest.register_on_joinplayer(function(player)
 	    vm:update_liquids()
 	    vm:write_to_map()
 	    vm:update_map()
-		file = io.open(minetest.get_worldpath().."/Map_Version.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/Map_Version.txt", "w")
 		file:write(map_version)
 		file:close()
 	end
 	if file_check(minetest.get_worldpath().."/level1.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/level1.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/level1.txt", "w")
 		file:write("1")
 		file:close()
 	end
     if file_check(minetest.get_worldpath().."/level2.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/level2.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/level2.txt", "w")
 		file:write("1")
 		file:close()
 	end
     if file_check(minetest.get_worldpath().."/level3.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/level3.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/level3.txt", "w")
 		file:write("1")
 		file:close()
 	end
     if file_check(minetest.get_worldpath().."/level4.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/level4.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/level4.txt", "w")
 		file:write("1")
 		file:close()
 	end
 	if file_check(minetest.get_worldpath().."/level5.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/level5.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/level5.txt", "w")
 		file:write("1")
 		file:close()
 	end
 	if file_check(minetest.get_worldpath().."/level6.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/level6.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/level6.txt", "w")
 		file:write("1")
 		file:close()
 	end
 	if file_check(minetest.get_worldpath().."/move1.txt") == true then
 	else
-		file = io.open(minetest.get_worldpath().."/move1.txt", "w")
+		local file = io.open(minetest.get_worldpath().."/move1.txt", "w")
 		file:close()
 	end
 end)
@@ -1565,15 +1431,14 @@ minetest.register_node("labyrinthus:meselamp", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	is_ground_content = false,
-	light_source = 15,
+	light_source = 14,
 })
 minetest.register_node("labyrinthus:glass",{
 	tiles = {"labyrinthus_glass.png"},
 	drawtype = "glasslike_framed_optional",
-    alpha = 0,
 	paramtype = "light",
 	sunlight_propagates = true,
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
 	is_ground_content = true,
 })
 minetest.register_node("labyrinthus:nyancat2",{
@@ -1701,7 +1566,6 @@ minetest.register_node("labyrinthus:blue_cross",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_blue_cross.png"},
 })
 
-
 minetest.register_node("labyrinthus:cross_red",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_cross_red.png"},
 })
@@ -1711,7 +1575,6 @@ minetest.register_node("labyrinthus:cross_green",{
 minetest.register_node("labyrinthus:cross_switch",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_cross_switch.png"},
 })
-
 
 minetest.register_node("labyrinthus:blue_col",{
 	tiles = {"labyrinthus_sand.png^labyrinthus_blue_col.png"},
@@ -1902,19 +1765,17 @@ minetest.register_node("labyrinthus:boom",{
 minetest.register_node("labyrinthus:ball2",{
 	tiles = {"labyrinthus_ball.png"},
 	drawtype = "glasslike_framed_optional",
-    alpha = 0,
 	paramtype = "light",
 	sunlight_propagates = true,
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
 	is_ground_content = true,
 })
 minetest.register_node("labyrinthus:ball4",{
 	tiles = {"labyrinthus_ball2.png"},
 	drawtype = "glasslike_framed_optional",
-    alpha = 0,
 	paramtype = "light",
 	sunlight_propagates = true,
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
 	is_ground_content = true,
 })
 minetest.register_node("labyrinthus:1",{
@@ -2196,7 +2057,6 @@ register_wires = function()
 			paramtype = "light",
 			paramtype2 = "facedir",
 			sunlight_propagates = true,
-			selection_box = selectionbox,
 			node_box = nodebox,
 			walkable = false,
 			tiles = {"labyrinthus_wire.png"}
@@ -3020,23 +2880,23 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfir
 			
             if a == 0 then
                 if dir1 == "right" then
-					move_control(pos, node, player, pointed_thing, Right, Left, 1)
+					move_control(player, pointed_thing, Right, Left, 1)
                 elseif dir1 == "up" then
-					move_control(pos, node, player, pointed_thing, Up, Down, 4)
+					move_control(player, pointed_thing, Up, Down, 4)
                 elseif dir1 == "down" then
-                    move_control(pos, node, player, pointed_thing, Down, Up, 2)
+                    move_control(player, pointed_thing, Down, Up, 2)
                 elseif dir1 == "left" then
-                    move_control(pos, node, player, pointed_thing, Left, Right, 3)
+                    move_control(player, pointed_thing, Left, Right, 3)
                 end
             else
                 if dir2 == "right" then
-                    move_control(pos, node, player, pointed_thing, Right, Left, 1)
+                    move_control(player, pointed_thing, Right, Left, 1)
                 elseif dir2 == "up" then
-                    move_control(pos, node, player, pointed_thing, Up, Down, 4)
+                    move_control(player, pointed_thing, Up, Down, 4)
                 elseif dir2 == "down" then
-                    move_control(pos, node, player, pointed_thing, Down, Up, 2)
+                    move_control(player, pointed_thing, Down, Up, 2)
                 elseif dir2 == "left" then
-                    move_control(pos, node, player, pointed_thing, Left, Right, 3)
+                    move_control(player, pointed_thing, Left, Right, 3)
                 end
             end
         end
@@ -3623,23 +3483,23 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfir
         local a = player_inv:get_stack("a", 1):get_count()
 		if a == 0 then
 			if dir1 == "right" then
-				move_control(pos, node, player, pointed_thing, Right, Left, 1)
+				move_control(player, pointed_thing, Right, Left, 1)
 			elseif dir1 == "up" then
-				move_control(pos, node, player, pointed_thing, Up, Down, 4)
+				move_control(player, pointed_thing, Up, Down, 4)
 			elseif dir1 == "down" then
-				move_control(pos, node, player, pointed_thing, Down, Up, 2)
+				move_control(player, pointed_thing, Down, Up, 2)
 			elseif dir1 == "left" then
-				move_control(pos, node, player, pointed_thing, Left, Right, 3)
+				move_control(player, pointed_thing, Left, Right, 3)
 			end
 		else
 			if dir2 == "right" then
-				move_control(pos, node, player, pointed_thing, Right, Left, 1)
+				move_control(player, pointed_thing, Right, Left, 1)
 			elseif dir2 == "up" then
-				move_control(pos, node, player, pointed_thing, Up, Down, 4)
+				move_control(player, pointed_thing, Up, Down, 4)
 			elseif dir2 == "down" then
-				move_control(pos, node, player, pointed_thing, Down, Up, 2)
+				move_control(player, pointed_thing, Down, Up, 2)
 			elseif dir2 == "left" then
-				move_control(pos, node, player, pointed_thing, Left, Right, 3)
+				move_control(player, pointed_thing, Left, Right, 3)
 			end
 		end
     end
@@ -3742,7 +3602,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfir
         pon = 0
 		local level = ""
 		if ll ~= 0 then
-			lv = io.open(minetest.get_worldpath().."/level"..ll..".txt", "r")
+			local lv = io.open(minetest.get_worldpath().."/level"..ll..".txt", "r")
 			level = lv:read("*l")
 			lv:close()
 		end
@@ -3764,7 +3624,7 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfir
 	    local emin, emax = vm:get_emerged_area()
 		if ll ~= 0 then
 			if tonumber(level) == tonumber(level2) then
-				le = io.open(minetest.get_worldpath().."/level"..ll..".txt", "w")
+				local le = io.open(minetest.get_worldpath().."/level"..ll..".txt", "w")
 				le:write(level+1)
 				le:close()
 			end
@@ -3774,105 +3634,70 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfir
 		local a = player_inv:get_stack("a", 1):get_count()
 		if a == 0 then
 			if dir1 == "right" then
-				move_control(pos, node, player, true, Right, Left, 1)
+				move_control(player, true, Right, Left, 1)
 			elseif dir1 == "up" then
-				move_control(pos, node, player, true, Up, Down, 4)
+				move_control(player, true, Up, Down, 4)
 			elseif dir1 == "down" then
-				move_control(pos, node, player, true, Down, Up, 2)
+				move_control(player, true, Down, Up, 2)
 			elseif dir1 == "left" then
-				move_control(pos, node, player, true, Left, Right, 3)
+				move_control(player, true, Left, Right, 3)
 			end
 		else
 			if dir2 == "right" then
-				move_control(pos, node, player, true, Right, Left, 1)
+				move_control(player, true, Right, Left, 1)
 			elseif dir2 == "up" then
-				move_control(pos, node, player, true, Up, Down, 4)
+				move_control(player, true, Up, Down, 4)
 			elseif dir2 == "down" then
-				move_control(pos, node, player, true, Down, Up, 2)
+				move_control(player, true, Down, Up, 2)
 			elseif dir2 == "left" then
-				move_control(pos, node, player, true, Left, Right, 3)
+				move_control(player, true, Left, Right, 3)
 			end
 		end
 	end
 end
-function Right(pos, node, player, overdirt, trfire)
-    local player_inv = player:get_inventory()
-    local x = player_inv:get_stack("x", 1):get_count()
-    local y = player_inv:get_stack("y", 1):get_count()
-    local e1m1 = {x=x+10, y=y+8, z=-76}
-    local e1m2 = {x=x+11, y=y+8, z=-76}
-    local e1m3 = {x=x+12, y=y+8, z=-76}
-    local e2m1 = {x=x+10, y=y+8, z=-77}
-    local e2m2 = {x=x+11, y=y+8, z=-77}
-    local e2m3 = {x=x+12, y=y+8, z=-77}
-    local ko = "x"
-    local koad = (x+1)
-    local dir1 = "right"
-    local dir2 = "left"
-    local pbjnr = 1
-    if x < 19 and x > -1 and y > 0 then
-        move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfire,overdirt)
-    end
-end
-function Up(pos, node, player, overdirt, trfire)
-	local player_inv = player:get_inventory()
-    local x = player_inv:get_stack("x", 1):get_count()
-    local y = player_inv:get_stack("y", 1):get_count()
-    local e1m1 = {x=x+10, y=y+8, z=-76}
-    local e1m2 = {x=x+10, y=y+9, z=-76}
-    local e1m3 = {x=x+10, y=y+10, z=-76}
-    local e2m1 = {x=x+10, y=y+8, z=-77}
-    local e2m2 = {x=x+10, y=y+9, z=-77}
-    local e2m3 = {x=x+10, y=y+10, z=-77}
-    local ko = "y"
-    local koad = (y+1)
-    local dir1 = "up"
-    local dir2 = "down"
-    local pbjnr = 4
-    if y < 12  and y > 0 then
-        move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfire,overdirt)
-    end
-end
-function Down(pos, node, player, overdirt, trfire)
-	local player_inv = player:get_inventory()
-    local x = player_inv:get_stack("x", 1):get_count()
-    local y = player_inv:get_stack("y", 1):get_count()
-    local e1m1 = {x=x+10, y=y+8, z=-76}
-    local e1m2 = {x=x+10, y=y+7, z=-76}
-    local e1m3 = {x=x+10, y=y+6, z=-76}
-    local e2m1 = {x=x+10, y=y+8, z=-77}
-    local e2m2 = {x=x+10, y=y+7, z=-77}
-    local e2m3 = {x=x+10, y=y+6, z=-77}
-    local ko = "y"
-    local koad = (y-1)
-    local dir1 = "down"
-    local dir2 = "up"
-    local pbjnr = 2
-    if y > 1 and y < 13 then
-        move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfire,overdirt)
-    end
-end
-function Left(pos, node, player, overdirt, trfire)
-	local player_inv = player:get_inventory()
-    local x = player_inv:get_stack("x", 1):get_count()
-    local y = player_inv:get_stack("y", 1):get_count()
-    local e1m1 = {x=x+10, y=y+8, z=-76}
-    local e1m2 = {x=x+9, y=y+8, z=-76}
-    local e1m3 = {x=x+8, y=y+8, z=-76}
-    local e2m1 = {x=x+10, y=y+8, z=-77}
-    local e2m2 = {x=x+9, y=y+8, z=-77}
-    local e2m3 = {x=x+8, y=y+8, z=-77}
-    local ko = "x"
-    local koad = (x-1)
-    local dir1 = "left"
-    local dir2 = "right"
-    local pbjnr = 3
-    if x > 0 and x < 20 and y > 0 then
-        move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfire,overdirt)
-    end
+
+function move_dir(player, dx, dy, dz, ko, koad, dir1, dir2, pbjnr, cond, overdirt, trfire)
+	local inv = player:get_inventory()
+	local x = inv:get_stack("x", 1):get_count()
+	local y = inv:get_stack("y", 1):get_count()
+	local koadf = player:get_inventory():get_stack(ko, 1):get_count()+koad
+	if cond(x, y) then
+		local base = {x = x + 10, y = y + 8, z = -76}
+		local e1 = {
+			base,
+			{x = base.x + dx, y = base.y + dy, z = base.z + dz},
+			{x = base.x + 2*dx, y = base.y + 2*dy, z = base.z + 2*dz}
+		}
+		local e2 = {
+			{x = e1[1].x, y = e1[1].y, z = -77},
+			{x = e1[2].x, y = e1[2].y, z = -77},
+			{x = e1[3].x, y = e1[3].y, z = -77}
+		}
+		move(player, e1[1], e1[2], e1[3], e2[1], e2[2], e2[3], ko, koadf, dir1, dir2, pbjnr, trfire, overdirt)
+	end
 end
 
-function move_control(pos, node, player, overdirt, func, func2, r)
+function Right(player, overdirt, trfire)
+	move_dir(player, 1, 0, 0, "x", 1, "right", "left", 1,
+		function(x, y) return x < 19 and x > -1 and y > 0 end, overdirt, trfire)
+end
+
+function Left(player, overdirt, trfire)
+	move_dir(player, -1, 0, 0, "x", -1, "left", "right", 3,
+		function(x, y) return x > 0 and x < 20 and y > 0 end, overdirt, trfire)
+end
+
+function Up(player, overdirt, trfire)
+	move_dir(player, 0, 1, 0, "y", 1, "up", "down", 4,
+		function(x, y) return y < 12 and y > 0 end, overdirt, trfire)
+end
+
+function Down(player, overdirt, trfire)
+	move_dir(player, 0, -1, 0, "y", -1, "down", "up", 2,
+		function(x, y) return y > 1 and y < 13 end, overdirt, trfire)
+end
+
+function move_control(player, overdirt, func, func2, r)
 	Load(player)
     local player_inv = player:get_inventory()
     local a2 = player_inv:get_stack("a2", 1):get_count()
@@ -3884,9 +3709,9 @@ function move_control(pos, node, player, overdirt, func, func2, r)
         local y = player_inv:get_stack("y", 1):get_count()
         local a = player_inv:get_stack("a", 1):get_count()
 		if a == 0 then
-			func(pos, node, player, overdirt, true)
+			func(player, overdirt, true)
         else
-            func2(pos, node, player, overdirt, true)
+            func2(player, overdirt, true)
         end
 		local x2 = player_inv:get_stack("x", 1):get_count()
         local y2 = player_inv:get_stack("y", 1):get_count()
@@ -3897,15 +3722,15 @@ function move_control(pos, node, player, overdirt, func, func2, r)
 	local a = player_inv:get_stack("a", 1):get_count()
     if a == 0 then
         if a2 == 1 then
-            func(pos, node, player, overdirt, false)
+            func(player, overdirt, false)
         else
-            func(pos, node, player, overdirt, true)
+            func(player, overdirt, true)
         end
     else
         if a2 == 1 then
-            func2(pos, node, player, overdirt, false)
+            func2(player, overdirt, false)
         else
-            func2(pos, node, player, overdirt, true)
+            func2(player, overdirt, true)
         end
     end
 	if tptp < 10 then
@@ -3921,71 +3746,42 @@ function move_control(pos, node, player, overdirt, func, func2, r)
     end
 end
 
-keyevent.register_on_keypress('up', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['up'] then
-		move_data(player)
-		move_control(pos, node, player, false, Up, Down, 4)
-		update()
-	end
-end)
-keyevent.register_on_keypress('down', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['down'] then
-		move_data(player)
-		move_control(pos, node, player, false, Down, Up, 2)
-		update()
-	end
-end)
-keyevent.register_on_keypress('right', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['right'] then
-		move_data(player)
-		move_control(pos, node, player, false, Right, Left, 1)
-		update()
-	end
-end)
-keyevent.register_on_keypress('left', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['left'] then
-		move_data(player)
-		move_control(pos, node, player, false, Left, Right, 3)
-		update()
-	end
-end)
-keyevent.register_on_keypress('jump', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['jump'] then
-		move_data(player)
-		Shot(pos, node, player, pointed_thing)
-		update()
-	end
-end)
-keyevent.register_on_keypress('aux1', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['aux1'] then
-		New(player,"","",2)
-	end
-end)
-keyevent.register_on_keypress('sneak', function(keys, old_keys, dtime, player_name)
-	local player = minetest.get_player_by_name(player_name)
-	if player:get_player_control()['sneak'] then
-		local player_inv = player:get_inventory()
-		player_inv:set_size("ll", 1)
-		player_inv:set_size("l", 6)
-		local ll = player_inv:get_stack("ll", 1):get_count()
-		local l = player_inv:get_stack("l", ll):get_count()
-		local meta = player:get_meta()
-		if ll == 0 and meta:get_string("celected") ~= "" then
-		elseif ll ~= 0 then
-			New(player,ll.."_"..l,"n",1)
-		elseif meta:get_string("toplay") ~= "" then
-			New(player,""..meta:get_string("toplay"),"o",1)
+controls.register_on_press(function(player, key)
+	if player:get_player_control()[key] then
+		if key == "aux1" then
+			New(player,"","",2)
+		elseif key == "sneak" then
+			local player_inv = player:get_inventory()
+			player_inv:set_size("ll", 1)
+			player_inv:set_size("l", 6)
+			local ll = player_inv:get_stack("ll", 1):get_count()
+			local l = player_inv:get_stack("l", ll):get_count()
+			local meta = player:get_meta()
+			if ll == 0 and meta:get_string("celected") ~= "" then
+			elseif ll ~= 0 then
+				New(player,ll.."_"..l,"n",1)
+			elseif meta:get_string("toplay") ~= "" then
+				New(player,""..meta:get_string("toplay"),"o",1)
+			end
+		else
+			move_data(player)
+			if key == "up" then
+				move_control(player, false, Up, Down, 4)
+			elseif key == "down" then
+				move_control(player, false, Down, Up, 2)
+			elseif key == "right" then
+				move_control(player, false, Right, Left, 1)
+			elseif key == "left" then
+				move_control(player, false, Left, Right, 3)
+			elseif key == "jump" then
+				Shot(player)
+			update()
+			end
 		end
 	end
 end)
 
-function Shot(pos, node, player, pointed_thing)
+function Shot(player)
     local player_inv = player:get_inventory()
     Load(player)
     local r = player_inv:get_stack("r", 1):get_count()
@@ -4048,7 +3844,7 @@ function Shot(pos, node, player, pointed_thing)
 				d = 1
 			end
 		end
-        minetest.after(0.1, function(pos, str) 
+        minetest.after(0.1, function() 
             for i=10,29 do
                 for k=9,20 do
                     if minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:ball2" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:ball4" then
@@ -4056,7 +3852,7 @@ function Shot(pos, node, player, pointed_thing)
                     end
                 end
             end
-        end, pos, str)
+        end)
 		if s > 0 then
 			player_inv:set_stack("s", 1, "")
 		else
@@ -4064,6 +3860,7 @@ function Shot(pos, node, player, pointed_thing)
 		end
     end
 end
+
 function Other(player,ri)
     local dd = 0
 	local jj = 0
@@ -4116,6 +3913,7 @@ function Other(player,ri)
 		end
 	end
 end
+
 function Is_Node(x,y,block)
 	local d = 0
 	if block == "group_dirt" then
@@ -4223,6 +4021,7 @@ function Is_Node(x,y,block)
 	end
 	return false
 end
+
 function Dirt_Move(e1m1,e1m2,e1m3,block)
 	if (Is_Node(e1m1.x,e1m1.y,"group_dirt") and Is_Node(e1m2.x,e1m2.y,"group_dirt")
 	and (Is_Node(e1m3.x,e1m3.y,"dirt") or Is_Node(e1m3.x,e1m3.y,"red") or Is_Node(e1m3.x,e1m3.y,"blue") or Is_Node(e1m3.x,e1m3.y,"green") or Is_Node(e1m3.x,e1m3.y,"wood")))
@@ -4231,6 +4030,7 @@ function Dirt_Move(e1m1,e1m2,e1m3,block)
 		return true
 	end
 end
+
 function Dirt_Move2(e1m1,overdirt)
 	if Is_Node(e1m1.x,e1m1.y,"group_dirt") or overdirt then
 		return true
@@ -4297,29 +4097,7 @@ function New(player,page,art,num)
     file:close()
 	local ar1 = {}
     local ar2 = {}
-	local rrr1 = ""
-	local rrr2 = ""
-	local rrr3 = ""
-	local rrr4 = ""
-	local rrr5 = ""
-	local rrr6 = ""
-	local rrr7 = ""
-	local rrr8 = ""
-	local rrr9 = ""
-	local rrr10 = ""
-	local rrr11 = ""
-	local rrr12 = ""
-	local rrr13 = ""
-	local rrr14 = ""
-	local rrr15 = ""
-	local rrr16 = ""
-	local rrr17 = ""
-	local rrr18 = ""
-	local rrr19 = ""
-	local rrr20 = ""
-	local rrr21 = ""
-	local rrr22 = ""
-	local rrr23 = ""
+	local ar3 = {}
 	if c > 5 and num == 2 then
         local lv = io.open(minetest.get_worldpath().."/move1.txt", "r")
         for i=1,12 do
@@ -4330,29 +4108,9 @@ function New(player,page,art,num)
 	        ar2[i] = lv:read("*l")
         end
         local zw2 = lv:read("*l")
-        rrr1 = lv:read("*l")
-        rrr2 = lv:read("*l")
-        rrr3 = lv:read("*l")
-        rrr4 = lv:read("*l")
-        rrr5 = lv:read("*l")
-        rrr6 = lv:read("*l")
-        rrr7 = lv:read("*l")
-        rrr8 = lv:read("*l")
-        rrr9 = lv:read("*l")
-        rrr10 = lv:read("*l")
-        rrr11 = lv:read("*l")
-        rrr12 = lv:read("*l")
-        rrr13 = lv:read("*l")
-        rrr14 = lv:read("*l")
-        rrr15 = lv:read("*l")
-        rrr16 = lv:read("*l")
-		rrr17 = lv:read("*l")
-		rrr18 = lv:read("*l")
-		rrr19 = lv:read("*l")
-		rrr20 = lv:read("*l")
-		rrr21 = lv:read("*l")
-		rrr22 = lv:read("*l")
-		rrr23 = lv:read("*l")
+		for i = 1, 23 do 
+			ar3[i] = lv:read("*l") 
+		end
 	end
 	if num == 1 then
 		local lv = io.open(minetest.get_worldpath().."/level1.txt", "r")
@@ -4387,9 +4145,9 @@ function New(player,page,art,num)
 			end
 		end
 		local zw2 = lv:read("*l")
-		rrr1 = lv:read("*l")
-		rrr2 = lv:read("*l")
-		rrr3 = lv:read("*l")
+		ar3[1] = lv:read("*l")
+		ar3[2] = lv:read("*l")
+		ar3[3] = lv:read("*l")
 	end
 	if num == 1 or (c > 5 and num == 2) then
 		for i=10,29 do
@@ -4405,7 +4163,7 @@ function New(player,page,art,num)
 					if num == 1 then
 						minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:time30"})
 					else
-						minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:time"..rrr16})
+						minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name="labyrinthus:time"..ar3[16]})
 					end
 				else
 					minetest.set_node({x=i+9, y=(13-j)+8, z=-76}, {name=get_item_list(node_list1,string.sub(ar1[j], i, i),1,2)})
@@ -4444,9 +4202,9 @@ function New(player,page,art,num)
 			end
 		end
 		if num == 1 then
-			player_inv:set_stack("x", 1, "labyrinthus:dirt "..rrr1)
-			player_inv:set_stack("y", 1, "labyrinthus:dirt "..rrr2)
-			player_inv:set_stack("z", 1, "labyrinthus:dirt "..rrr3)
+			player_inv:set_stack("x", 1, "labyrinthus:dirt "..ar3[1])
+			player_inv:set_stack("y", 1, "labyrinthus:dirt "..ar3[2])
+			player_inv:set_stack("z", 1, "labyrinthus:dirt "..ar3[3])
 			player_inv:set_stack("k", 1, nil)
 			player_inv:set_stack("r", 1, nil)
 			player_inv:set_stack("s", 1, nil)
@@ -4463,7 +4221,7 @@ function New(player,page,art,num)
 			player_inv:set_stack("a2", 1, nil)
 			player_inv:set_stack("time", 1, nil)
 			player_inv:set_stack("wire", 1, nil)
-			file = io.open(minetest.get_worldpath().."/move1.txt", "w")
+			local file = io.open(minetest.get_worldpath().."/move1.txt", "w")
 			file:write("")
 			file:close()
 			pon = 0
@@ -4488,37 +4246,37 @@ function New(player,page,art,num)
 			rrrr = 0
 			minetest.set_node({x=x+10, y=y+8, z=-77}, {name="nyancat:nyancat"})
 		else
-			player_inv:set_stack("w", 1, "labyrinthus:dirt "..rrr2)
-			player_inv:set_stack("re", 1, "labyrinthus:dirt "..rrr3)
-			player_inv:set_stack("ye", 1, "labyrinthus:dirt "..rrr4)
-			player_inv:set_stack("c", 1, "labyrinthus:dirt "..rrr5)
-			player_inv:set_stack("p", 1, "labyrinthus:dirt "..rrr6)
-			player_inv:set_stack("g", 1, "labyrinthus:dirt "..rrr7)
-			player_inv:set_stack("k", 1, "labyrinthus:dirt "..rrr8)
-			player_inv:set_stack("r", 1, "labyrinthus:dirt "..rrr9)
-			player_inv:set_stack("s", 1, "labyrinthus:dirt "..rrr10)
-			player_inv:set_stack("ss", 1, "labyrinthus:dirt "..rrr11)
-			player_inv:set_stack("b", 1, "labyrinthus:dirt "..rrr12)
-			player_inv:set_stack("a", 1, "labyrinthus:dirt "..rrr13)
-			player_inv:set_stack("a2", 1, "labyrinthus:dirt "..rrr14)
-			player_inv:set_stack("time", 1, "labyrinthus:dirt "..rrr15)
-			player_inv:set_stack("f", 1, "labyrinthus:dirt "..rrr17)
-			player_inv:set_stack("x", 1, "labyrinthus:dirt "..rrr18)
-			player_inv:set_stack("y", 1, "labyrinthus:dirt "..rrr19)
-			player_inv:set_stack("z", 1, "labyrinthus:dirt "..rrr20)
+			player_inv:set_stack("w", 1, "labyrinthus:dirt "..ar3[2])
+			player_inv:set_stack("re", 1, "labyrinthus:dirt "..ar3[3])
+			player_inv:set_stack("ye", 1, "labyrinthus:dirt "..ar3[4])
+			player_inv:set_stack("c", 1, "labyrinthus:dirt "..ar3[5])
+			player_inv:set_stack("p", 1, "labyrinthus:dirt "..ar3[6])
+			player_inv:set_stack("g", 1, "labyrinthus:dirt "..ar3[7])
+			player_inv:set_stack("k", 1, "labyrinthus:dirt "..ar3[8])
+			player_inv:set_stack("r", 1, "labyrinthus:dirt "..ar3[9])
+			player_inv:set_stack("s", 1, "labyrinthus:dirt "..ar3[10])
+			player_inv:set_stack("ss", 1, "labyrinthus:dirt "..ar3[11])
+			player_inv:set_stack("b", 1, "labyrinthus:dirt "..ar3[12])
+			player_inv:set_stack("a", 1, "labyrinthus:dirt "..ar3[13])
+			player_inv:set_stack("a2", 1, "labyrinthus:dirt "..ar3[14])
+			player_inv:set_stack("time", 1, "labyrinthus:dirt "..ar3[15])
+			player_inv:set_stack("f", 1, "labyrinthus:dirt "..ar3[17])
+			player_inv:set_stack("x", 1, "labyrinthus:dirt "..ar3[18])
+			player_inv:set_stack("y", 1, "labyrinthus:dirt "..ar3[19])
+			player_inv:set_stack("z", 1, "labyrinthus:dirt "..ar3[20])
 			local x = player_inv:get_stack("x", 1):get_count()
 			local y = player_inv:get_stack("y", 1):get_count()
 			minetest.set_node({x=x+10, y=y+8, z=-77}, {name="nyancat:nyancat"})
-			pon = tonumber(rrr21)
-			rrr = tonumber(rrr22)
-			rrrr = tonumber(rrr23)
-			if rrr1 == "false" then
+			pon = tonumber(ar3[21])
+			rrr = tonumber(ar3[22])
+			rrrr = tonumber(ar3[23])
+			if ar3[1] == "false" then
 				for i = 9, 30 do
 					for j = 0,14 do
 						minetest.set_node({x=i, y=22, z=-89+j}, {name="labyrinthus:meselamp"})
 					end
 				end
-			elseif rrr1 == "true" then
+			elseif ar3[1] == "true" then
 				for i = 9, 30 do
 					for j = 0,14 do
 						minetest.set_node({x=i, y=22, z=-89+j}, {name="labyrinthus:stone"})
@@ -4549,96 +4307,31 @@ function New(player,page,art,num)
 		update()
 	end
 end
-function lvbut(from,num,level2)
-    local formspec = ""
-    .."image_button[4.5,-0.3;0.8,0.8;;esc;X]"
-    .."background[5,6.5;1,1;gui_formbg.png;true]"
-    .."listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"
-    .."bgcolor[#080808BB;true]"
-    if tonumber(level2) > from and num > 0 then
-        formspec = formspec.."button[0,1;1,1;a;"..(from+1).."]"
-    end
-    if tonumber(level2) > (from+1) and num > 1 then
-        formspec = formspec.."button[1,1;1,1;b;"..(from+2).."]"
-    end
-    if tonumber(level2) > (from+2) and num > 2 then
-        formspec = formspec.."button[2,1;1,1;c;"..(from+3).."]"
-    end
-    if tonumber(level2) > (from+3) and num > 3 then
-        formspec = formspec.."button[3,1;1,1;d;"..(from+4).."]"
-    end
-    if tonumber(level2) > (from+4) and num > 4 then
-        formspec = formspec.."button[4,1;1,1;e;"..(from+5).."]"
-    end
-    if tonumber(level2) > (from+5) and num > 5 then
-        formspec = formspec.."button[0,2;1,1;f;"..(from+6).."]"
-    end
-    if tonumber(level2) > (from+6) and num > 6 then
-        formspec = formspec.."button[1,2;1,1;g;"..(from+7).."]"
-    end
-    if tonumber(level2) > (from+7) and num > 7 then
-        formspec = formspec.."button[2,2;1,1;h;"..(from+8).."]"
-    end
-    if tonumber(level2) > (from+8) and num > 8 then
-        formspec = formspec.."button[3,2;1,1;i;"..(from+9).."]"
-    end
-    if tonumber(level2) > (from+9) and num > 9 then
-        formspec = formspec.."button[4,2;1,1;j;"..(from+10).."]"
-    end
-    if tonumber(level2) > (from+10) and num > 10 then
-        formspec = formspec.."button[0,3;1,1;k;"..(from+11).."]"
-    end
-    if tonumber(level2) > (from+11) and num > 11 then
-        formspec = formspec.."button[1,3;1,1;l;"..(from+12).."]"
-    end
-    if tonumber(level2) > (from+12) and num > 12 then
-        formspec = formspec.."button[2,3;1,1;m;"..(from+13).."]"
-    end
-    if tonumber(level2) > (from+13) and num > 13 then
-        formspec = formspec.."button[3,3;1,1;n;"..(from+14).."]"
-    end
-    if tonumber(level2) > (from+14) and num > 14 then
-        formspec = formspec.."button[4,3;1,1;o;"..(from+15).."]"
-    end
-    if tonumber(level2) > (from+15) and num > 15 then
-        formspec = formspec.."button[0,4;1,1;p;"..(from+16).."]"
-    end
-    if tonumber(level2) > (from+16) and num > 16 then
-        formspec = formspec.."button[1,4;1,1;q;"..(from+17).."]"
-    end
-    if tonumber(level2) > (from+17) and num > 17 then
-        formspec = formspec.."button[2,4;1,1;r;"..(from+18).."]"
-    end
-    if tonumber(level2) > (from+18) and num > 18 then
-        formspec = formspec.."button[3,4;1,1;s;"..(from+19).."]"
-    end
-    if tonumber(level2) > (from+19) and num > 19 then
-        formspec = formspec.."button[4,4;1,1;t;"..(from+20).."]"
-    end
-    if tonumber(level2) > (from+20) and num > 20 then
-        formspec = formspec.."button[0,5;1,1;u;"..(from+21).."]"
-    end
-    if tonumber(level2) > (from+21) and num > 21 then
-        formspec = formspec.."button[1,5;1,1;v;"..(from+22).."]"
-    end
-    if tonumber(level2) > (from+22) and num > 22 then
-        formspec = formspec.."button[2,5;1,1;w;"..(from+23).."]"
-    end
-    if tonumber(level2) > (from+23) and num > 23 then
-        formspec = formspec.."button[3,5;1,1;x;"..(from+24).."]"
-    end
-    if tonumber(level2) > (from+24) and num > 24 then
-        formspec = formspec.."button[4,5;1,1;y;"..(from+25).."]"
-    end
-    return formspec
+function lvbut(from, num, level2)
+	local formspec = 
+		"image_button[4.5,-0.3;0.8,0.8;;esc;X]" ..
+		"background[5,6.5;1,1;gui_formbg.png;true]" ..
+		"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]" ..
+		"bgcolor[#080808BB;true]"
+
+	level2 = tonumber(level2)
+	for i = 0, math.min(num - 1, 24) do
+		if level2 > from + i then
+			local x = i % 5
+			local y = math.floor(i / 5) + 1
+			local label = string.char(97 + i)
+			formspec = formspec .. ("button[%d,%d;1,1;%s;%d]"):format(x, y, label, from + i + 1)
+		end
+	end
+	return formspec
 end
 function level_formspec(player,file,max_level,level_count,previous_levels,previous_page,previous_page_name,next_page,next_name,pos)
 	local player_inv = player:get_inventory()
-	lv = io.open(minetest.get_worldpath().."/"..file..".txt", "r")
+	local lv = io.open(minetest.get_worldpath().."/"..file..".txt", "r")
 	local level2 = lv:read("*l")
     lv:close()
     local player_inv = player:get_inventory()
-	formspec = "size[5,6.5]"
+	local formspec = "size[5,6.5]"
         .."label[0,0;World Level:     "..(tonumber(level2)-1).."/"..max_level.."]"
 		if previous_page then
 			formspec = formspec.."button[1.5,6;1,1;"..previous_page_name..";<]"
@@ -4656,8 +4349,9 @@ end
 minetest.register_node("labyrinthus:new_w1",{
 	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w1.png"},
     paramtype = "light",
+	light_source = 4,
 	drawtype = "nodebox",
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         minetest.show_formspec(player:get_player_name(), "tu" , level_formspec(player,"level1",18,18,0,false,"",false,"You have finished world 1!","4.7"))
@@ -4666,9 +4360,9 @@ minetest.register_node("labyrinthus:new_w1",{
 minetest.register_node("labyrinthus:new_w2",{
 	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w2.png"},
     paramtype = "light",
-	light_source = 1,
+	light_source = 4,
 	drawtype = "nodebox",
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()
@@ -4699,9 +4393,9 @@ minetest.register_node("labyrinthus:new_w2",{
 minetest.register_node("labyrinthus:new_w3",{
 	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w3.png"},
     paramtype = "light",
-	light_source = 1,
+	light_source = 4,
 	drawtype = "nodebox",
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()
@@ -4726,9 +4420,9 @@ minetest.register_node("labyrinthus:new_w3",{
 minetest.register_node("labyrinthus:new_w4",{
 	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w4.png"},
     paramtype = "light",
-	light_source = 1,
+	light_source = 4,
 	drawtype = "nodebox",
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()
@@ -4747,9 +4441,9 @@ minetest.register_node("labyrinthus:new_w4",{
 minetest.register_node("labyrinthus:new_w5",{
 	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w5.png"},
     paramtype = "light",
-	light_source = 1,
+	light_source = 4,
 	drawtype = "nodebox",
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
         local player_inv = player:get_inventory()
@@ -4774,15 +4468,17 @@ minetest.register_node("labyrinthus:new_w5",{
 minetest.register_node("labyrinthus:new_w6",{
 	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w6.png"},
     paramtype = "light",
-	light_source = 1,
+	light_source = 4,
 	drawtype = "nodebox",
-	use_texture_alpha = true,
+	use_texture_alpha = "clip",
     --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
     on_punch = function(pos, node, player, pointed_thing)
 		local player_inv = player:get_inventory()
         local page = player_inv:get_stack("page6", 1):get_count()+1
         if page == 1 then
-			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",25,25,0,false,"",false,"more comming soon","5.7"))
+			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",35,25,0,false,"",true,"web",""))
+		elseif page == 2 then
+            minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",35,10,25,true,"wea",false,"more comming soon","2.7"))
 		end
     end,
 })
@@ -4831,11 +4527,10 @@ function check_num_items(meta, player, id, ids, num, name)
 	return node_letter, new_letter
 end
 
-function place_only_once(meta, id, layer)
-	node_letter = id
+function place_only_once(meta, node_letter, layer)
 	for i=1,20 do
 		for j=1,12 do
-			if meta:get_string(layer..letter(i)..letter(j)) == id then
+			if meta:get_string(layer..letter(i)..letter(j)) == node_letter then
 				meta:set_string(layer..letter(i)..letter(j),"0")
 			end
 		end
@@ -4905,11 +4600,7 @@ function add_to_layerA(player, meta, i, j)
 	elseif n1x == 6 and n1y == 6 then	
 		node_letter, new_letter = check_num_items(meta, player, ",", {"L", "P", ","}, 10, "cyan orbs")
 	else
-		for _, row in ipairs(node_list1) do
-			if row[4] == n1x and row[5] == n1y then
-				node_letter =  row[1]
-			end
-		end
+		node_letter = get_item_list2(node_list1, n1x, n1y, 1)
 	end
 	if check_ground(node_letter, meta:get_string("nb"..letter(i)..letter(j))) == false and meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
 		new_letter = false
@@ -4958,11 +4649,7 @@ function add_to_layerB(player, meta, i, j)
 			meta:set_string("na"..letter(i)..letter(j-1), "T")
 		end
 	else
-		for _, row in ipairs(node_list2) do
-			if row[4] == n2x and row[5] == n2y then
-				node_letter =  row[1]
-			end
-		end
+		node_letter = get_item_list2(node_list2, n2x, n2y, 1)
 	end
 	if new_letter and check_ground(meta:get_string("na"..letter(i)..letter(j)), node_letter) then
 		meta:set_string("nb"..letter(i)..letter(j), node_letter)
@@ -5077,6 +4764,12 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	elseif fields.wdg then
         player_inv:set_stack("page5",  1, "labyrinthus:dirt 6")
         minetest.show_formspec(player:get_player_name(), "w57" , level_formspec(player,"level5",175,25,150,true,"wdf",false,"You have finished world 5!","5.7"))
+	elseif fields.wea then
+        player_inv:set_stack("page6",  1, nil)
+        minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",35,25,0,false,"",true,"web",""))
+	elseif fields.web then
+        player_inv:set_stack("page6",  1, "labyrinthus:dirt")
+        minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",35,10,25,true,"wea",false,"more comming soon","2.7"))
 	elseif fields.import then
 		minetest.show_formspec(player:get_player_name(), "import" , import.get_formspec(player))
 	elseif fields.save then
@@ -5119,7 +4812,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				s=s.."\n"
 			end
 			s=s.."\n"..nyx.."\n"..nyy.."\n1"
-			file = io.open(minetest.get_worldpath().."/own_level_"..meta:get_string("new_name")..".txt", "w")
+			local file = io.open(minetest.get_worldpath().."/own_level_"..meta:get_string("new_name")..".txt", "w")
 			file:write(s)
 			file:close()
 			local t = minetest.deserialize(meta:get_string("levels"))
@@ -5147,7 +4840,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		local meta = player:get_meta()
 		if meta:get_string("celected") ~= "" then
 			meta:set_string("new_name", meta:get_string("celected"))
-			file = io.open(minetest.get_worldpath().."/own_level_"..meta:get_string("celected")..".txt", "r")
+			local file = io.open(minetest.get_worldpath().."/own_level_"..meta:get_string("celected")..".txt", "r")
 			local s = ""
 			for j=1,12 do
 				s = file:read("*l")
@@ -5373,7 +5066,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
             end
         end
 	end
-	if formname == "w61" then
+	if formname == "w61" or formname == "w62" then
         for k, v in pairs(fields) do
             if tonumber(v) ~= nil then
                 New(player,"6_"..v,"n",1)
