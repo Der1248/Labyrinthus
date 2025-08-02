@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.17.0",
+		text = "Game Version	 :  2.17.1",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -287,6 +287,7 @@ function get_item_list(list,index,index_number,number)
             return list[index2][number]
         end
     end
+	return ""
 end
 
 function get_item_list2(list, x, y, row_num)
@@ -295,6 +296,7 @@ function get_item_list2(list, x, y, row_num)
 			return row[row_num]
 		end
 	end
+	return ""
 end
 
 function utf8_char(s,n)
@@ -305,6 +307,7 @@ function utf8_char(s,n)
 			return uchar
 		end
     end
+	return ""
 end
 
 minetest.register_globalstep(function(dtime)
