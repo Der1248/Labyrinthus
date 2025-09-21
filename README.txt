@@ -12,13 +12,8 @@ But first you have to solve puzzles to color the rainbow block.
 Use your Up, Down, Right, Left key to control the cat 
 and if you jump the cat will throw a ball. (if you have one)
 Use the sneak key to restart a level and aux1 to reset the last step.
-Over 140 blocks with differend functions to solve more than 680 puzzles.
+Over 140 blocks with differend functions to solve more than 750 puzzles.
 
 License:
 See README.txt in each mod for more information
 Every code written by me is LGPLv2.1
-
-Notes:
-creative mod deleted
-sfinv mod deleted
-mtg_craftguide mod deleted

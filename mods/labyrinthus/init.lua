@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.17.1",
+		text = "Game Version	 :  2.18.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -91,196 +91,196 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 local node_list1 = {
-	{"0","labyrinthus:sand",					"labyrinthus_sand.png",														1,	1},
-	{"1","labyrinthus:water",					"labyrinthus_water.png",													10,	3},
-	{"2","labyrinthus:rainbow",					"nyancat_rainbow.png",														2,	1},
-	{"3","labyrinthus:red1",					"labyrinthus_red1.png",														5,	1},
-	{"4","labyrinthus:green1",					"labyrinthus_green1.png",													6,	1},
-	{"5","labyrinthus:button1",					"labyrinthus_sand.png^labyrinthus_button.png",								1,	2},
-	{"6","labyrinthus:blue1",					"labyrinthus_blue1.png",													7,	1},
-	{"7","labyrinthus:green_col",				"labyrinthus_sand.png^labyrinthus_green_col.png",							9,	1},
-	{"8","labyrinthus:red_col",					"labyrinthus_sand.png^labyrinthus_red_col.png",								8,	1},
-	{"9","labyrinthus:blue_col",				"labyrinthus_sand.png^labyrinthus_blue_col.png",							10,	1},
-	{"a","labyrinthus:key2",					"labyrinthus_sand.png^labyrinthus_key.png",									2,	2},
-	{"b","labyrinthus:tp",						"labyrinthus_sand.png^labyrinthus_tp.png",									3,	2},
-	{"c","labyrinthus:ball1",					"labyrinthus_sand.png^labyrinthus_ball.png",								7,	2},
-	{"d","labyrinthus:boom",					"labyrinthus_sand.png^labyrinthus_boom.png",								8,	2},
-	{"e","labyrinthus:00",						"labyrinthus_sand.png^labyrinthus_0.png",									9,	2},
-	{"f","labyrinthus:eye1",					"labyrinthus_sand.png^labyrinthus_eye.png",									10,	2},
-	{"g","labyrinthus:box",						"labyrinthus_sand.png^labyrinthus_box.png",									4,	1},
-	{"h","labyrinthus:bones",					"labyrinthus_bones_front.png",												11,	2},
-	{"i","labyrinthus:button11",				"labyrinthus_sand.png^labyrinthus_button1.png",								12,	2},
-	{"j","labyrinthus:fire",					"labyrinthus_sand.png^labyrinthus_flame.png",								13,	2},
-	{"k","labyrinthus:arrow",					"labyrinthus_sand.png^labyrinthus_arrow.png",								11,	6},
-	{"l","labyrinthus:round2",					"labyrinthus_sand.png^labyrinthus_round2.png",								5,	3},
-	{"m","labyrinthus:round3",					"labyrinthus_sand.png^labyrinthus_round3.png",								4,	3},
-	{"n","labyrinthus:arrow2",					"labyrinthus_sand.png^labyrinthus_arrow2.png",								12,	6},
-	{"o","labyrinthus:red_sand",				"labyrinthus_sand.png^labyrinthus_red.png",									1,	3},
-	{"p","labyrinthus:moon",					"labyrinthus_sand.png^labyrinthus_moon.png",								7,	3},
-	{"q","labyrinthus:sun",						"labyrinthus_sand.png^labyrinthus_sun.png",									8,	3},
-	{"r","labyrinthus:water_wood",				"labyrinthus_water.png^labyrinthus_water_wood.png",							3,	4},
-	{"s","labyrinthus:time30",					"labyrinthus_sand.png^labyrinthus_time30.png",								9,	3},
-	{"t","labyrinthus:ice1",					"labyrinthus_ice.png",														13,	3},
-	{"u","labyrinthus:ice2",					"labyrinthus_ice2.png",														12,	3},
-	{"v","labyrinthus:ice3",					"labyrinthus_ice3.png",														11,	3},
-	{"w","labyrinthus:round4",					"labyrinthus_sand.png^labyrinthus_round4.png",								6,	3},
-	{"x","labyrinthus:round1",					"labyrinthus_sand.png^labyrinthus_round1.png",								3,	3},
-	{"y","labyrinthus:dirt",					"labyrinthus_dirt.png",														4,	4},
-	{"z","labyrinthus:rainbow2",				"labyrinthus_rainbow2.png",													3,	1},
-	{"A","labyrinthus:purple",					"labyrinthus_sand.png^labyrinthus_purple.png",								5,	4},
-	{"B","labyrinthus:empty_gate",				"labyrinthus_sand.png^labyrinthus_empty_gate.png",							8,	4},
-	{"C","labyrinthus:gate_arrows",				"labyrinthus_sand.png^labyrinthus_gate_arrows.png",							7,	4},
-	{"D","labyrinthus:red_cross",				"labyrinthus_sand.png^labyrinthus_red_cross.png",							11,	1},
-	{"E","labyrinthus:green_cross",				"labyrinthus_sand.png^labyrinthus_green_cross.png",							12,	1},
-	{"F","labyrinthus:blue_cross",				"labyrinthus_sand.png^labyrinthus_blue_cross.png",							13,	1},
-	{"G","labyrinthus:purple_dirt",				"labyrinthus_dirt.png^labyrinthus_purple.png",								6,	4},
-	{"H","labyrinthus:gate",					"labyrinthus_sand.png^labyrinthus_gate.png",								9,	4},
-	{"I","labyrinthus:green",					"labyrinthus_sand.png^labyrinthus_green.png",								10,	4},
-	{"J","labyrinthus:water_wood_with_green",	"labyrinthus_water.png^labyrinthus_water_wood_with_green.png",				12,	4},
-	{"K","labyrinthus:sand_for_green",			"labyrinthus_sand.png^labyrinthus_stone_for_green.png",						3,	5},
-	{"L","labyrinthus:cyan",					"labyrinthus_sand.png^labyrinthus_cyan.png",								4,	6},
-	{"M","labyrinthus:bow",						"labyrinthus_sand.png^labyrinthus_bow.png",									7,	6},
-	{"N","labyrinthus:arrow4_2",				"labyrinthus_sand.png^labyrinthus_arrow4_2.png",							10,	6},
-	{"O","labyrinthus:green_dirt",				"labyrinthus_dirt.png^labyrinthus_green.png",								11,	4},
-	{"P","labyrinthus:cyan_dirt",				"labyrinthus_dirt.png^labyrinthus_cyan.png",								5,	6},
-	{"Q","labyrinthus:tp2",						"labyrinthus_sand.png^labyrinthus_tp2.png",									4,	2},
-	{"R","labyrinthus:yellow2",					"labyrinthus_sand.png^labyrinthus_yellow2.png",								5,	5},
-	{"S","labyrinthus:yellow_dirt",				"labyrinthus_dirt.png^labyrinthus_yellow2.png",								6,	5},
-	{"T","labyrinthus:wood_for_yellow",			"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png",					10,	5},
-	{"U","labyrinthus:water_stone",				"labyrinthus_water.png^labyrinthus_water_stone.png",						11,	5},
-	{"V","labyrinthus:sand_for_green_dirt",		"labyrinthus_dirt.png^labyrinthus_stone_for_green.png",						4,	5},
-	{"W","labyrinthus:red3",					"labyrinthus_sand.png^labyrinthus_red3.png",								12,	5},
-	{"X","labyrinthus:water_wood_with_red",		"labyrinthus_water.png^labyrinthus_water_wood_with_red.png",				1,	6},
-	{"Y","labyrinthus:wood",					"labyrinthus_wood.png",														9,	5},
-	{"Z","labyrinthus:white",					"labyrinthus_sand.png^labyrinthus_white.png",								2,	6},
-	{":","labyrinthus:tp3",						"labyrinthus_sand.png^labyrinthus_tp3.png",									5,	2},
-	{";","labyrinthus:ice_with_green",			"labyrinthus_ice3.png^labyrinthus_green.png",								13,	4},
-	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png",								3,	6},
-	{">","labyrinthus:button_eye",				"labyrinthus_sand.png^labyrinthus_button_eye.png",							1,	4},
-	{"|","labyrinthus:water_eye1",				"labyrinthus_water.png^labyrinthus_water_eye.png",							2,	4},
-	{".","labyrinthus:water_eye1_with_yellow",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png",	8,	5},
-	{",","labyrinthus:water_eye1_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png",		6,	6},
-	{"-","labyrinthus:arrow_path",				"labyrinthus_sand.png^labyrinthus_arrow_path.png",							8,	6},
-	{"_","labyrinthus:arrow_path_button",		"labyrinthus_sand.png^labyrinthus_arrow_path_button.png",					9,	6},
-	{"#","labyrinthus:ball3",					"labyrinthus_sand.png^labyrinthus_ball2.png",								6,	2},
-	{"'","labyrinthus:ice_with_yellow",			"labyrinthus_ice3.png^labyrinthus_yellow2.png",								7,	5},
-	{"*","labyrinthus:dirt_with_yellow_circle",	"labyrinthus_dirt.png^labyrinthus_yellow_circle.png",						13,	6},
-	{"+","labyrinthus:dirt_with_red_circle",	"labyrinthus_dirt.png^labyrinthus_red_circle.png",							1,	7},
-	{"~","labyrinthus:arrow_path_with_green",	"labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png",	2,	5},
-	{"@","labyrinthus:cross_red",				"labyrinthus_sand.png^labyrinthus_cross_red.png",							3,	7},
-	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png",							4,	7},
-	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png",						2,	7},
-	{"{","labyrinthus:grey_sand",				"labyrinthus_sand.png^labyrinthus_grey3.png",								2,	3},
-	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png",								13,	5},
-	{"]","labyrinthus:water_eye1_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png",	1,	5},
+	{"0","labyrinthus:sand",					"labyrinthus_sand.png",														1,	1,	true},
+	{"1","labyrinthus:water",					"labyrinthus_water.png",													10,	3,	true},
+	{"2","labyrinthus:rainbow",					"nyancat_rainbow.png",														2,	1,	false},
+	{"3","labyrinthus:red1",					"labyrinthus_red1.png",														5,	1,	true},
+	{"4","labyrinthus:green1",					"labyrinthus_green1.png",													6,	1,	true},
+	{"5","labyrinthus:button1",					"labyrinthus_sand.png^labyrinthus_button.png",								1,	2,	true},
+	{"6","labyrinthus:blue1",					"labyrinthus_blue1.png",													7,	1,	true},
+	{"7","labyrinthus:green_col",				"labyrinthus_sand.png^labyrinthus_green_col.png",							9,	1,	true},
+	{"8","labyrinthus:red_col",					"labyrinthus_sand.png^labyrinthus_red_col.png",								8,	1,	true},
+	{"9","labyrinthus:blue_col",				"labyrinthus_sand.png^labyrinthus_blue_col.png",							10,	1,	true},
+	{"a","labyrinthus:key2",					"labyrinthus_sand.png^labyrinthus_key.png",									2,	2,	true},
+	{"b","labyrinthus:tp",						"labyrinthus_sand.png^labyrinthus_tp.png",									3,	2,	true},
+	{"c","labyrinthus:ball1",					"labyrinthus_sand.png^labyrinthus_ball.png",								7,	2,	true},
+	{"d","labyrinthus:boom",					"labyrinthus_sand.png^labyrinthus_boom.png",								8,	2,	true},
+	{"e","labyrinthus:00",						"labyrinthus_sand.png^labyrinthus_0.png",									9,	2,	true},
+	{"f","labyrinthus:eye1",					"labyrinthus_sand.png^labyrinthus_eye.png",									10,	2,	true},
+	{"g","labyrinthus:box",						"labyrinthus_sand.png^labyrinthus_box.png",									4,	1,	true},
+	{"h","labyrinthus:bones",					"labyrinthus_bones_front.png",												11,	2,	true},
+	{"i","labyrinthus:button11",				"labyrinthus_sand.png^labyrinthus_button1.png",								12,	2,	true},
+	{"j","labyrinthus:fire",					"labyrinthus_sand.png^labyrinthus_flame.png",								13,	2,	true},
+	{"k","labyrinthus:arrow",					"labyrinthus_sand.png^labyrinthus_arrow.png",								11,	6,	true},
+	{"l","labyrinthus:round2",					"labyrinthus_sand.png^labyrinthus_round2.png",								5,	3,	true},
+	{"m","labyrinthus:round3",					"labyrinthus_sand.png^labyrinthus_round3.png",								4,	3,	true},
+	{"n","labyrinthus:arrow2",					"labyrinthus_sand.png^labyrinthus_arrow2.png",								12,	6,	true},
+	{"o","labyrinthus:red_sand",				"labyrinthus_sand.png^labyrinthus_red.png",									1,	3,	true},
+	{"p","labyrinthus:moon",					"labyrinthus_sand.png^labyrinthus_moon.png",								7,	3,	true},
+	{"q","labyrinthus:sun",						"labyrinthus_sand.png^labyrinthus_sun.png",									8,	3,	true},
+	{"r","labyrinthus:water_wood",				"labyrinthus_water.png^labyrinthus_water_wood.png",							3,	4,	true},
+	{"s","labyrinthus:time30",					"labyrinthus_sand.png^labyrinthus_time30.png",								9,	3,	false},
+	{"t","labyrinthus:ice1",					"labyrinthus_ice.png",														13,	3,	true},
+	{"u","labyrinthus:ice2",					"labyrinthus_ice2.png",														12,	3,	true},
+	{"v","labyrinthus:ice3",					"labyrinthus_ice3.png",														11,	3,	true},
+	{"w","labyrinthus:round4",					"labyrinthus_sand.png^labyrinthus_round4.png",								6,	3,	true},
+	{"x","labyrinthus:round1",					"labyrinthus_sand.png^labyrinthus_round1.png",								3,	3,	true},
+	{"y","labyrinthus:dirt",					"labyrinthus_dirt.png",														4,	4,	true},
+	{"z","labyrinthus:rainbow2",				"labyrinthus_rainbow2.png",													3,	1,	true},
+	{"A","labyrinthus:purple",					"labyrinthus_sand.png^labyrinthus_purple.png",								5,	4,	true},
+	{"B","labyrinthus:empty_gate",				"labyrinthus_sand.png^labyrinthus_empty_gate.png",							8,	4,	true},
+	{"C","labyrinthus:gate_arrows",				"labyrinthus_sand.png^labyrinthus_gate_arrows.png",							7,	4,	true},
+	{"D","labyrinthus:red_cross",				"labyrinthus_sand.png^labyrinthus_red_cross.png",							11,	1,	true},
+	{"E","labyrinthus:green_cross",				"labyrinthus_sand.png^labyrinthus_green_cross.png",							12,	1,	true},
+	{"F","labyrinthus:blue_cross",				"labyrinthus_sand.png^labyrinthus_blue_cross.png",							13,	1,	true},
+	{"G","labyrinthus:purple_dirt",				"labyrinthus_dirt.png^labyrinthus_purple.png",								6,	4,	true},
+	{"H","labyrinthus:gate",					"labyrinthus_sand.png^labyrinthus_gate.png",								9,	4,	true},
+	{"I","labyrinthus:green",					"labyrinthus_sand.png^labyrinthus_green.png",								10,	4,	true},
+	{"J","labyrinthus:water_wood_with_green",	"labyrinthus_water.png^labyrinthus_water_wood_with_green.png",				12,	4,	true},
+	{"K","labyrinthus:sand_for_green",			"labyrinthus_sand.png^labyrinthus_stone_for_green.png",						3,	5,	true},
+	{"L","labyrinthus:cyan",					"labyrinthus_sand.png^labyrinthus_cyan.png",								4,	6,	true},
+	{"M","labyrinthus:bow",						"labyrinthus_sand.png^labyrinthus_bow.png",									7,	6,	true},
+	{"N","labyrinthus:arrow4_2",				"labyrinthus_sand.png^labyrinthus_arrow4_2.png",							10,	6,	true},
+	{"O","labyrinthus:green_dirt",				"labyrinthus_dirt.png^labyrinthus_green.png",								11,	4,	true},
+	{"P","labyrinthus:cyan_dirt",				"labyrinthus_dirt.png^labyrinthus_cyan.png",								5,	6,	true},
+	{"Q","labyrinthus:tp2",						"labyrinthus_sand.png^labyrinthus_tp2.png",									4,	2,	true},
+	{"R","labyrinthus:yellow2",					"labyrinthus_sand.png^labyrinthus_yellow2.png",								5,	5,	true},
+	{"S","labyrinthus:yellow_dirt",				"labyrinthus_dirt.png^labyrinthus_yellow2.png",								6,	5,	true},
+	{"T","labyrinthus:wood_for_yellow",			"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png",					10,	5,	true},
+	{"U","labyrinthus:water_stone",				"labyrinthus_water.png^labyrinthus_water_stone.png",						11,	5,	true},
+	{"V","labyrinthus:sand_for_green_dirt",		"labyrinthus_dirt.png^labyrinthus_stone_for_green.png",						4,	5,	true},
+	{"W","labyrinthus:red3",					"labyrinthus_sand.png^labyrinthus_red3.png",								12,	5,	true},
+	{"X","labyrinthus:water_wood_with_red",		"labyrinthus_water.png^labyrinthus_water_wood_with_red.png",				1,	6,	true},
+	{"Y","labyrinthus:wood",					"labyrinthus_wood.png",														9,	5, 	true},
+	{"Z","labyrinthus:white",					"labyrinthus_sand.png^labyrinthus_white.png",								2,	6,	true},
+	{":","labyrinthus:tp3",						"labyrinthus_sand.png^labyrinthus_tp3.png",									5,	2,	true},
+	{";","labyrinthus:ice_with_green",			"labyrinthus_ice3.png^labyrinthus_green.png",								13,	4,	true},
+	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png",								3,	6,	true},
+	{">","labyrinthus:button_eye",				"labyrinthus_sand.png^labyrinthus_button_eye.png",							1,	4,	true},
+	{"|","labyrinthus:water_eye1",				"labyrinthus_water.png^labyrinthus_water_eye.png",							2,	4,	false},
+	{".","labyrinthus:water_eye1_with_yellow",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png",	8,	5,	false},
+	{",","labyrinthus:water_eye1_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png",		6,	6,	false},
+	{"-","labyrinthus:arrow_path",				"labyrinthus_sand.png^labyrinthus_arrow_path.png",							8,	6,	true},
+	{"_","labyrinthus:arrow_path_button",		"labyrinthus_sand.png^labyrinthus_arrow_path_button.png",					9,	6,	true},
+	{"#","labyrinthus:ball3",					"labyrinthus_sand.png^labyrinthus_ball2.png",								6,	2,	true},
+	{"'","labyrinthus:ice_with_yellow",			"labyrinthus_ice3.png^labyrinthus_yellow2.png",								7,	5,	true},
+	{"*","labyrinthus:dirt_with_yellow_circle",	"labyrinthus_dirt.png^labyrinthus_yellow_circle.png",						13,	6,	true},
+	{"+","labyrinthus:dirt_with_red_circle",	"labyrinthus_dirt.png^labyrinthus_red_circle.png",							1,	7,	true},
+	{"~","labyrinthus:arrow_path_with_green",	"labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png",	2,	5,	true},
+	{"@","labyrinthus:cross_red",				"labyrinthus_sand.png^labyrinthus_cross_red.png",							3,	7,	true},
+	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png",							4,	7,	true},
+	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png",						2,	7,	true},
+	{"{","labyrinthus:grey_sand",				"labyrinthus_sand.png^labyrinthus_grey3.png",								2,	3,	true},
+	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png",								13,	5,	true},
+	{"]","labyrinthus:water_eye1_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png",	1,	5,	false},
 	
-	{"!","labyrinthus:button12",				"",																			0, 	0},
-	{"$","labyrinthus:button2_1",				"",																			0,	0},
-	{"%","labyrinthus:empty_gate_purple",		"",																			0, 	0},
-	{"&","labyrinthus:gate",					"",																			0, 	0},
-	{"/","labyrinthus:button3_1",				"",																			0,	0},
-	{"(","labyrinthus:water_eye2",				"",																			0,	0},
-	{")","labyrinthus:water_eye2_with_yellow",	"",																			0,	0},
-	{"=","labyrinthus:water_eye2_with_cyan",	"",																			0,	0},
-	{"}","labyrinthus:water_eye2_with_green",	"",																			0,	0},
-	{"`","labyrinthus:button2_2",				"",																			0,	0},
-	{"^","labyrinthus:button3_2",				"",																			0,	0},
+	{"!","labyrinthus:button12",				"labyrinthus_sand.png^labyrinthus_button2.png",								0, 	0,	true},
+	{"$","labyrinthus:button2_1",				"labyrinthus_sand.png^labyrinthus_button_2.png",							0,	0,	true},
+	{"%","labyrinthus:empty_gate_purple",		"labyrinthus_sand.png^labyrinthus_gate_with_purple.png",					0, 	0,	true},
+	{"&","labyrinthus:gate",					"",																			0, 	0,	false},
+	{"/","labyrinthus:button3_1",				"labyrinthus_sand.png^labyrinthus_button_3.png",							0,	0,	true},
+	{"(","labyrinthus:water_eye2",				"labyrinthus_water.png^labyrinthus_water_eye.png",							0,	0,	true},
+	{")","labyrinthus:water_eye2_with_yellow",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png",	0,	0,	true},
+	{"=","labyrinthus:water_eye2_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png",		0,	0,	true},
+	{"}","labyrinthus:water_eye2_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png",	0,	0,	true},
+	{"`","labyrinthus:button2_2",				"labyrinthus_dirt.png^labyrinthus_button_2.png",							0,	0,	true},
+	{"^","labyrinthus:button3_2",				"labyrinthus_dirt.png^labyrinthus_button_3.png",							0,	0,	true},
 	--noch offen: 93/94   "
 }
 
 local node_list2 = {
-	{"0","air",											"",																	1,	1},
-	{"1","labyrinthus:junglewood",						"labyrinthus_junglewood.png",										5,	1},
-	{"2","labyrinthus:stone",							"labyrinthus_stone.png",											3,	1},
-	{"3","labyrinthus:meselamp2",						"labyrinthus_meselamp2.png",										5,	2},
-	{"4","labyrinthus:red2",							"labyrinthus_ball_red.png",											8,	1},
-	{"5","labyrinthus:green2",							"labyrinthus_ball_green.png",										9,	1},
-	{"6","labyrinthus:button2",							"labyrinthus_stone.png^labyrinthus_button_2.png",					1,	2},
-	{"7","labyrinthus:blue2",							"labyrinthus_ball_blue.png",										10,	1},
-	{"8","labyrinthus:key1",							"labyrinthus_stone.png^labyrinthus_key2.png",						3,	2},
-	{"9","labyrinthus:diamondblock",					"labyrinthus_diamond_block.png",									6,	2},
-	{"a","labyrinthus:pbj_pup",							"labyrinthus_pup_front.png",										7,	2},
-	{"b","labyrinthus:cobble",							"labyrinthus_cobble.png",											8,	2},
-	{"c","labyrinthus:tnt",								"labyrinthus_tnt_side.png",											9,	2},
-	{"d","labyrinthus:apple",							"labyrinthus_apple.png",											4,	1},
-	{"e","labyrinthus:4",								"labyrinthus_mese_block.png^labyrinthus_4.png",						10,	2},
-	{"f","labyrinthus:3",								"labyrinthus_mese_block.png^labyrinthus_3.png",						11,	2},
-	{"g","labyrinthus:2",								"labyrinthus_mese_block.png^labyrinthus_2.png",						12,	2},
-	{"h","labyrinthus:1",								"labyrinthus_mese_block.png^labyrinthus_1.png",						13,	2},
-	{"i","labyrinthus:eye2",							"labyrinthus_mese_block.png^labyrinthus_eye.png",					1,	3},
-	{"j","labyrinthus:red",								"labyrinthus_mese_block.png^labyrinthus_red.png",					3,	3},
-	{"k","labyrinthus:blue",							"labyrinthus_mese_block.png^labyrinthus_blue.png",					4,	3},
-	{"l","labyrinthus:yellow",							"labyrinthus_mese_block.png^labyrinthus_yellow.png",				5,	3},
-	{"m","labyrinthus:glass",							"labyrinthus_eye2.png",												2,	3},
-	{"n","labyrinthus:nyan1",							"labyrinthus_part1.png",											12,	3},
-	{"o","labyrinthus:nyan2",							"labyrinthus_part2.png",											13,	3},
-	{"p","labyrinthus:nyan3",							"labyrinthus_part3.png",											1,	4},
-	{"q","labyrinthus:nyan4",							"labyrinthus_part4.png",											2,	4},
-	{"r","labyrinthus:arrow3",							"labyrinthus_mese_block.png^labyrinthus_arrow2.png",				12,	5},
-	{"s","labyrinthus:leaves",							"labyrinthus_leaves.png",											2,	5},
-	{"t","labyrinthus:water_ball",						"labyrinthus_ball_water.png",										7,	1},
-	{"u","labyrinthus:transport_stone",					"labyrinthus_mese_block.png^labyrinthus_gate_arrows2.png",			8,	4},
-	{"v","labyrinthus:red_pyramid",						"labyrinthus_pyramid_red.png",										11,	1},
-	{"w","labyrinthus:green_pyramid",					"labyrinthus_pyramid_green.png",									12,	1},
-	{"x","labyrinthus:blue_pyramid",					"labyrinthus_pyramid_blue.png",										13,	1},
-	{"y","labyrinthus:bow_right",						"labyrinthus_mese_block.png^labyrinthus_bow_right.png",				3,	5},
-	{"z","labyrinthus:bow_left",						"labyrinthus_mese_block.png^labyrinthus_bow_left.png",				4,	5},
-	{"A","labyrinthus:bow_down",						"labyrinthus_mese_block.png^labyrinthus_bow_down.png",				5,	5},
-	{"B","labyrinthus:bow_up",							"labyrinthus_mese_block.png^labyrinthus_bow_up.png",				6,	5},
-	{"C","labyrinthus:button3",							"labyrinthus_stone.png^labyrinthus_button_3.png",					2,	2},
-	{"D","labyrinthus:yellow_block",					"labyrinthus_stone.png^labyrinthus_yellow_arrow.png",				10,	4},
-	{"E","labyrinthus:yellow_red",						"labyrinthus_stone.png^labyrinthus_yellow_red.png",					11,	4},
-	{"F","labyrinthus:stone_for_white",					"labyrinthus_stone.png^labyrinthus_stone_for_white.png",			12,	4},
-	{"G","labyrinthus:stone_with_no_white1",			"labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png",	13,	4},
-	{"H","labyrinthus:remember1_off",					"labyrinthus_mese_block.png^labyrinthus_remember1.png",				3,	4},
-	{"I","labyrinthus:remember2_off",					"labyrinthus_mese_block.png^labyrinthus_remember2.png",				4,	4},
-	{"J","labyrinthus:remember3_off",					"labyrinthus_mese_block.png^labyrinthus_remember3.png",				5,	4},
-	{"K","labyrinthus:remember4_off",					"labyrinthus_mese_block.png^labyrinthus_remember4.png",				6,	4},
-	{"L","labyrinthus:remember5_off",					"labyrinthus_mese_block.png^labyrinthus_remember5.png",				7,	4},
-	{"M","labyrinthus:arrow4",							"labyrinthus_mese_block.png^labyrinthus_arrow4.png",				11,	5},
-	{"N","labyrinthus:arrow5_yellow",					"labyrinthus_mese_block.png^labyrinthus_arrow5_yellow.png",			13,	5},
-	{"O","labyrinthus:arrow5_red",						"labyrinthus_mese_block.png^labyrinthus_arrow5_red.png",			1,	6},
-	{"P","labyrinthus:key3",							"labyrinthus_stone.png^labyrinthus_key3.png",						4,	2},
-	{"Q","labyrinthus:2red",							"labyrinthus_mese_block.png^labyrinthus_2red.png",					9,	3},
-	{"R","labyrinthus:2blue",							"labyrinthus_mese_block.png^labyrinthus_2blue.png",					10,	3},
-	{"S","labyrinthus:2yellow",							"labyrinthus_mese_block.png^labyrinthus_2yellow.png",				11,	3},
-	{"T","labyrinthus:grey1",							"labyrinthus_mese_block.png^labyrinthus_grey1.png",					8,	3},
-	{"U","labyrinthus:grey2",							"labyrinthus_mese_block.png^labyrinthus_grey2.png",					7,	3},
-	{"V","labyrinthus:grey3",							"labyrinthus_mese_block.png^labyrinthus_grey3.png",					6,	3},
-	{"W","labyrinthus:backward_arrow",					"labyrinthus_mese_block.png^labyrinthus_backward_arrow.png",		9,	4},
-	{"X","labyrinthus:wood2",							"labyrinthus_mese_block.png^labyrinthus_wood2.png",					6,	1},
-	{"Y","labyrinthus:bow_right_block",					"labyrinthus_stone.png^labyrinthus_bow_right2.png",					7,	5},
-	{"Z","labyrinthus:bow_left_block",					"labyrinthus_stone.png^labyrinthus_bow_left2.png",					8,	5},
-	{"'","labyrinthus:bow_down_block",					"labyrinthus_stone.png^labyrinthus_bow_down2.png",					9,	5},
-	{"*","labyrinthus:bow_up_block",					"labyrinthus_stone.png^labyrinthus_bow_up2.png",					10,	5},
-	{"+","labyrinthus:stone_with_white2",				"labyrinthus_stone.png^labyrinthus_stone_with_white2.png",			1,	5},
+	{"0","air",											"",																	1,	1,	false},
+	{"1","labyrinthus:junglewood",						"labyrinthus_junglewood.png",										5,	1,	true},
+	{"2","labyrinthus:stone",							"labyrinthus_stone.png",											3,	1,	true},
+	{"3","labyrinthus:meselamp2",						"labyrinthus_meselamp2.png",										5,	2,	true},
+	{"4","labyrinthus:red2",							"labyrinthus_ball_red.png",											8,	1,	false},
+	{"5","labyrinthus:green2",							"labyrinthus_ball_green.png",										9,	1,	false},
+	{"6","labyrinthus:button2",							"labyrinthus_stone.png^labyrinthus_button_2.png",					1,	2,	true},
+	{"7","labyrinthus:blue2",							"labyrinthus_ball_blue.png",										10,	1,	false},
+	{"8","labyrinthus:key1",							"labyrinthus_stone.png^labyrinthus_key2.png",						3,	2,	true},
+	{"9","labyrinthus:diamondblock",					"labyrinthus_diamond_block.png",									6,	2,	true},
+	{"a","labyrinthus:pbj_pup",							"labyrinthus_pup_front.png",										7,	2,	false},
+	{"b","labyrinthus:cobble",							"labyrinthus_cobble.png",											8,	2,	true},
+	{"c","labyrinthus:tnt",								"labyrinthus_tnt_side.png",											9,	2,	true},
+	{"d","labyrinthus:apple",							"labyrinthus_apple.png",											4,	1,	false},
+	{"e","labyrinthus:4",								"labyrinthus_mese_block.png^labyrinthus_4.png",						10,	2,	true},
+	{"f","labyrinthus:3",								"labyrinthus_mese_block.png^labyrinthus_3.png",						11,	2,	true},
+	{"g","labyrinthus:2",								"labyrinthus_mese_block.png^labyrinthus_2.png",						12,	2,	true},
+	{"h","labyrinthus:1",								"labyrinthus_mese_block.png^labyrinthus_1.png",						13,	2,	true},
+	{"i","labyrinthus:eye2",							"labyrinthus_mese_block.png^labyrinthus_eye.png",					1,	3,	true},
+	{"j","labyrinthus:red",								"labyrinthus_mese_block.png^labyrinthus_red.png",					3,	3,	true},
+	{"k","labyrinthus:blue",							"labyrinthus_mese_block.png^labyrinthus_blue.png",					4,	3,	true},
+	{"l","labyrinthus:yellow",							"labyrinthus_mese_block.png^labyrinthus_yellow.png",				5,	3,	true},
+	{"m","labyrinthus:glass",							"labyrinthus_eye2.png",												2,	3,	false},
+	{"n","labyrinthus:nyan1",							"labyrinthus_part1.png",											12,	3,	true},
+	{"o","labyrinthus:nyan2",							"labyrinthus_part2.png",											13,	3,	true},
+	{"p","labyrinthus:nyan3",							"labyrinthus_part3.png",											1,	4,	true},
+	{"q","labyrinthus:nyan4",							"labyrinthus_part4.png",											2,	4,	true},
+	{"r","labyrinthus:arrow3",							"labyrinthus_mese_block.png^labyrinthus_arrow2.png",				12,	5,	true},
+	{"s","labyrinthus:leaves",							"labyrinthus_leaves.png",											2,	5,	false},
+	{"t","labyrinthus:water_ball",						"labyrinthus_ball_water.png",										7,	1,	false},
+	{"u","labyrinthus:transport_stone",					"labyrinthus_mese_block.png^labyrinthus_gate_arrows2.png",			8,	4,	true},
+	{"v","labyrinthus:red_pyramid",						"labyrinthus_pyramid_red.png",										11,	1,	false},
+	{"w","labyrinthus:green_pyramid",					"labyrinthus_pyramid_green.png",									12,	1,	false},
+	{"x","labyrinthus:blue_pyramid",					"labyrinthus_pyramid_blue.png",										13,	1,	false},
+	{"y","labyrinthus:bow_right",						"labyrinthus_mese_block.png^labyrinthus_bow_right.png",				3,	5,	true},
+	{"z","labyrinthus:bow_left",						"labyrinthus_mese_block.png^labyrinthus_bow_left.png",				4,	5,	true},
+	{"A","labyrinthus:bow_down",						"labyrinthus_mese_block.png^labyrinthus_bow_down.png",				5,	5,	true},
+	{"B","labyrinthus:bow_up",							"labyrinthus_mese_block.png^labyrinthus_bow_up.png",				6,	5,	true},
+	{"C","labyrinthus:button3",							"labyrinthus_stone.png^labyrinthus_button_3.png",					2,	2,	true},
+	{"D","labyrinthus:yellow_block",					"labyrinthus_stone.png^labyrinthus_yellow_arrow.png",				10,	4,	false},
+	{"E","labyrinthus:yellow_red",						"labyrinthus_stone.png^labyrinthus_yellow_red.png",					11,	4,	true},
+	{"F","labyrinthus:stone_for_white",					"labyrinthus_stone.png^labyrinthus_stone_for_white.png",			12,	4,	true},
+	{"G","labyrinthus:stone_with_no_white1",			"labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png",	13,	4,	true},
+	{"H","labyrinthus:remember1_off",					"labyrinthus_mese_block.png^labyrinthus_remember1.png",				3,	4,	false},
+	{"I","labyrinthus:remember2_off",					"labyrinthus_mese_block.png^labyrinthus_remember2.png",				4,	4,	false},
+	{"J","labyrinthus:remember3_off",					"labyrinthus_mese_block.png^labyrinthus_remember3.png",				5,	4,	false},
+	{"K","labyrinthus:remember4_off",					"labyrinthus_mese_block.png^labyrinthus_remember4.png",				6,	4,	false},
+	{"L","labyrinthus:remember5_off",					"labyrinthus_mese_block.png^labyrinthus_remember5.png",				7,	4,	false},
+	{"M","labyrinthus:arrow4",							"labyrinthus_mese_block.png^labyrinthus_arrow4.png",				11,	5,	true},
+	{"N","labyrinthus:arrow5_yellow",					"labyrinthus_mese_block.png^labyrinthus_arrow5_yellow.png",			13,	5,	true},
+	{"O","labyrinthus:arrow5_red",						"labyrinthus_mese_block.png^labyrinthus_arrow5_red.png",			1,	6,	true},
+	{"P","labyrinthus:key3",							"labyrinthus_stone.png^labyrinthus_key3.png",						4,	2,	true},
+	{"Q","labyrinthus:2red",							"labyrinthus_mese_block.png^labyrinthus_2red.png",					9,	3,	true},
+	{"R","labyrinthus:2blue",							"labyrinthus_mese_block.png^labyrinthus_2blue.png",					10,	3,	true},
+	{"S","labyrinthus:2yellow",							"labyrinthus_mese_block.png^labyrinthus_2yellow.png",				11,	3,	true},
+	{"T","labyrinthus:grey1",							"labyrinthus_mese_block.png^labyrinthus_grey1.png",					8,	3,	true},
+	{"U","labyrinthus:grey2",							"labyrinthus_mese_block.png^labyrinthus_grey2.png",					7,	3,	true},
+	{"V","labyrinthus:grey3",							"labyrinthus_mese_block.png^labyrinthus_grey3.png",					6,	3,	true},
+	{"W","labyrinthus:backward_arrow",					"labyrinthus_mese_block.png^labyrinthus_backward_arrow.png",		9,	4,	true},
+	{"X","labyrinthus:wood2",							"labyrinthus_wood2.png",											6,	1,	true},
+	{"Y","labyrinthus:bow_right_block",					"labyrinthus_stone.png^labyrinthus_bow_right2.png",					7,	5,	true},
+	{"Z","labyrinthus:bow_left_block",					"labyrinthus_stone.png^labyrinthus_bow_left2.png",					8,	5,	true},
+	{"'","labyrinthus:bow_down_block",					"labyrinthus_stone.png^labyrinthus_bow_down2.png",					9,	5,	true},
+	{"*","labyrinthus:bow_up_block",					"labyrinthus_stone.png^labyrinthus_bow_up2.png",					10,	5,	true},
+	{"+","labyrinthus:stone_with_white2",				"labyrinthus_stone.png^labyrinthus_stone_with_white2.png",			1,	5,	true},
 	
-	{"!","nyancat:nyancat",								"",																	0,	0},
-	{"$","labyrinthus:button13",						"",																	0,	0},
-	{"%","labyrinthus:transport_stone_gate_arrows",		"",																	0,	0},
-	{"&","labyrinthus:red_with_no_yellow",				"",																	0,	0},
-	{"/","labyrinthus:stone_with_white",				"",																	0,	0},
-	{")","labyrinthus:stone_with_no_white2",			"",																	0,	0},
-	{"=","labyrinthus:remember1_on",					"",																	0,	0},
-	{"[","labyrinthus:remember2_on",					"",																	0,	0},
-	{"]","labyrinthus:remember3_on",					"",																	0,	0},
-	{"{","labyrinthus:remember4_on",					"",																	0,	0},
-	{"}","labyrinthus:remember5_on",					"",																	0,	0},
-	{"?","labyrinthus:remember5_temp",					"",																	0,	0},
-	{"\\","labyrinthus:0",								"",																	0,	0},
-	{":","labyrinthus:wire_10100000",					"",																	0,	0},
-	{";","labyrinthus:wire_10000000",					"",																	0,	0},
-	{"<","labyrinthus:wire_01000000",					"",																	0,	0},
-	{">","labyrinthus:wire_00100000",					"",																	0,	0},
-	{"|","labyrinthus:wire_00010000",					"",																	0,	0},
-	{".","labyrinthus:wire_01010000",					"",																	0,	0},
-	{",","labyrinthus:wire_11000000",					"",																	0,	0},
-	{"-","labyrinthus:wire_01100000",					"",																	0,	0},
-	{"_","labyrinthus:wire_00110000",					"",																	0,	0},
-	{"#","labyrinthus:wire_10010000",					"",																	0,	0},
-	
+	{"!","nyancat:nyancat",								"",																	0,	0,	false},
+	{"$","labyrinthus:button13",						"labyrinthus_stone.png^labyrinthus_button2.png",					0,	0,	true},
+	{"%","labyrinthus:transport_stone_gate_arrows",		"labyrinthus_mese_block.png^labyrinthus_gate_arrows3.png",			0,	0,	true},
+	{"&","labyrinthus:red_with_no_yellow",				"labyrinthus_stone.png^labyrinthus_red_with_no_yellow.png",			0,	0,	true},
+	{"/","labyrinthus:stone_with_white",				"labyrinthus_stone.png^labyrinthus_stone_with_white.png",			0,	0,	true},
+	{")","labyrinthus:stone_with_no_white2",			"labyrinthus_stone.png^labyrinthus_stone_with_no_white.png",		0,	0,	true},
+	{"=","labyrinthus:remember1_on",					"labyrinthus_stone.png^labyrinthus_remember1.png",					0,	0,	true},
+	{"[","labyrinthus:remember2_on",					"labyrinthus_stone.png^labyrinthus_remember2.png",					0,	0,	true},
+	{"]","labyrinthus:remember3_on",					"labyrinthus_stone.png^labyrinthus_remember3.png",					0,	0,	true},
+	{"{","labyrinthus:remember4_on",					"labyrinthus_stone.png^labyrinthus_remember4.png",					0,	0,	true},
+	{"}","labyrinthus:remember5_on",					"labyrinthus_stone.png^labyrinthus_remember5.png",					0,	0,	true},
+	{"?","labyrinthus:remember5_temp",					"labyrinthus_stone.png^labyrinthus_remember5.png",					0,	0,	true},
+	{"\\","labyrinthus:0",								"labyrinthus_stone.png^labyrinthus_0.png",							0,	0,	true},
+	{":","labyrinthus:wire_10100000",					"",																	0,	0,	false},
+	{";","labyrinthus:wire_10000000",					"",																	0,	0,	false},
+	{"<","labyrinthus:wire_01000000",					"",																	0,	0,	false},
+	{">","labyrinthus:wire_00100000",					"",																	0,	0,	false},
+	{"|","labyrinthus:wire_00010000",					"",																	0,	0,	false},
+	{".","labyrinthus:wire_01010000",					"",																	0,	0,	false},
+	{",","labyrinthus:wire_11000000",					"",																	0,	0,	false},
+	{"-","labyrinthus:wire_01100000",					"",																	0,	0,	false},
+	{"_","labyrinthus:wire_00110000",					"",																	0,	0,	false},
+	{"#","labyrinthus:wire_10010000",					"",																	0,	0,	false},	
 	--noch offen 88/94	` ^ " ( @ ~
 }
+
 function get_item_list(list,index,index_number,number)
 	for index2, value in ipairs(list) do
         if value[index_number] == index then
@@ -1249,7 +1249,7 @@ function file_check(file_name)
 end
 minetest.register_on_joinplayer(function(player)
 	
-	minetest.settings:set("node_highlighting", "none")
+	--minetest.settings:set("node_highlighting", "none")
 	player:set_pos({x=19.5, y=10.5, z=-88})
 	player:set_physics_override({
         speed = 0,
@@ -1372,48 +1372,66 @@ minetest.register_item(":", {
 	type = "none",
 	wield_image = "wieldhand.png",
 	wield_scale = {x = 1, y = 1, z = 2.5},
-	range = 15,
+	range = 8,
 	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level = 0,
 	}
 })
+
+local lists = {node_list1, node_list2}
+
+for _, list in ipairs(lists) do
+    for _, def in ipairs(list) do
+        local id, name, texture, hardness, group, creatable = unpack(def)
+        if creatable then
+            minetest.register_node(name, {
+                tiles = {texture},
+				selection_box = { type = "fixed", fixed = {} },
+            })
+        end
+    end
+end
+
 minetest.register_node("labyrinthus:wall",{
 	tiles = {"labyrinthus_wall.png"},
 })
-minetest.register_node("labyrinthus:sand",{
-	tiles = {"labyrinthus_sand.png"},
+minetest.register_node("labyrinthus:rainbow",{
+	tiles = {"labyrinthus_water.png^labyrinthus_rainbow.png"},
 })
-minetest.register_node("labyrinthus:wood",{
-	tiles = {"labyrinthus_wood.png"},
+minetest.register_node("labyrinthus:rainbow3",{
+	tiles = {"labyrinthus_water.png^labyrinthus_rainbow3.png"},
 })
-
-minetest.register_node("labyrinthus:stone",{
-	tiles = {"labyrinthus_stone.png"},
+minetest.register_node("labyrinthus:water_eye1_with_yellow",{
+	tiles = {"labyrinthus_water.png^labyrinthus_yellow2.png"},
 })
-
-minetest.register_node("labyrinthus:cobble",{
-	tiles = {"labyrinthus_cobble.png"},
+minetest.register_node("labyrinthus:water_eye1_with_cyan",{
+	tiles = {"labyrinthus_water.png^labyrinthus_cyan.png"},
 })
-minetest.register_node("labyrinthus:junglewood",{
-	tiles = {"labyrinthus_junglewood.png"},
+minetest.register_node("labyrinthus:water_eye1_with_green",{
+	tiles = {"labyrinthus_water.png^labyrinthus_green.png"},
 })
-minetest.register_node("labyrinthus:wood2",{
-	tiles = {"labyrinthus_wood2.png"},
+minetest.register_node("labyrinthus:desert",{
+	tiles = {"labyrinthus_desert_sand.png"},
 })
-
-minetest.register_node("labyrinthus:diamondblock",{
-	tiles = {"labyrinthus_diamond_block.png"},
+minetest.register_node("labyrinthus:remember1_off",{
+	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
 })
-
-minetest.register_node("labyrinthus:tnt",{
-	tiles = {"labyrinthus_tnt_side.png"},
+minetest.register_node("labyrinthus:remember2_off",{
+	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
 })
-
-minetest.register_node("labyrinthus:bones",{
-	tiles = {"labyrinthus_bones_front.png"},
+minetest.register_node("labyrinthus:remember3_off",{
+	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
 })
-
+minetest.register_node("labyrinthus:remember4_off",{
+	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
+})
+minetest.register_node("labyrinthus:remember5_off",{
+	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
+})
+minetest.register_node("labyrinthus:water_eye1",{
+	tiles = {"labyrinthus_water.png"},
+})
 minetest.register_node("labyrinthus:yellow_block", {
 	drawtype = "nodebox",
 	tiles = {"labyrinthus_stone.png^labyrinthus_yellow_arrow.png","labyrinthus_stone.png","labyrinthus_stone.png","labyrinthus_stone.png","labyrinthus_stone.png","labyrinthus_stone.png"},
@@ -1443,62 +1461,12 @@ minetest.register_node("labyrinthus:glass",{
 	sunlight_propagates = true,
 	use_texture_alpha = "clip",
 	is_ground_content = true,
+	selection_box = { type = "fixed", fixed = {} },
 })
 minetest.register_node("labyrinthus:nyancat2",{
 	tiles = {"nyancat_side.png", "nyancat_side.png", "nyancat_side.png","nyancat_side.png", "nyancat_back.png", "labyrinthus_nyancat2_front.png"},
     paramtype = "light",
 	light_source = 4,
-})
-minetest.register_node("labyrinthus:water",{
-	tiles = {"labyrinthus_water.png"},
-})
-minetest.register_node("labyrinthus:water_stone",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_stone.png"},
-})
-minetest.register_node("labyrinthus:ice1",{
-	tiles = {"labyrinthus_ice.png"},
-})
-minetest.register_node("labyrinthus:ice2",{
-	tiles = {"labyrinthus_ice2.png"},
-})
-minetest.register_node("labyrinthus:ice3",{
-	tiles = {"labyrinthus_ice3.png"},
-})
-minetest.register_node("labyrinthus:water_wood",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_wood.png"},
-})
-minetest.register_node("labyrinthus:rainbow",{
-	tiles = {"labyrinthus_rainbow.png"},
-})
-minetest.register_node("labyrinthus:rainbow2",{
-	tiles = {"labyrinthus_rainbow2.png"},
-})
-minetest.register_node("labyrinthus:rainbow3",{
-	tiles = {"labyrinthus_rainbow3.png"},
-})
-minetest.register_node("labyrinthus:button1",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_button.png"},
-})
-minetest.register_node("labyrinthus:button2",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_button_2.png"},
-})
-minetest.register_node("labyrinthus:button3",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_button_3.png"},
-})
-minetest.register_node("labyrinthus:button2_1",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_button_2.png"},
-})
-minetest.register_node("labyrinthus:button3_1",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_button_3.png"},
-})
-minetest.register_node("labyrinthus:button2_2",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_button_2.png"},
-})
-minetest.register_node("labyrinthus:button3_2",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_button_3.png"},
-})
-minetest.register_node("labyrinthus:red1",{
-	tiles = {"labyrinthus_red1.png"},
 })
 minetest.register_node("labyrinthus:red2", {
 	tiles = {"labyrinthus_red2.png"},
@@ -1507,18 +1475,12 @@ minetest.register_node("labyrinthus:red2", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 })
-minetest.register_node("labyrinthus:blue1",{
-	tiles = {"labyrinthus_blue1.png"},
-})
 minetest.register_node("labyrinthus:blue2", {
 	tiles = {"labyrinthus_blue2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_ball.obj",
 	paramtype = "light",
 	paramtype2 = "facedir",
-})
-minetest.register_node("labyrinthus:green1",{
-	tiles = {"labyrinthus_green1.png"},
 })
 minetest.register_node("labyrinthus:green2", {
 	tiles = {"labyrinthus_green2.png"},
@@ -1541,9 +1503,6 @@ minetest.register_node("labyrinthus:red_pyramid", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 })
-minetest.register_node("labyrinthus:red_cross",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_red_cross.png"},
-})
 minetest.register_node("labyrinthus:green_pyramid", {
 	tiles = {"labyrinthus_green2.png"},
 	drawtype = "mesh",
@@ -1551,219 +1510,12 @@ minetest.register_node("labyrinthus:green_pyramid", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 })
-minetest.register_node("labyrinthus:green_cross",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_green_cross.png"},
-})
 minetest.register_node("labyrinthus:blue_pyramid", {
 	tiles = {"labyrinthus_blue2.png"},
 	drawtype = "mesh",
 	mesh = "labyrinthus_pyramid.obj",
 	paramtype = "light",
 	paramtype2 = "facedir",
-})
-
-minetest.register_node("labyrinthus:meselamp2", {
-	tiles = {"labyrinthus_meselamp2.png"},
-})
-minetest.register_node("labyrinthus:blue_cross",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_blue_cross.png"},
-})
-
-minetest.register_node("labyrinthus:cross_red",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_cross_red.png"},
-})
-minetest.register_node("labyrinthus:cross_green",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_cross_green.png"},
-})
-minetest.register_node("labyrinthus:cross_switch",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_cross_switch.png"},
-})
-
-minetest.register_node("labyrinthus:blue_col",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_blue_col.png"},
-})
-minetest.register_node("labyrinthus:red_col",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_red_col.png"},
-})
-minetest.register_node("labyrinthus:green_col",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_green_col.png"},
-})
-minetest.register_node("labyrinthus:key1",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_key2.png"},
-})
-minetest.register_node("labyrinthus:key2",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_key.png"},
-})
-minetest.register_node("labyrinthus:key3",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_key3.png"},
-})
-minetest.register_node("labyrinthus:tp",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_tp.png"},
-})
-minetest.register_node("labyrinthus:tp2",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_tp2.png"},
-})
-minetest.register_node("labyrinthus:tp3",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_tp3.png"},
-})
-minetest.register_node("labyrinthus:purple",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_purple.png"},
-})
-minetest.register_node("labyrinthus:white",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_white.png"},
-})
-minetest.register_node("labyrinthus:ice_with_white",{
-	tiles = {"labyrinthus_ice3.png^labyrinthus_white.png"},
-})
-minetest.register_node("labyrinthus:stone_for_white",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_stone_for_white.png"},
-})
-minetest.register_node("labyrinthus:stone_with_no_white1",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_stone_with_no_white.png"},
-})
-minetest.register_node("labyrinthus:stone_with_no_white2",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_stone_with_no_white.png"},
-})
-minetest.register_node("labyrinthus:stone_with_white",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_stone_with_white.png"},
-})
-minetest.register_node("labyrinthus:stone_with_white2",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_stone_with_white2.png"},
-})
-minetest.register_node("labyrinthus:cyan",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_cyan.png"},
-})
-minetest.register_node("labyrinthus:yellow2",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_yellow2.png"},
-})
-minetest.register_node("labyrinthus:ice_with_yellow",{
-	tiles = {"labyrinthus_ice3.png^labyrinthus_yellow2.png"},
-})
-minetest.register_node("labyrinthus:dirt_with_yellow_circle",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_yellow_circle.png"},
-})
-minetest.register_node("labyrinthus:dirt_with_red_circle",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_red_circle.png"},
-})
-minetest.register_node("labyrinthus:yellow_red",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_yellow_red.png"},
-})
-minetest.register_node("labyrinthus:red_with_no_yellow",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_red_with_no_yellow.png"},
-})
-minetest.register_node("labyrinthus:red3",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_red3.png"},
-})
-minetest.register_node("labyrinthus:water_wood_with_red",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_wood_with_red.png"},
-})
-minetest.register_node("labyrinthus:cyan_dirt",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_cyan.png"},
-})
-minetest.register_node("labyrinthus:red_dirt",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_red3.png"},
-})
-minetest.register_node("labyrinthus:yellow_dirt",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_yellow2.png"},
-})
-minetest.register_node("labyrinthus:water_eye1_with_yellow",{
-	tiles = {"labyrinthus_water.png^labyrinthus_yellow2.png"},
-})
-minetest.register_node("labyrinthus:water_eye2_with_yellow",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png"},
-})
-minetest.register_node("labyrinthus:water_eye1_with_cyan",{
-	tiles = {"labyrinthus_water.png^labyrinthus_cyan.png"},
-})
-minetest.register_node("labyrinthus:water_eye2_with_cyan",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:water_eye1_with_green",{
-	tiles = {"labyrinthus_water.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:water_eye2_with_green",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:bow",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_bow.png"},
-})
-minetest.register_node("labyrinthus:bow_right",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_bow_right.png"},
-})
-minetest.register_node("labyrinthus:bow_left",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_bow_left.png"},
-})
-minetest.register_node("labyrinthus:bow_down",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_bow_down.png"},
-})
-minetest.register_node("labyrinthus:bow_up",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_bow_up.png"},
-})
-minetest.register_node("labyrinthus:bow_right_block",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_bow_right2.png"},
-})
-minetest.register_node("labyrinthus:bow_left_block",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_bow_left2.png"},
-})
-minetest.register_node("labyrinthus:bow_down_block",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_bow_down2.png"},
-})
-minetest.register_node("labyrinthus:bow_up_block",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_bow_up2.png"},
-})
-minetest.register_node("labyrinthus:green",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:green_dirt",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:water_wood_with_green",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_wood_with_green.png"},
-})
-minetest.register_node("labyrinthus:ice_with_green",{
-	tiles = {"labyrinthus_ice3.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:sand_for_green",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_stone_for_green.png"},
-})
-minetest.register_node("labyrinthus:sand_for_green_dirt",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_stone_for_green.png"},
-})
-minetest.register_node("labyrinthus:wood_for_yellow",{
-	tiles = {"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png"},
-})
-minetest.register_node("labyrinthus:purple_dirt",{
-	tiles = {"labyrinthus_dirt.png^labyrinthus_purple.png"},
-})
-minetest.register_node("labyrinthus:backward_arrow",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_backward_arrow.png"},
-})
-minetest.register_node("labyrinthus:empty_gate",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_empty_gate.png"},
-})
-minetest.register_node("labyrinthus:empty_gate_purple",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_gate_with_purple.png"},
-})
-minetest.register_node("labyrinthus:gate",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_gate.png"},
-})
-minetest.register_node("labyrinthus:transport_stone",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_gate_arrows2.png"},
-})
-minetest.register_node("labyrinthus:gate_arrows",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_gate_arrows.png"},
-})
-minetest.register_node("labyrinthus:transport_stone_gate_arrows",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_gate_arrows3.png"},
-})
-minetest.register_node("labyrinthus:ball1",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_ball.png"},
-})
-minetest.register_node("labyrinthus:ball3",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_ball2.png"},
-})
-minetest.register_node("labyrinthus:boom",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_boom.png"},
 })
 minetest.register_node("labyrinthus:ball2",{
 	tiles = {"labyrinthus_ball.png"},
@@ -1781,143 +1533,11 @@ minetest.register_node("labyrinthus:ball4",{
 	use_texture_alpha = "clip",
 	is_ground_content = true,
 })
-minetest.register_node("labyrinthus:1",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_1.png"},
-})
-minetest.register_node("labyrinthus:2",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_2.png"},
-})
-minetest.register_node("labyrinthus:3",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_3.png"},
-})
-minetest.register_node("labyrinthus:4",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_4.png"},
-})
-minetest.register_node("labyrinthus:red",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_red.png"},
-})
-minetest.register_node("labyrinthus:blue",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_blue.png"},
-})
-minetest.register_node("labyrinthus:yellow",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_yellow.png"},
-})
-minetest.register_node("labyrinthus:grey1",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_grey1.png"},
-})
-minetest.register_node("labyrinthus:grey2",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_grey2.png"},
-})
-minetest.register_node("labyrinthus:grey3",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_grey3.png"},
-})
-minetest.register_node("labyrinthus:2red",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_2red.png"},
-})
-minetest.register_node("labyrinthus:2blue",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_2blue.png"},
-})
-minetest.register_node("labyrinthus:2yellow",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_2yellow.png"},
-})
-minetest.register_node("labyrinthus:red_sand",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_red.png"},
-})
-minetest.register_node("labyrinthus:grey_sand",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_grey3.png"},
-})
-minetest.register_node("labyrinthus:0",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_0.png"},
-})
-minetest.register_node("labyrinthus:00",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_0.png"},
-})
-minetest.register_node("labyrinthus:eye2",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_eye.png"},
-})
-minetest.register_node("labyrinthus:eye1",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_eye.png"},
-})
-minetest.register_node("labyrinthus:button_eye",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_button_eye.png"},
-})
-minetest.register_node("labyrinthus:box",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_box.png"},
-})
-minetest.register_node("labyrinthus:desert",{
-	tiles = {"labyrinthus_desert_sand.png"},
-})
-minetest.register_node("labyrinthus:dirt",{
-	tiles = {"labyrinthus_dirt.png"},
-})
 minetest.register_node("labyrinthus:leaves", {
 	tiles = {"labyrinthus_leaves.png"},
 	drawtype = "allfaces_optional",
 	paramtype = "light",
 	is_ground_content = false,
-})
-minetest.register_node("labyrinthus:button11",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_button1.png"},
-})
-minetest.register_node("labyrinthus:button12",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_button2.png"},
-})
-minetest.register_node("labyrinthus:button13",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_button2.png"},
-})
-minetest.register_node("labyrinthus:fire",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_flame.png"},
-})
-minetest.register_node("labyrinthus:arrow",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_arrow.png"},
-})
-minetest.register_node("labyrinthus:arrow2",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_arrow2.png"},
-})
-minetest.register_node("labyrinthus:round1",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_round1.png"},
-})
-minetest.register_node("labyrinthus:round2",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_round2.png"},
-})
-minetest.register_node("labyrinthus:round3",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_round3.png"},
-})
-minetest.register_node("labyrinthus:round4",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_round4.png"},
-})
-minetest.register_node("labyrinthus:nyan1",{
-	tiles = {"labyrinthus_part1.png"},
-})
-minetest.register_node("labyrinthus:nyan2",{
-	tiles = {"labyrinthus_part2.png"},
-})
-minetest.register_node("labyrinthus:nyan3",{
-	tiles = {"labyrinthus_part3.png"},
-})
-minetest.register_node("labyrinthus:nyan4",{
-	tiles = {"labyrinthus_part4.png"},
-})
-minetest.register_node("labyrinthus:arrow3",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_arrow2.png"},
-})
-minetest.register_node("labyrinthus:arrow4",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_arrow4.png"},
-})
-minetest.register_node("labyrinthus:arrow4_2",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_arrow4_2.png"},
-})
-minetest.register_node("labyrinthus:arrow5_yellow",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_arrow5_yellow.png"},
-})
-minetest.register_node("labyrinthus:arrow5_red",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_arrow5_red.png"},
-})
-minetest.register_node("labyrinthus:sun",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_sun.png"},
-})
-minetest.register_node("labyrinthus:moon",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_moon.png"},
 })
 
 for i=0,30 do
@@ -1926,54 +1546,6 @@ for i=0,30 do
     })
 end
 
-minetest.register_node("labyrinthus:remember1_off",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
-})
-minetest.register_node("labyrinthus:remember2_off",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
-})
-minetest.register_node("labyrinthus:remember3_off",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
-})
-minetest.register_node("labyrinthus:remember4_off",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
-})
-minetest.register_node("labyrinthus:remember5_off",{
-	tiles = {"labyrinthus_mese_block.png^labyrinthus_remember.png"},
-})
-minetest.register_node("labyrinthus:remember1_on",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_remember1.png"},
-})
-minetest.register_node("labyrinthus:remember2_on",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_remember2.png"},
-})
-minetest.register_node("labyrinthus:remember3_on",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_remember3.png"},
-})
-minetest.register_node("labyrinthus:remember4_on",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_remember4.png"},
-})
-minetest.register_node("labyrinthus:remember5_on",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_remember5.png"},
-})
-minetest.register_node("labyrinthus:remember5_temp",{
-	tiles = {"labyrinthus_stone.png^labyrinthus_remember5.png"},
-})
-minetest.register_node("labyrinthus:water_eye1",{
-	tiles = {"labyrinthus_water.png"},
-})
-minetest.register_node("labyrinthus:water_eye2",{
-	tiles = {"labyrinthus_water.png^labyrinthus_water_eye.png"},
-})
-minetest.register_node("labyrinthus:arrow_path",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_arrow_path.png"},
-})
-minetest.register_node("labyrinthus:arrow_path_with_green",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png"},
-})
-minetest.register_node("labyrinthus:arrow_path_button",{
-	tiles = {"labyrinthus_sand.png^labyrinthus_arrow_path_button.png"},
-})
 local nbox_nid =
 {
 	[0] = {1/16, -.5, -1/16, 8/16, -.5+1/16, 1/16}, -- x positive
@@ -4479,9 +4051,9 @@ minetest.register_node("labyrinthus:new_w6",{
 		local player_inv = player:get_inventory()
         local page = player_inv:get_stack("page6", 1):get_count()+1
         if page == 1 then
-			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",35,25,0,false,"",true,"web",""))
+			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",50,25,0,false,"",true,"web",""))
 		elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",35,10,25,true,"wea",false,"more comming soon","2.7"))
+            minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",50,25,25,true,"wea",false,"more comming soon","5.7"))
 		end
     end,
 })
@@ -4769,10 +4341,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         minetest.show_formspec(player:get_player_name(), "w57" , level_formspec(player,"level5",175,25,150,true,"wdf",false,"You have finished world 5!","5.7"))
 	elseif fields.wea then
         player_inv:set_stack("page6",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",35,25,0,false,"",true,"web",""))
+        minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",50,25,0,false,"",true,"web",""))
 	elseif fields.web then
         player_inv:set_stack("page6",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",35,10,25,true,"wea",false,"more comming soon","2.7"))
+        minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",50,25,25,true,"wea",false,"more comming soon","5.7"))
 	elseif fields.import then
 		minetest.show_formspec(player:get_player_name(), "import" , import.get_formspec(player))
 	elseif fields.save then
@@ -4940,6 +4512,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		end
 		for i = 1, #t do
 			if tostring(t[i]) == meta:get_string("celected") then
+				minetest.rmdir(minetest.get_worldpath().."/own_level_"..t[i]..".txt", false)
+				minetest.chat_send_all(t[i])
 				table.remove(t, i)
 			end
 		end
