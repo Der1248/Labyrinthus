@@ -64,7 +64,7 @@ minetest.register_on_joinplayer(function(player)
 		offset = {x=0, y=30},
 		alignment = {x=1, y=0},
 		number = 0xFFFFFF ,
-		text = "Game Version	 :  2.18.0",
+		text = "Game Version	 :  2.19.0",
 	})
     hud_levels[name] = player:hud_add({
 		hud_elem_type = "text",
@@ -111,10 +111,10 @@ local node_list1 = {
 	{"h","labyrinthus:bones",					"labyrinthus_bones_front.png",												11,	2,	true},
 	{"i","labyrinthus:button11",				"labyrinthus_sand.png^labyrinthus_button1.png",								12,	2,	true},
 	{"j","labyrinthus:fire",					"labyrinthus_sand.png^labyrinthus_flame.png",								13,	2,	true},
-	{"k","labyrinthus:arrow",					"labyrinthus_sand.png^labyrinthus_arrow.png",								11,	6,	true},
+	{"k","labyrinthus:arrow",					"labyrinthus_sand.png^labyrinthus_arrow.png",								12,	6,	true},
 	{"l","labyrinthus:round2",					"labyrinthus_sand.png^labyrinthus_round2.png",								5,	3,	true},
 	{"m","labyrinthus:round3",					"labyrinthus_sand.png^labyrinthus_round3.png",								4,	3,	true},
-	{"n","labyrinthus:arrow2",					"labyrinthus_sand.png^labyrinthus_arrow2.png",								12,	6,	true},
+	{"n","labyrinthus:arrow2",					"labyrinthus_sand.png^labyrinthus_arrow2.png",								13,	6,	true},
 	{"o","labyrinthus:red_sand",				"labyrinthus_sand.png^labyrinthus_red.png",									1,	3,	true},
 	{"p","labyrinthus:moon",					"labyrinthus_sand.png^labyrinthus_moon.png",								7,	3,	true},
 	{"q","labyrinthus:sun",						"labyrinthus_sand.png^labyrinthus_sun.png",									8,	3,	true},
@@ -138,41 +138,43 @@ local node_list1 = {
 	{"I","labyrinthus:green",					"labyrinthus_sand.png^labyrinthus_green.png",								10,	4,	true},
 	{"J","labyrinthus:water_wood_with_green",	"labyrinthus_water.png^labyrinthus_water_wood_with_green.png",				12,	4,	true},
 	{"K","labyrinthus:sand_for_green",			"labyrinthus_sand.png^labyrinthus_stone_for_green.png",						3,	5,	true},
-	{"L","labyrinthus:cyan",					"labyrinthus_sand.png^labyrinthus_cyan.png",								4,	6,	true},
-	{"M","labyrinthus:bow",						"labyrinthus_sand.png^labyrinthus_bow.png",									7,	6,	true},
-	{"N","labyrinthus:arrow4_2",				"labyrinthus_sand.png^labyrinthus_arrow4_2.png",							10,	6,	true},
+	{"L","labyrinthus:cyan",					"labyrinthus_sand.png^labyrinthus_cyan.png",								5,	6,	true},
+	{"M","labyrinthus:bow",						"labyrinthus_sand.png^labyrinthus_bow.png",									8,	6,	true},
+	{"N","labyrinthus:arrow4_2",				"labyrinthus_sand.png^labyrinthus_arrow4_2.png",							11,	6,	true},
 	{"O","labyrinthus:green_dirt",				"labyrinthus_dirt.png^labyrinthus_green.png",								11,	4,	true},
-	{"P","labyrinthus:cyan_dirt",				"labyrinthus_dirt.png^labyrinthus_cyan.png",								5,	6,	true},
+	{"P","labyrinthus:cyan_dirt",				"labyrinthus_dirt.png^labyrinthus_cyan.png",								6,	6,	true},
 	{"Q","labyrinthus:tp2",						"labyrinthus_sand.png^labyrinthus_tp2.png",									4,	2,	true},
 	{"R","labyrinthus:yellow2",					"labyrinthus_sand.png^labyrinthus_yellow2.png",								5,	5,	true},
 	{"S","labyrinthus:yellow_dirt",				"labyrinthus_dirt.png^labyrinthus_yellow2.png",								6,	5,	true},
-	{"T","labyrinthus:wood_for_yellow",			"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png",					10,	5,	true},
-	{"U","labyrinthus:water_stone",				"labyrinthus_water.png^labyrinthus_water_stone.png",						11,	5,	true},
+	{"T","labyrinthus:wood_for_yellow",			"labyrinthus_wood.png^labyrinthus_stone_for_yellow.png",					11,	5,	true},
+	{"U","labyrinthus:water_stone",				"labyrinthus_water.png^labyrinthus_water_stone.png",						12,	5,	true},
 	{"V","labyrinthus:sand_for_green_dirt",		"labyrinthus_dirt.png^labyrinthus_stone_for_green.png",						4,	5,	true},
-	{"W","labyrinthus:red3",					"labyrinthus_sand.png^labyrinthus_red3.png",								12,	5,	true},
-	{"X","labyrinthus:water_wood_with_red",		"labyrinthus_water.png^labyrinthus_water_wood_with_red.png",				1,	6,	true},
-	{"Y","labyrinthus:wood",					"labyrinthus_wood.png",														9,	5, 	true},
-	{"Z","labyrinthus:white",					"labyrinthus_sand.png^labyrinthus_white.png",								2,	6,	true},
+	{"W","labyrinthus:red3",					"labyrinthus_sand.png^labyrinthus_red3.png",								13,	5,	true},
+	{"X","labyrinthus:water_wood_with_red",		"labyrinthus_water.png^labyrinthus_water_wood_with_red.png",				2,	6,	true},
+	{"Y","labyrinthus:wood",					"labyrinthus_wood.png",														10,	5, 	true},
+	{"Z","labyrinthus:white",					"labyrinthus_sand.png^labyrinthus_white.png",								3,	6,	true},
 	{":","labyrinthus:tp3",						"labyrinthus_sand.png^labyrinthus_tp3.png",									5,	2,	true},
 	{";","labyrinthus:ice_with_green",			"labyrinthus_ice3.png^labyrinthus_green.png",								13,	4,	true},
-	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png",								3,	6,	true},
+	{"<","labyrinthus:ice_with_white",			"labyrinthus_ice3.png^labyrinthus_white.png",								4,	6,	true},
 	{">","labyrinthus:button_eye",				"labyrinthus_sand.png^labyrinthus_button_eye.png",							1,	4,	true},
 	{"|","labyrinthus:water_eye1",				"labyrinthus_water.png^labyrinthus_water_eye.png",							2,	4,	false},
 	{".","labyrinthus:water_eye1_with_yellow",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_yellow2.png",	8,	5,	false},
-	{",","labyrinthus:water_eye1_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png",		6,	6,	false},
-	{"-","labyrinthus:arrow_path",				"labyrinthus_sand.png^labyrinthus_arrow_path.png",							8,	6,	true},
-	{"_","labyrinthus:arrow_path_button",		"labyrinthus_sand.png^labyrinthus_arrow_path_button.png",					9,	6,	true},
+	{",","labyrinthus:water_eye1_with_cyan",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_cyan.png",		7,	6,	false},
+	{"-","labyrinthus:arrow_path",				"labyrinthus_sand.png^labyrinthus_arrow_path.png",							9,	6,	true},
+	{"_","labyrinthus:arrow_path_button",		"labyrinthus_sand.png^labyrinthus_arrow_path_button.png",					10,	6,	true},
 	{"#","labyrinthus:ball3",					"labyrinthus_sand.png^labyrinthus_ball2.png",								6,	2,	true},
 	{"'","labyrinthus:ice_with_yellow",			"labyrinthus_ice3.png^labyrinthus_yellow2.png",								7,	5,	true},
-	{"*","labyrinthus:dirt_with_yellow_circle",	"labyrinthus_dirt.png^labyrinthus_yellow_circle.png",						13,	6,	true},
-	{"+","labyrinthus:dirt_with_red_circle",	"labyrinthus_dirt.png^labyrinthus_red_circle.png",							1,	7,	true},
+	{"*","labyrinthus:dirt_with_yellow_circle",	"labyrinthus_dirt.png^labyrinthus_yellow_circle.png",						1,	7,	true},
+	{"+","labyrinthus:dirt_with_red_circle",	"labyrinthus_dirt.png^labyrinthus_red_circle.png",							2,	7,	true},
 	{"~","labyrinthus:arrow_path_with_green",	"labyrinthus_sand.png^labyrinthus_arrow_path.png^labyrinthus_green.png",	2,	5,	true},
-	{"@","labyrinthus:cross_red",				"labyrinthus_sand.png^labyrinthus_cross_red.png",							3,	7,	true},
-	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png",							4,	7,	true},
-	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png",						2,	7,	true},
+	{"@","labyrinthus:cross_red",				"labyrinthus_sand.png^labyrinthus_cross_red.png",							4,	7,	true},
+	{"?","labyrinthus:cross_green",				"labyrinthus_sand.png^labyrinthus_cross_green.png",							5,	7,	true},
+	{"\\","labyrinthus:cross_switch",			"labyrinthus_sand.png^labyrinthus_cross_switch.png",						3,	7,	true},
 	{"{","labyrinthus:grey_sand",				"labyrinthus_sand.png^labyrinthus_grey3.png",								2,	3,	true},
-	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png",								13,	5,	true},
+	{"[","labyrinthus:red_dirt",				"labyrinthus_dirt.png^labyrinthus_red3.png",								1,	6,	true},
 	{"]","labyrinthus:water_eye1_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png",	1,	5,	false},
+
+	{"\"","labyrinthus:blue_cross_with_yellow",	"labyrinthus_sand.png^labyrinthus_blue_cross.png^labyrinthus_yellow2.png",	9,	5,	true},
 	
 	{"!","labyrinthus:button12",				"labyrinthus_sand.png^labyrinthus_button2.png",								0, 	0,	true},
 	{"$","labyrinthus:button2_1",				"labyrinthus_sand.png^labyrinthus_button_2.png",							0,	0,	true},
@@ -185,7 +187,7 @@ local node_list1 = {
 	{"}","labyrinthus:water_eye2_with_green",	"labyrinthus_water.png^labyrinthus_water_eye.png^labyrinthus_green.png",	0,	0,	true},
 	{"`","labyrinthus:button2_2",				"labyrinthus_dirt.png^labyrinthus_button_2.png",							0,	0,	true},
 	{"^","labyrinthus:button3_2",				"labyrinthus_dirt.png^labyrinthus_button_3.png",							0,	0,	true},
-	--noch offen: 93/94   "
+	--noch offen: 94/94
 }
 
 local node_list2 = {
@@ -640,7 +642,7 @@ create2.get_formspec = function(player, pos)
 			end
 			local name1 = row_labels1 .. string.char(96 + col) -- a,b,c...
 			local name2 = row_labels2 .. string.char(96 + col) -- a,b,c...
-			if row < 7 or col < 5 then
+			if row < 7 or col < 6 then
 				formspec = formspec .. string.format("image_button[%.2f,%.2f;0.6,0.6;%s;%s;]", x1, y, img1, name1)
 			end
 			if row < 6 or (row < 7 and col < 2) then
@@ -928,6 +930,9 @@ function update()
 				d = 1
             end
             if minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:ball1" then
+                d = 1
+            end
+			if minetest.get_node({x=i, y=k, z=-76}).name == "labyrinthus:blue_cross_with_yellow" then
                 d = 1
             end
 			if minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:remember1_off" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:remember2_off" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:remember3_off" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:remember4_off" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:remember5_off" or minetest.get_node({x=i, y=k, z=-77}).name == "labyrinthus:remember5_temp" then
@@ -1896,6 +1901,10 @@ function move(player,e1m1,e1m2,e1m3,e2m1,e2m2,e2m3,ko,koad,dir1,dir2,pbjnr,trfir
 		local cyan = player_inv:get_stack("c", 1):get_count()
         player_inv:set_stack("c", 1, "labyrinthus:dirt "..(cyan+1))
         one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:water_eye2",true,donetp2,1)
+	elseif minetest.get_node(e1m2).name == "labyrinthus:blue_cross_with_yellow" then
+		local cyan = player_inv:get_stack("ye", 1):get_count()
+        player_inv:set_stack("ye", 1, "labyrinthus:dirt "..(cyan+1))
+        one_step(e1m2,e2m1,e2m2,ko,koad,player,pbjnr,"labyrinthus:blue_cross",true,donetp2,1)
 	elseif minetest.get_node(e1m2).name == "labyrinthus:red3" then
 		local red = player_inv:get_stack("re", 1):get_count()
         player_inv:set_stack("re", 1, "labyrinthus:dirt "..(red+1))
@@ -3541,6 +3550,7 @@ function Is_Node(x,y,block)
 			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:rainbow3" and 
 			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:green" and 
 			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:arrow_path_with_green" and 
+			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:blue_cross_with_yellow" and
 			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:sand_for_green" and 
 			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:sand_for_green_dirt" and 
 			minetest.get_node({x=x, y=y, z=-76}).name ~= "labyrinthus:wood_for_yellow" and
@@ -3921,142 +3931,80 @@ function level_formspec(player,file,max_level,level_count,previous_levels,previo
 		end
 	return formspec
 end
-minetest.register_node("labyrinthus:new_w1",{
-	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w1.png"},
-    paramtype = "light",
-	light_source = 4,
-	drawtype = "nodebox",
-	use_texture_alpha = "clip",
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-    on_punch = function(pos, node, player, pointed_thing)
-        minetest.show_formspec(player:get_player_name(), "tu" , level_formspec(player,"level1",18,18,0,false,"",false,"You have finished world 1!","4.7"))
-    end,
-})
-minetest.register_node("labyrinthus:new_w2",{
-	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w2.png"},
-    paramtype = "light",
-	light_source = 4,
-	drawtype = "nodebox",
-	use_texture_alpha = "clip",
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-    on_punch = function(pos, node, player, pointed_thing)
-        local player_inv = player:get_inventory()
-        local page = player_inv:get_stack("page1", 1):get_count()+1
-        if page == 1 then
-			minetest.show_formspec(player:get_player_name(), "w11" , level_formspec(player,"level2",250,25,0,false,"",true,"wab",""))
-        elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w12" , level_formspec(player,"level2",250,25,25,true,"waa",true,"wac",""))
-        elseif page == 3 then
-            minetest.show_formspec(player:get_player_name(), "w13" , level_formspec(player,"level2",250,25,50,true,"wab",true,"wad",""))
-        elseif page == 4 then
-            minetest.show_formspec(player:get_player_name(), "w14" , level_formspec(player,"level2",250,25,75,true,"wac",true,"wae",""))
-        elseif page == 5 then
-            minetest.show_formspec(player:get_player_name(), "w15" , level_formspec(player,"level2",250,25,100,true,"wad",true,"waf",""))
-        elseif page == 6 then
-            minetest.show_formspec(player:get_player_name(), "w16" , level_formspec(player,"level2",250,25,125,true,"wae",true,"wag",""))
-        elseif page == 7 then
-            minetest.show_formspec(player:get_player_name(), "w17" , level_formspec(player,"level2",250,25,150,true,"waf",true,"wah",""))
-        elseif page == 8 then
-            minetest.show_formspec(player:get_player_name(), "w18" , level_formspec(player,"level2",250,25,175,true,"wag",true,"wai",""))
-        elseif page == 9 then
-            minetest.show_formspec(player:get_player_name(), "w19" , level_formspec(player,"level2",250,25,200,true,"wah",true,"waj",""))
-        elseif page == 10 then
-            minetest.show_formspec(player:get_player_name(), "w110" , level_formspec(player,"level2",250,25,225,true,"wai",false,"You have finished world 2!","5.7"))
-        end
-    end,
-})
-minetest.register_node("labyrinthus:new_w3",{
-	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w3.png"},
-    paramtype = "light",
-	light_source = 4,
-	drawtype = "nodebox",
-	use_texture_alpha = "clip",
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-    on_punch = function(pos, node, player, pointed_thing)
-        local player_inv = player:get_inventory()
-        local page = player_inv:get_stack("page2", 1):get_count()+1
-        if page == 1 then
-			minetest.show_formspec(player:get_player_name(), "w21" , level_formspec(player,"level3",174,25,0,false,"",true,"wbb",""))
-        elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w22" , level_formspec(player,"level3",174,25,25,true,"wba",true,"wbc",""))
-        elseif page == 3 then
-            minetest.show_formspec(player:get_player_name(), "w23" , level_formspec(player,"level3",174,25,50,true,"wbb",true,"wbd",""))
-        elseif page == 4 then
-            minetest.show_formspec(player:get_player_name(), "w24" , level_formspec(player,"level3",174,25,75,true,"wbc",true,"wbe",""))
-        elseif page == 5 then
-            minetest.show_formspec(player:get_player_name(), "w25" , level_formspec(player,"level3",174,25,100,true,"wbd",true,"wbf",""))
-        elseif page == 6 then
-            minetest.show_formspec(player:get_player_name(), "w26" , level_formspec(player,"level3",174,25,125,true,"wbe",true,"wbg",""))
-        elseif page == 7 then
-            minetest.show_formspec(player:get_player_name(), "w27" , level_formspec(player,"level3",174,24,150,true,"wbf",false,"You have finished world 3!","5.7"))
-        end
-    end,
-})
-minetest.register_node("labyrinthus:new_w4",{
-	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w4.png"},
-    paramtype = "light",
-	light_source = 4,
-	drawtype = "nodebox",
-	use_texture_alpha = "clip",
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-    on_punch = function(pos, node, player, pointed_thing)
-        local player_inv = player:get_inventory()
-        local page = player_inv:get_stack("page3", 1):get_count()+1
-        if page == 1 then
-            minetest.show_formspec(player:get_player_name(), "w31" , level_formspec(player,"level4",86,25,0,false,"",true,"wcb",""))
-        elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w32" , level_formspec(player,"level4",86,25,25,true,"wca",true,"wcc",""))
-        elseif page == 3 then
-            minetest.show_formspec(player:get_player_name(), "w33" , level_formspec(player,"level4",86,25,50,true,"wcb",true,"wcd",""))
-        elseif page == 4 then
-            minetest.show_formspec(player:get_player_name(), "w34" , level_formspec(player,"level4",86,11,75,true,"wcc",false,"You have finished world 4!","3.7"))
-        end
-    end,
-})
-minetest.register_node("labyrinthus:new_w5",{
-	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w5.png"},
-    paramtype = "light",
-	light_source = 4,
-	drawtype = "nodebox",
-	use_texture_alpha = "clip",
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-    on_punch = function(pos, node, player, pointed_thing)
-        local player_inv = player:get_inventory()
-        local page = player_inv:get_stack("page5", 1):get_count()+1
-        if page == 1 then
-            minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",175,25,0,false,"",true,"wdb",""))
-		elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",175,25,25,true,"wda",true,"wdc",""))
-		elseif page == 3 then
-            minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",175,25,50,true,"wdb",true,"wdd",""))
-		elseif page == 4 then
-            minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",175,25,75,true,"wdc",true,"wde",""))
-		elseif page == 5 then
-            minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",175,25,100,true,"wdd",true,"wdf",""))
-		elseif page == 6 then
-            minetest.show_formspec(player:get_player_name(), "w56" , level_formspec(player,"level5",175,25,125,true,"wde",true,"wdg",""))
-		elseif page == 7 then
-            minetest.show_formspec(player:get_player_name(), "w57" , level_formspec(player,"level5",175,25,150,true,"wdf",false,"You have finished world 5!","5.7"))
-        end
-	end,
-})
-minetest.register_node("labyrinthus:new_w6",{
-	tiles  = {"labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_new_w6.png"},
-    paramtype = "light",
-	light_source = 4,
-	drawtype = "nodebox",
-	use_texture_alpha = "clip",
-    --groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-    on_punch = function(pos, node, player, pointed_thing)
-		local player_inv = player:get_inventory()
-        local page = player_inv:get_stack("page6", 1):get_count()+1
-        if page == 1 then
-			minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",50,25,0,false,"",true,"web",""))
-		elseif page == 2 then
-            minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",50,25,25,true,"wea",false,"more comming soon","5.7"))
-		end
-    end,
-})
+
+local world_levels = {
+    w = {world=1, idx=1, max=18, height=18, progress=0, prev="", next=false, text="You have finished world 1!", size="4.7"},
+    waa = {world=2, idx=1, max=250, height=25, progress=0,   prev="",    next="wab"},
+    wab = {world=2, idx=2, max=250, height=25, progress=25,  prev="waa", next="wac"},
+    wac = {world=2, idx=3, max=250, height=25, progress=50,  prev="wab", next="wad"},
+    wad = {world=2, idx=4, max=250, height=25, progress=75,  prev="wac", next="wae"},
+    wae = {world=2, idx=5, max=250, height=25, progress=100, prev="wad", next="waf"},
+    waf = {world=2, idx=6, max=250, height=25, progress=125, prev="wae", next="wag"},
+    wag = {world=2, idx=7, max=250, height=25, progress=150, prev="waf", next="wah"},
+    wah = {world=2, idx=8, max=250, height=25, progress=175, prev="wag", next="wai"},
+    wai = {world=2, idx=9, max=250, height=25, progress=200, prev="wah", next="waj"},
+    waj = {world=2, idx=10,max=250, height=25, progress=225, prev="wai", next=false, text="You have finished world 2!", size="5.7"},
+    wba = {world=3, idx=1, max=174, height=25, progress=0,   prev="",    next="wbb"},
+    wbb = {world=3, idx=2, max=174, height=25, progress=25,  prev="wba", next="wbc"},
+    wbc = {world=3, idx=3, max=174, height=25, progress=50,  prev="wbb", next="wbd"},
+    wbd = {world=3, idx=4, max=174, height=25, progress=75,  prev="wbc", next="wbe"},
+    wbe = {world=3, idx=5, max=174, height=25, progress=100, prev="wbd", next="wbf"},
+    wbf = {world=3, idx=6, max=174, height=25, progress=125, prev="wbe", next="wbg"},
+    wbg = {world=3, idx=7, max=174, height=24, progress=150, prev="wbf", next=false, text="You have finished world 3!", size="5.7"},
+    wca = {world=4, idx=1, max=86, height=25, progress=0,   prev="",    next="wcb"},
+    wcb = {world=4, idx=2, max=86, height=25, progress=25,  prev="wca", next="wcc"},
+    wcc = {world=4, idx=3, max=86, height=25, progress=50,  prev="wcb", next="wcd"},
+    wcd = {world=4, idx=4, max=86, height=11, progress=75,  prev="wcc", next=false, text="You have finished world 4!", size="3.7"},
+    wda = {world=5, idx=1, max=175, height=25, progress=0,   prev="",    next="wdb"},
+    wdb = {world=5, idx=2, max=175, height=25, progress=25,  prev="wda", next="wdc"},
+    wdc = {world=5, idx=3, max=175, height=25, progress=50,  prev="wdb", next="wdd"},
+    wdd = {world=5, idx=4, max=175, height=25, progress=75,  prev="wdc", next="wde"},
+    wde = {world=5, idx=5, max=175, height=25, progress=100, prev="wdd", next="wdf"},
+    wdf = {world=5, idx=6, max=175, height=25, progress=125, prev="wde", next="wdg"},
+    wdg = {world=5, idx=7, max=175, height=25, progress=150, prev="wdf", next=false, text="You have finished world 5!", size="5.7"},
+    wea = {world=6, idx=1, max=60, height=25, progress=0,   prev="",    next="web"},
+    web = {world=6, idx=2, max=60, height=25, progress=25,  prev="wea", next="wec"},
+    wec = {world=6, idx=3, max=60, height=10, progress=50,  prev="web", next=false, text="more comming soon", size="2.7"},
+}
+
+for world_id = 1, 6 do
+    local nodename = "new_w" .. world_id
+    minetest.register_node("labyrinthus:" .. nodename, {
+        tiles = {
+            "labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_glass.png",
+            "labyrinthus_glass.png","labyrinthus_glass.png","labyrinthus_"..nodename..".png"
+        },
+        paramtype = "light",
+        light_source = 4,
+        drawtype = "nodebox",
+        use_texture_alpha = "clip",
+        on_punch = function(pos, node, player)
+            local inv = player:get_inventory()
+            local name = player:get_player_name()
+			local page_id = "page"
+			if world_id > 4 then
+				page_id = page_id..world_id
+			else
+				page_id = page_id..(world_id-1)
+			end
+            local page = inv:get_stack(page_id, 1):get_count() + 1
+            local list = {}
+            for _, v in pairs(world_levels) do
+                if v.world == world_id then
+                    table.insert(list, v)
+                end
+            end
+            table.sort(list, function(a,b)
+                return a.idx < b.idx
+            end)
+            local step = list[page]
+            if not step then return end
+            local form = "w" .. world_id .. step.idx
+            local level = "level" .. world_id
+            minetest.show_formspec(name, form, level_formspec(player, level, step.max, step.height, step.progress, step.prev ~= "", step.prev, step.next ~= false, step.next or step.text, step.size or ""))
+        end,
+    })
+end
 
 function check_ground(ground_id, id)
 	local list = {"2","z","3","4","6","a","b","#","c","h","j","p","q","H","I","J","K","Z","<",";","U","N","k","n","A","l","w","R",".","'","W","X","T"}
@@ -4141,14 +4089,16 @@ function add_to_layerA(player, meta, i, j)
 	elseif n1x == 2 and n1y == 5 then
 		node_letter, new_letter = check_num_items(meta, player, "~", {"I", "J", "O", ";", "]", "~"}, 50, "green orbs")
 	elseif n1x == 5 and n1y == 5 then
-		node_letter, new_letter = check_num_items(meta, player, "R", {"R", "S", ".", "'"}, 60, "yellow orbs")
+		node_letter, new_letter = check_num_items(meta, player, "R", {"R", "S", ".", "'", "\""}, 60, "yellow orbs")
 	elseif n1x == 6 and n1y == 5 then
-		node_letter, new_letter = check_num_items(meta, player, "S", {"R", "S", ".", "'"}, 60, "yellow orbs")
+		node_letter, new_letter = check_num_items(meta, player, "S", {"R", "S", ".", "'", "\""}, 60, "yellow orbs")
 	elseif n1x == 7 and n1y == 5 then	
-		node_letter, new_letter = check_num_items(meta, player, "'", {"R", "S", ".", "'"}, 60, "yellow orbs")
+		node_letter, new_letter = check_num_items(meta, player, "'", {"R", "S", ".", "'", "\""}, 60, "yellow orbs")
 	elseif n1x == 8 and n1y == 5 then
-		node_letter, new_letter = check_num_items(meta, player, ".", {"R", "S", ".", "'"}, 60, "yellow orbs")
-	elseif n1x == 10 and n1y == 5 then
+		node_letter, new_letter = check_num_items(meta, player, ".", {"R", "S", ".", "'", "\""}, 60, "yellow orbs")
+	elseif n1x == 9 and n1y == 5 then
+		node_letter, new_letter = check_num_items(meta, player, "\"", {"R", "S", ".", "'", "\""}, 60, "yellow orbs")
+	elseif n1x == 11 and n1y == 5 then
 		node_letter = "T"
 		if j == 12 or check_ground(meta:get_string("na"..letter(i)..letter(j+1)), "T") == false or meta:get_string("nb"..letter(i)..letter(j)) ~= "0" then
 			new_letter = false
@@ -4158,21 +4108,21 @@ function add_to_layerA(player, meta, i, j)
 		else
 			meta:set_string("nb"..letter(i)..letter(j+1), "D")
 		end
-	elseif n1x == 12 and n1y == 5 then
+	elseif n1x == 13 and n1y == 5 then
 		node_letter, new_letter = check_num_items(meta, player, "W", {"W", "X", "["}, 10, "red orbs")
-	elseif n1x == 13 and n1y == 5 then	
-		node_letter, new_letter = check_num_items(meta, player, "[", {"W", "X", "["}, 10, "red orbs")
 	elseif n1x == 1 and n1y == 6 then	
+		node_letter, new_letter = check_num_items(meta, player, "[", {"W", "X", "["}, 10, "red orbs")
+	elseif n1x == 2 and n1y == 6 then	
 		node_letter, new_letter = check_num_items(meta, player, "X", {"W", "X", "["}, 10, "red orbs")
-	elseif n1x == 2 and n1y == 6 then
-		node_letter, new_letter = check_num_items(meta, player, "Z", {"Z", "<"}, 10, "white orbs")
 	elseif n1x == 3 and n1y == 6 then
-		node_letter, new_letter = check_num_items(meta, player, "<", {"Z", "<"}, 10, "white orbs")
+		node_letter, new_letter = check_num_items(meta, player, "Z", {"Z", "<"}, 10, "white orbs")
 	elseif n1x == 4 and n1y == 6 then
+		node_letter, new_letter = check_num_items(meta, player, "<", {"Z", "<"}, 10, "white orbs")
+	elseif n1x == 5 and n1y == 6 then
 		node_letter, new_letter = check_num_items(meta, player, "L", {"L", "P", ","}, 10, "cyan orbs")
-	elseif n1x == 5 and n1y == 6 then	
-		node_letter, new_letter = check_num_items(meta, player, "P", {"L", "P", ","}, 10, "cyan orbs")
 	elseif n1x == 6 and n1y == 6 then	
+		node_letter, new_letter = check_num_items(meta, player, "P", {"L", "P", ","}, 10, "cyan orbs")
+	elseif n1x == 7 and n1y == 6 then	
 		node_letter, new_letter = check_num_items(meta, player, ",", {"L", "P", ","}, 10, "cyan orbs")
 	else
 		node_letter = get_item_list2(node_list1, n1x, n1y, 1)
@@ -4245,109 +4195,27 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     local player_inv = player:get_inventory()
 	local meta = player:get_meta()
     Load(player)
-	if formname == "tu" then
-        for k, v in pairs(fields) do
-            if tonumber(v) ~= nil then
-                New(player,"1_"..v,"n",1)
-                player_inv:set_stack("l",  1, "labyrinthus:dirt "..v)
-                player_inv:set_stack("ll", 1, "labyrinthus:dirt 1")
-            end
-        end
-        minetest.show_formspec(player:get_player_name(), "", "")
+	for field, data in pairs(world_levels) do
+		if fields[field] then
+			local stack = nil
+			if data.progress > 0 then
+				local amount = data.progress / 25
+				stack = "labyrinthus:dirt " .. amount
+			end
+			local page_id = "page"
+			if data.world > 4 then
+				page_id = page_id..data.world
+			else
+				page_id = page_id..(data.world-1)
+			end
+			player_inv:set_stack(page_id, 1, stack)
+			local form = "w" .. data.world .. data.idx
+			local level = "level" .. data.world
+			minetest.show_formspec(player:get_player_name(), form, level_formspec(player, level, data.max, data.height, data.progress, data.prev ~= "", data.prev, data.next ~= false, data.next or data.text, data.size or ""))
+			break
+		end
 	end
-    if fields.waa then
-        player_inv:set_stack("page1",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w11" , level_formspec(player,"level2",250,25,0,false,"",true,"wab",""))
-    elseif fields.wab then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w12" , level_formspec(player,"level2",250,25,25,true,"waa",true,"wac",""))
-    elseif fields.wac then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 2")
-        minetest.show_formspec(player:get_player_name(), "w13" , level_formspec(player,"level2",250,25,50,true,"wab",true,"wad",""))
-    elseif fields.wad then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 3")
-        minetest.show_formspec(player:get_player_name(), "w14" , level_formspec(player,"level2",250,25,75,true,"wac",true,"wae",""))
-    elseif fields.wae then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 4")
-        minetest.show_formspec(player:get_player_name(), "w15" , level_formspec(player,"level2",250,25,100,true,"wad",true,"waf",""))
-    elseif fields.waf then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 5")
-        minetest.show_formspec(player:get_player_name(), "w16" , level_formspec(player,"level2",250,25,125,true,"wae",true,"wag",""))
-    elseif fields.wag then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 6")
-        minetest.show_formspec(player:get_player_name(), "w17" , level_formspec(player,"level2",250,25,150,true,"waf",true,"wah",""))
-    elseif fields.wah then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 7")
-        minetest.show_formspec(player:get_player_name(), "w18" , level_formspec(player,"level2",250,25,175,true,"wag",true,"wai",""))
-    elseif fields.wai then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 8")
-        minetest.show_formspec(player:get_player_name(), "w19" , level_formspec(player,"level2",250,25,200,true,"wah",true,"waj",""))
-    elseif fields.waj then
-        player_inv:set_stack("page1",  1, "labyrinthus:dirt 9")
-        minetest.show_formspec(player:get_player_name(), "w110" , level_formspec(player,"level2",250,25,225,true,"wai",false,"You have finished world 2!","5.7"))
-	elseif fields.wba then
-        player_inv:set_stack("page2",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w21" , level_formspec(player,"level3",174,25,0,false,"",true,"wbb",""))
-    elseif fields.wbb then
-        player_inv:set_stack("page2",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w22" , level_formspec(player,"level3",174,25,25,true,"wba",true,"wbc",""))
-    elseif fields.wbc then
-        player_inv:set_stack("page2",  1, "labyrinthus:dirt 2")
-        minetest.show_formspec(player:get_player_name(), "w23" , level_formspec(player,"level3",174,25,50,true,"wbb",true,"wbd",""))
-    elseif fields.wbd then
-        player_inv:set_stack("page2",  1, "labyrinthus:dirt 3")
-        minetest.show_formspec(player:get_player_name(), "w24" , level_formspec(player,"level3",174,25,75,true,"wbc",true,"wbe",""))
-    elseif fields.wbe then
-        player_inv:set_stack("page2",  1, "labyrinthus:dirt 4")
-        minetest.show_formspec(player:get_player_name(), "w25" , level_formspec(player,"level3",174,25,100,true,"wbd",true,"wbf",""))
-    elseif fields.wbf then
-        player_inv:set_stack("page2",  1, "labyrinthus:dirt 5")
-        minetest.show_formspec(player:get_player_name(), "w26" , level_formspec(player,"level3",174,25,125,true,"wbe",true,"wbg",""))
-    elseif fields.wbg then
-        player_inv:set_stack("page2",  1, "labyrinthus:dirt 6")
-        minetest.show_formspec(player:get_player_name(), "w27" , level_formspec(player,"level3",174,24,150,true,"wbf",false,"You have finished world 3!","5.7"))
-	elseif fields.wca then
-        player_inv:set_stack("page3",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w31" , level_formspec(player,"level4",86,25,0,false,"",true,"wcb",""))
-    elseif fields.wcb then
-        player_inv:set_stack("page3",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w32" , level_formspec(player,"level4",86,25,25,true,"wca",true,"wcc",""))
-    elseif fields.wcc then
-        player_inv:set_stack("page3",  1, "labyrinthus:dirt 2")
-        minetest.show_formspec(player:get_player_name(), "w33" , level_formspec(player,"level4",86,25,50,true,"wcb",true,"wcd",""))
-    elseif fields.wcd then
-        player_inv:set_stack("page3",  1, "labyrinthus:dirt 3")
-        minetest.show_formspec(player:get_player_name(), "w34" , level_formspec(player,"level4",86,11,75,true,"wcc",false,"You have finished world 4!","3.7"))
-	elseif fields.wda then
-        player_inv:set_stack("page5",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w51" , level_formspec(player,"level5",175,25,0,false,"",true,"wdb",""))
-	elseif fields.wdb then
-        player_inv:set_stack("page5",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w52" , level_formspec(player,"level5",175,25,25,true,"wda",true,"wdc",""))
-	elseif fields.wdc then
-        player_inv:set_stack("page5",  1, "labyrinthus:dirt 2")
-        minetest.show_formspec(player:get_player_name(), "w53" , level_formspec(player,"level5",175,25,50,true,"wdb",true,"wdd",""))
-	elseif fields.wdd then
-        player_inv:set_stack("page5",  1, "labyrinthus:dirt 3")
-        minetest.show_formspec(player:get_player_name(), "w54" , level_formspec(player,"level5",175,25,75,true,"wdc",true,"wde",""))
-	elseif fields.wde then
-        player_inv:set_stack("page5",  1, "labyrinthus:dirt 4")
-        minetest.show_formspec(player:get_player_name(), "w55" , level_formspec(player,"level5",175,25,100,true,"wdd",true,"wdf",""))
-	elseif fields.wdf then
-        player_inv:set_stack("page5",  1, "labyrinthus:dirt 5")
-        minetest.show_formspec(player:get_player_name(), "w56" , level_formspec(player,"level5",175,25,125,true,"wde",true,"wdg",""))
-	elseif fields.wdg then
-        player_inv:set_stack("page5",  1, "labyrinthus:dirt 6")
-        minetest.show_formspec(player:get_player_name(), "w57" , level_formspec(player,"level5",175,25,150,true,"wdf",false,"You have finished world 5!","5.7"))
-	elseif fields.wea then
-        player_inv:set_stack("page6",  1, nil)
-        minetest.show_formspec(player:get_player_name(), "w61" , level_formspec(player,"level6",50,25,0,false,"",true,"web",""))
-	elseif fields.web then
-        player_inv:set_stack("page6",  1, "labyrinthus:dirt")
-        minetest.show_formspec(player:get_player_name(), "w62" , level_formspec(player,"level6",50,25,25,true,"wea",false,"more comming soon","5.7"))
-	elseif fields.import then
-		minetest.show_formspec(player:get_player_name(), "import" , import.get_formspec(player))
-	elseif fields.save then
+    if fields.save then
 		local meta = player:get_meta()
 		local s = ""
 		local k1 = 0
@@ -4513,7 +4381,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		for i = 1, #t do
 			if tostring(t[i]) == meta:get_string("celected") then
 				minetest.rmdir(minetest.get_worldpath().."/own_level_"..t[i]..".txt", false)
-				minetest.chat_send_all(t[i])
 				table.remove(t, i)
 			end
 		end
@@ -4601,56 +4468,18 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			end
 		end
 	end
-    if formname == "w11" or formname == "w12" or formname == "w13" or formname == "w14" or formname == "w15" or formname == "w16" or formname == "w17" or formname == "w18" or formname == "w19" or formname == "w110" then
-        for k, v in pairs(fields) do
-            if tonumber(v) ~= nil then
-                New(player,"2_"..v,"n",1)
-                player_inv:set_stack("l",  2, "labyrinthus:dirt "..v)
-                player_inv:set_stack("ll", 1, "labyrinthus:dirt 2")
+	if formname:match("^w%d+") then
+		local world = tonumber(formname:sub(2,2))
+		if not world then return end
+		for _, v in pairs(fields) do
+			v = tonumber(v)
+			if v then
+				New(player, world .. "_" .. v, "n", 1)
+				player_inv:set_stack("l", world, "labyrinthus:dirt " .. v)
+				player_inv:set_stack("ll", 1, "labyrinthus:dirt " .. world)
 				minetest.show_formspec(player:get_player_name(), "", "")
-            end
-        end
-	end
-    if formname == "w21" or formname == "w22" or formname == "w23" or formname == "w24" or formname == "w25" or formname == "w26" or formname == "w27" then
-        for k, v in pairs(fields) do
-            if tonumber(v) ~= nil then
-                New(player,"3_"..v,"n",1)
-                player_inv:set_stack("l",  3, "labyrinthus:dirt "..v)
-                player_inv:set_stack("ll", 1, "labyrinthus:dirt 3")
-				minetest.show_formspec(player:get_player_name(), "", "")
-            end
-        end
-		
-	end
-    if formname == "w31" or formname == "w32" or formname == "w33" or formname == "w34" then
-        for k, v in pairs(fields) do
-            if tonumber(v) ~= nil then
-                New(player,"4_"..v,"n",1)
-                player_inv:set_stack("l",  4, "labyrinthus:dirt "..v)
-                player_inv:set_stack("ll", 1, "labyrinthus:dirt 4")
-				minetest.show_formspec(player:get_player_name(), "", "")
-            end
-        end
-		
-	end
-	if formname == "w51" or formname == "w52" or formname == "w53" or formname == "w54" or formname == "w55" or formname == "w56" or formname == "w57" then
-        for k, v in pairs(fields) do
-            if tonumber(v) ~= nil then
-                New(player,"5_"..v,"n",1)
-                player_inv:set_stack("l",  5, "labyrinthus:dirt "..v)
-                player_inv:set_stack("ll", 1, "labyrinthus:dirt 5")
-				minetest.show_formspec(player:get_player_name(), "", "")
-            end
-        end
-	end
-	if formname == "w61" or formname == "w62" then
-        for k, v in pairs(fields) do
-            if tonumber(v) ~= nil then
-                New(player,"6_"..v,"n",1)
-                player_inv:set_stack("l",  6, "labyrinthus:dirt "..v)
-                player_inv:set_stack("ll", 1, "labyrinthus:dirt 6")
-				minetest.show_formspec(player:get_player_name(), "", "")
-            end
-        end
+				break
+			end
+		end
 	end
 end)
